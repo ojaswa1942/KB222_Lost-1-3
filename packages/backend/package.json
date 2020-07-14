@@ -1,0 +1,42 @@
+{
+  "name": "fund-disbursal-backend",
+  "version": "0.1.0",
+  "description": "Backend for Fund Disbursal. Project for Grand Finale, SIH 2020",
+  "main": "dist/server.js",
+  "repository": "https://github.com/prmsrswt/fund-disbursal-backend",
+  "author": "Prem Kumar <prmsrswt@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "lint": "tsc --noEmit && eslint --quiet --fix --ext .js --ext .ts src/*",
+    "watch-node": "nodemon dist/server.js",
+    "watch-ts": "tsc -w",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn watch-node\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,js}": [
+      "eslint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "concurrently": "^5.2.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {}
+}
