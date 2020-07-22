@@ -2,7 +2,9 @@ import React from "react";
 import "./Home.css";
 import LogoHead from "../../Components/LogoHead/LogoHead";
 import HomeNav from "../../Components/HomeNav/HomeNav";
-import {ReactComponent as Feature1} from '../../Assets/feature1.svg'
+import { ReactComponent as Feature1 } from "../../Assets/feature1.svg";
+import { ReactComponent as Feature2 } from "../../Assets/feature2.svg";
+import { ReactComponent as Feature3 } from "../../Assets/feature3.svg";
 
 const Home = () => {
   return (
@@ -29,11 +31,35 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <div className="featuresDiv">
+      <div className="featuresSection">
         <h1 className="featureHead">Features</h1>
-        <div>
+        <div className="featuresDiv">
           <div className="feature">
-            <Feature1 />
+            <Feature1 className="featureLogo" />
+            <h3>Encrypted Data Flow</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua. At vero eos et accusam et justo
+            </p>
+          </div>
+          <div className="feature">
+            <Feature2 className="featureLogo" />
+            <h3>Notifications<br/>on-the-go</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua. At vero eos et accusam et justo
+            </p>
+          </div>
+          <div className="feature">
+            <Feature3 className="featureLogo" />
+            <h3>Seamless communication aross channels</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua. At vero eos et accusam et justo
+            </p>
           </div>
         </div>
       </div>

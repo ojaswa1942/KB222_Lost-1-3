@@ -73,7 +73,7 @@
   font-weight: 100;
 }
 
-.featuresDiv {
+.featuresSection {
   box-sizing: border-box;
   padding: 1rem 8rem;
   background:rgba(187, 229, 219, 0.2);
@@ -85,4 +85,34 @@
   font-weight: 700;
   color: #191919;
   margin: 2em 0;
+}
+
+.featuresDiv {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1rem;
+  width: 19vw;
+  text-align: center;
+}
+
+.feature h3 {
+  margin: 2em 0;
+}
+
+.feature p {
+  font-size: 0.78rem;
+  line-height: 3em;
+  text-align: center;
+  margin: 0;
+}
+
+.featureLogo{
+  height: 9em;
 }
