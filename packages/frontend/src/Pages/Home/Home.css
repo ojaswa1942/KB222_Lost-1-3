@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+
+.homePage {
+  /* box-sizing: border-box; */
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.home {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: url("../../Assets/homebg.png");
+  background-position: bottom right;
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* height: max-content; */
+  width: 100%;
+  padding: 1rem 6rem;
+}
+
+.homeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.homeBody {
+  width: 50vw;
+  margin: 3em 2em;
+}
+
+.home h1 {
+  color: #bb6a57;
+  font-size: 3.1em;
+  margin: 0.2em 0;
+}
+
+.homeBody p {
+  padding: 1em 0;
+  width: 60%;
+  font-weight: 300;
+  line-height: 2.5em;
+}
+
+.green {
+  color: #4c7260;
+}
+
+.portalBtn {
+  display: flex;
+  align-items: center;
+  background: #4c7260;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 8px 8px 16px #4c726029;
+  outline: none;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 0.1em 1em;
+  margin: 2em 0;
+}
+
+.portalBtn span {
+  font-size: 2em;
+  padding: 0 0 0 0.3em;
+  font-weight: 100;
+}
+
+.featuresDiv {
+  box-sizing: border-box;
+  padding: 1rem 8rem;
+  background:rgba(187, 229, 219, 0.2);
+  height: max-content;
+}
+
+.featureHead {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: #191919;
+  margin: 2em 0;
+}

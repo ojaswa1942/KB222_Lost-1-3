@@ -1,0 +1,25 @@
+.logoHead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  width: 20vw;
+  font-weight: 700;
+  font-size: 0.9em;
+}
+
+.logoBody {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 2em;
+}
+
+.apLogo {
+  height: 5em;
+  padding: 1em 0;
+}
+
+.logoSubHead {
+  font-size: 0.8em;
+  font-weight: 200;
+}

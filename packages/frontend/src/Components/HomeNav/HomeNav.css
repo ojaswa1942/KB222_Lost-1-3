@@ -1,0 +1,10 @@
+.homeNav {
+  margin: 1em;
+  font-weight: 500;
+  text-decoration: none;
+  color: #191919;
+}
+
+.homeNav:hover {
+  text-decoration: underline;
+}
