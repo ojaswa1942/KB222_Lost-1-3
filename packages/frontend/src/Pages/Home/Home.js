@@ -5,6 +5,7 @@ import HomeNav from "../../Components/HomeNav/HomeNav";
 import { ReactComponent as Feature1 } from "../../Assets/feature1.svg";
 import { ReactComponent as Feature2 } from "../../Assets/feature2.svg";
 import { ReactComponent as Feature3 } from "../../Assets/feature3.svg";
+import Footer from "../../Components/Footer/Footer";
 
 const Home = () => {
   return (
@@ -63,6 +64,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
