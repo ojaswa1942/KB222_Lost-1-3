@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
 
 .homePage {
-  /* box-sizing: border-box; */
-  width: 100vw;
   display: flex;
   flex-direction: column;
 }
@@ -19,6 +17,7 @@
   /* height: max-content; */
   width: 100%;
   padding: 1rem 6rem;
+  min-height: 100vh;
 }
 
 .homeHeader {
