@@ -6,6 +6,7 @@ import { ReactComponent as Feature1 } from "../../Assets/feature1.svg";
 import { ReactComponent as Feature2 } from "../../Assets/feature2.svg";
 import { ReactComponent as Feature3 } from "../../Assets/feature3.svg";
 import Footer from "../../Components/Footer/Footer";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -27,9 +28,13 @@ const Home = () => {
             nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
             erat, sed diam voluptua. At vero eos et accusam et justo
           </p>
-          <button className="portalBtn">
-            VISIT PORTAL <span>&#8594;</span>
-          </button>
+          <div className="loginLink">
+            <Link to="/login">
+              <button className="portalBtn">
+                VISIT PORTAL <span>&#8594;</span>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
       <div className="featuresSection">
@@ -46,7 +51,11 @@ const Home = () => {
           </div>
           <div className="feature">
             <Feature2 className="featureLogo" />
-            <h3>Notifications<br/>on-the-go</h3>
+            <h3>
+              Notifications
+              <br />
+              on-the-go
+            </h3>
             <p>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam

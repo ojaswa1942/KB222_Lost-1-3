@@ -49,6 +49,11 @@
   color: #4c7260;
 }
 
+.loginLink {
+ padding: 2em 0; 
+ width: max-content;
+}
+
 .portalBtn {
   display: flex;
   align-items: center;
@@ -63,7 +68,7 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   padding: 0.1em 1em;
-  margin: 2em 0;
+  cursor: pointer;
 }
 
 .portalBtn span {
