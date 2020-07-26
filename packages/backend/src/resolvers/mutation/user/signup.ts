@@ -1,24 +1,23 @@
-import { IFieldResolver, UserInputError, ApolloError } from 'apollo-server-express';
+import { IFieldResolver } from 'apollo-server-express';
 import { getRepository } from 'typeorm';
 import bcrypt from 'bcryptjs';
 
 import { User } from '../../../entity/User';
-// import errors from '../../utils/errors';
+import errors from '../../../utils/errors';
 import { Context } from '../../../context';
+import { SignUpInput, SignUpResponse } from '../../../gqltypes';
 
-interface SignUpResponse {
-  code: string;
-  message: string;
-  user: User;
-}
-export const signup: IFieldResolver<null, Context> = async (_parent, { input }): Promise<SignUpResponse> => {
+export const signup: IFieldResolver<null, Context, { input: SignUpInput }> = async (
+  _parent,
+  { input }
+): Promise<SignUpResponse> => {
   const { name, email, password } = input;
 
-  if (!name || !email || !password) throw new UserInputError('All fields are required');
+  if (!name || !email || !password) throw errors.fieldsRequired;
   const userRepo = getRepository(User);
 
   const chkUser = await userRepo.findOne({ email });
-  if (chkUser) throw new ApolloError('User already exists', 'EMAIL_EXISTS');
+  if (chkUser) throw errors.emailExists;
 
   const hash = await bcrypt.hash(password, 8);
 
