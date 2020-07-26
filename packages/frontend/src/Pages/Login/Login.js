@@ -1,9 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import "./Login.css";
+import LogoHead from "../../Components/LogoHead/LogoHead";
+import Footer from "../../Components/Footer/Footer";
+import { ReactComponent as Eye } from "../../Assets/eye.svg";
 
 const Login = () => {
+  const [showPass, setShowPass] = useState(false);
+
+  const { register, handleSubmit, errors } = useForm();
+  const onSubmit = (data) => console.log(data);
+  const showPassword = () => {
+    setShowPass(!showPass);
+  };
+
   return (
     <div>
-      <div>Hi</div>
+      <div className="loginPage">
+        <LogoHead isWhite={true} />
+        <div className="loginDiv">
+          <div>
+            <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+              <h1>LOGIN</h1>
+              <div>
+                <h3> Choose Entity*</h3>
+                <div className="radioGroup">
+                  <label>
+                    <div className="loginRadio">
+                      <input
+                        type="radio"
+                        value="State"
+                        name="entity"
+                        ref={register({ required: true })}
+                      />
+                      <span>State</span>
+                    </div>
+                  </label>
+                  <label>
+                    <div className="loginRadio">
+                      <input
+                        type="radio"
+                        value="Centre"
+                        name="entity"
+                        ref={register({ required: true })}
+                      />
+                      <span>Centre</span>
+                    </div>
+                  </label>
+                </div>
+                {errors.entity && <span className="fieldError">This field is required</span>}
+              </div>
+              <label className="loginEmail">
+                E-mail address*
+                <input ref={register} name="email" type="email" required />
+              </label>
+              <label>
+                Password*
+                <div className="loginPass">
+                  <input
+                    ref={register}
+                    name="password"
+                    type={showPass ? "text" : "password"}
+                    required
+                  />
+                  <button onClick={showPassword} type="button">
+                    <Eye />
+                  </button>
+                </div>
+              </label>
+              <label className="loginDept">
+                Select Department*
+                <select required ref={register} name="department">
+                  <option value="">Select</option>
+                  <option value="dep1">dep1</option>
+                  <option value="dep2">dep2</option>
+                  <option value="dep3">dep3</option>
+                  <option value="dep4">dep4</option>
+                </select>
+              </label>
+              <button type="submit" className="loginBtn">
+                SUBMIT
+              </button>
+              <a href="/login">Forgot Password ? Contact admin</a>
+            </form>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
