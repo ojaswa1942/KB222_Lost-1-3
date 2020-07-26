@@ -48,35 +48,52 @@ const Login = () => {
                     </div>
                   </label>
                 </div>
-                {errors.entity && <span className="fieldError">This field is required</span>}
+                {errors.entity && (
+                  <span className="fieldError">This field is required</span>
+                )}
               </div>
               <label className="loginEmail">
                 E-mail address*
-                <input ref={register} name="email" type="email" required />
+                <input
+                  ref={register({ required: true })}
+                  name="email"
+                  type="email"
+                />
+                {errors.email && (
+                  <span className="fieldError">This field is required</span>
+                )}
               </label>
               <label>
                 Password*
                 <div className="loginPass">
                   <input
-                    ref={register}
+                    ref={register({ required: true, minLength: 6 })}
                     name="password"
                     type={showPass ? "text" : "password"}
-                    required
                   />
                   <button onClick={showPassword} type="button">
                     <Eye />
                   </button>
                 </div>
+                {errors.password && errors.password.type === "required" && (
+                  <span className="fieldError">This field is required</span>
+                )}
+                {errors.password && errors.password.type === "minLength" && (
+                  <span className="fieldError">It should contain atleast 6 characters</span>
+                )}
               </label>
               <label className="loginDept">
                 Select Department*
-                <select required ref={register} name="department">
+                <select ref={register({ required: true })} name="department">
                   <option value="">Select</option>
                   <option value="dep1">dep1</option>
                   <option value="dep2">dep2</option>
                   <option value="dep3">dep3</option>
                   <option value="dep4">dep4</option>
                 </select>
+                {errors.department && (
+                  <span className="fieldError">This field is required</span>
+                )}
               </label>
               <button type="submit" className="loginBtn">
                 SUBMIT
