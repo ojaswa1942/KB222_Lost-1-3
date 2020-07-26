@@ -1,0 +1,21 @@
+version: '3.2'
+services:
+  db:
+    image: postgres:12-alpine
+    container_name: db
+    environment:
+      POSTGRES_PASSWORD: dubidubi
+      PGDATA: /data/pg
+    volumes:
+      - ./data/db:/data
+    restart: always
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    environment:
+      ADMINER_DESIGN: lucas-sandery
+    ports:
+      - 8080:8080

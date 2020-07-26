@@ -1,4 +1,3 @@
-import { MongoClient, Db } from 'mongodb';
 import { Request, Response } from 'express';
 import { IncomingHttpHeaders } from 'http';
 import jwt from 'jsonwebtoken';
@@ -9,27 +8,21 @@ import { JWTPayload } from './interfaces';
 export interface ContextInput {
   res: Response;
   req: Request;
-  client: MongoClient;
-  db: Db;
 }
 
 export interface Context {
   headers: IncomingHttpHeaders;
   req: Request;
   res: Response;
-  client: MongoClient;
-  db: Db;
   isValid: boolean;
   jwt?: JWTPayload;
 }
 
-const context = ({ req, res, client, db }: ContextInput): Context => {
+const context = ({ req, res }: ContextInput): Context => {
   const payload: Context = {
     headers: req.headers,
     req: req,
     res: res,
-    client,
-    db,
     isValid: false,
   };
 

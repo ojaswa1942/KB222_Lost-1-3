@@ -2,7 +2,8 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { MongoClient } from 'mongodb';
+import 'reflect-metadata';
+import { createConnection } from 'typeorm';
 
 import config from './config';
 import typeDefs from './schema';
@@ -21,17 +22,12 @@ app.use(express.json());
 app.set('trust proxy', true);
 
 const main = async () => {
-  const client = new MongoClient(config.mongoURI, {
-    useUnifiedTopology: true,
-  });
-
-  await client.connect();
-  const db = client.db(config.DBName);
+  await createConnection(config.orm);
 
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req, res }) => context({ req, res, client, db }),
+    context,
     mocks: !config.isProd,
     mockEntireSchema: false,
     playground: !config.isProd,
