@@ -1,0 +1,32 @@
+extend type Mutation {
+  signup(input: SignUpInput): SignUpResponse
+}
+
+enum UserType {
+  ROOT
+  CENTRE
+  STATE
+}
+
+type User {
+  id: Int
+  name: String
+  email: String
+  type: UserType
+  # schemes: [Scheme]
+  # departments: [Department]
+  isVerified: Boolean
+  createdAt: String
+}
+
+type SignUpResponse implements MutationResponse {
+  code: String!
+  message: String!
+  user: User!
+}
+
+input SignUpInput {
+  name: String!
+  email: String!
+  password: String!
+}

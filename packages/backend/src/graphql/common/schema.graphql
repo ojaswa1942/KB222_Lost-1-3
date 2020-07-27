@@ -1,0 +1,4 @@
+interface MutationResponse {
+  code: String!
+  message: String!
+}

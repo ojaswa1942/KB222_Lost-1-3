@@ -8,12 +8,16 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "codegen": "yarn graphql-codegen --config codegen.yml",
     "start": "node dist/server.js",
-    "build": "tsc",
+    "compile": "yarn codegen && tsc && yarn copy-graphql",
+    "build": "yarn compile",
     "lint": "tsc --noEmit && eslint --quiet --fix --ext .js --ext .ts src/*",
-    "watch-node": "nodemon dist/server.js",
+    "watch-node": "nodemon",
     "watch-ts": "tsc -w",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn watch-node\""
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "copy-graphql": "cd ./src && find ./graphql -type f -name '*.graphql' -exec cp {} ../dist/{} \\;",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"yarn codegen --watch\" \"yarn watch-node\""
   },
   "husky": {
     "hooks": {
@@ -26,6 +30,9 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.17.6",
+    "@graphql-codegen/typescript": "^1.17.6",
+    "@graphql-codegen/typescript-resolvers": "^1.17.6",
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie-parser": "^1.4.2",
     "@types/jsonwebtoken": "^8.5.0",
@@ -42,9 +49,15 @@
     "lint-staged": "^10.2.11",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
+    "ts-node": "^8.10.2",
     "typescript": "^3.9.6"
   },
   "dependencies": {
+    "@graphql-tools/graphql-file-loader": "^6.0.15",
+    "@graphql-tools/load": "^6.0.15",
+    "@graphql-tools/load-files": "^6.0.15",
+    "@graphql-tools/merge": "^6.0.15",
+    "@graphql-tools/schema": "^6.0.15",
     "apollo-server-express": "^2.15.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",

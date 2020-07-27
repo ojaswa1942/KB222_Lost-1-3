@@ -6,8 +6,7 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 
 import config from './config';
-import typeDefs from './schema';
-import resolvers from './resolvers';
+import { rootSchema } from './graphql/rootSchema';
 import context from './context';
 
 const app = express();
@@ -22,11 +21,10 @@ app.use(express.json());
 app.set('trust proxy', true);
 
 const main = async () => {
-  await createConnection(config.orm);
+  await createConnection();
 
   const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema: rootSchema,
     context,
     mocks: !config.isProd,
     mockEntireSchema: false,

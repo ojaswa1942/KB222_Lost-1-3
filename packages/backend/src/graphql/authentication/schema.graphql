@@ -1,0 +1,26 @@
+directive @requireAuthentication on FIELD_DEFINITION
+
+extend type Query {
+  """
+  Returns the currently logged in user.
+  """
+  user: User @requireAuthentication
+}
+
+extend type Mutation {
+  """
+  Authenticates a user with the given credentials.
+  """
+  signin(input: SignInInput): SignInResponse
+}
+
+type SignInResponse implements MutationResponse {
+  code: String!
+  message: String!
+  expiry: String
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}

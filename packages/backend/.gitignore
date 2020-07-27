@@ -1,6 +1,8 @@
 # Docker volumes
 data/db/*
 
+*.generated.ts
+
 !.keep
 
 # Logs

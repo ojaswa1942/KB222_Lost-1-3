@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, J
 import { Department } from './Department';
 import { Scheme } from './Scheme';
 import { Room } from './Room';
-import { UserType } from '../interfaces';
+import { UserType } from '../../interfaces';
 
 @Entity()
 export class User {
