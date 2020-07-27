@@ -9,11 +9,21 @@ export default gql`
     signin(input: SignInInput): SignInResponse
   }
 
+  enum UserType {
+    ROOT
+    CENTRE
+    STATE
+  }
+
   type User {
     id: Int
     name: String
     email: String
+    type: UserType
+    schemes: [Scheme]
+    departments: [Department]
     isVerified: Boolean
+    createdAt: String
   }
 
   type SignUpResponse implements MutationResponse {

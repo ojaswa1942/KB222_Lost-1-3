@@ -2,6 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, J
 import { Department } from './Department';
 import { Scheme } from './Scheme';
 import { Room } from './Room';
+import { UserType } from '../interfaces';
 
 @Entity()
 export class User {
@@ -18,6 +19,13 @@ export class User {
 
   @Column()
   hash: string;
+
+  @Column({
+    type: 'enum',
+    enum: UserType,
+    default: UserType.STATE,
+  })
+  type: UserType;
 
   @ManyToMany(() => Department, (department) => department.users)
   @JoinTable()
