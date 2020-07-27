@@ -32,7 +32,7 @@ const orm: ConnectionOptions = {
   database: DB_NAME || 'fund',
   entities: ['dist/entity/**/*.js'],
   synchronize: true,
-  logging: false,
+  logging: true,
 };
 
 const config = {

@@ -1,4 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Department } from './Department';
+import { Scheme } from './Scheme';
+import { Room } from './Room';
 
 @Entity()
 export class User {
@@ -8,12 +11,29 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   email: string;
 
   @Column()
   hash: string;
 
+  @ManyToMany(() => Department, (department) => department.users)
+  @JoinTable()
+  departments: Department[];
+
+  @ManyToMany(() => Scheme, (scheme) => scheme.users)
+  @JoinTable()
+  schemes: Scheme[];
+
+  @ManyToMany(() => Room, (room) => room.users)
+  @JoinTable()
+  rooms: Room[];
+
   @Column()
   isVerified: boolean;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }
