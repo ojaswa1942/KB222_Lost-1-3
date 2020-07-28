@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import "./Login.css";
 import LogoHead from "../../Components/LogoHead/LogoHead";
 import Footer from "../../Components/Footer/Footer";
-import { ReactComponent as Eye } from "../../Assets/eye.svg";
+import { ReactComponent as Eye } from "../../assets/eye.svg";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);

@@ -1,6 +1,6 @@
 import React from "react";
 import "./LogoHead.css";
-import APLogo from "../../Assets/APLogo.png";
+import APLogo from "../../assets/APLogo.png";
 
 const LogoHead = ({ isWhite }) => {
   return (
