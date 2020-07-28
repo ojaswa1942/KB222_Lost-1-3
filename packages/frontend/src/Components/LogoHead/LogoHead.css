@@ -2,10 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 20vh;
-  width: 20vw;
   font-weight: 700;
   font-size: 0.9em;
+  width: max-content;
 }
 
 .logoBody {
@@ -26,4 +25,15 @@
 
 .whiteText {
   color: white;
+}
+
+@media screen and (max-width: 500px) {
+  .logoHead {
+    font-size: 0.5em;
+  }
+  
+  .logoBody {
+    box-sizing: border-box;
+    width: max-content;
+  }
 }

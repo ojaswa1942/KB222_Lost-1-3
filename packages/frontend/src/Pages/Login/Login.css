@@ -12,6 +12,12 @@
   margin: 2em 2em 5em 2em;
 }
 
+.loginFormDiv{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .loginForm {
   box-sizing: border-box;
   padding: 3em;
@@ -20,7 +26,7 @@
   background: #ffffff;
   border: 1px solid #707070;
   border-radius: 10px;
-  width: 33vw;
+  width: 40%;
 }
 
 .loginForm h1 {

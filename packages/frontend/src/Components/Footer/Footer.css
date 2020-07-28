@@ -1,4 +1,5 @@
 .footerContainer {
+  width: 100%;
   color: white;
   display: flex;
   flex-direction: column;
@@ -13,10 +14,11 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .footerHead {
-  width: 15vw;
+  width: max-content;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -37,7 +39,7 @@
 }
 
 .footerSection {
-  width: 15vw;
+  width: max-content;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -47,6 +49,7 @@
 .footerNavHeads {
   font-size: 1.3em;
   letter-spacing: 0.5em;
+  width: max-content;
 }
 
 .footerLink {
@@ -67,4 +70,47 @@
   text-align: center;
   font-weight: 600;
   letter-spacing: 0.1em;
+}
+
+@media screen and (max-width: 500px) {
+  .footerNav {
+    padding: 1em;
+  }
+
+  .footerHead {
+    width: max-content;
+    padding: 1em;
+  }
+
+  .footerHead h3 {
+    font-size: 0.7rem;
+    line-height: 1.5em;
+  }
+
+  .footerLogo {
+    height: 3em;
+    width: 3em;
+    align-self: center;
+  }
+
+  .footerSection {
+    padding: 1em 0.8em;
+  }
+
+  .footerNavHeads {
+    font-size: 0.5em;
+    letter-spacing: 0.5em;
+  }
+
+  .footerLink {
+    font-size: 0.4em;
+    margin-bottom: 1em;
+  }
+
+  .footerCopyright {
+    padding: 0.5em 0;
+  }
+  .footerCopyright span {
+    font-size: 0.5em;
+  }
 }

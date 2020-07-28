@@ -28,7 +28,6 @@
 }
 
 .homeBody {
-  width: 50vw;
   margin: 3em 2em;
 }
 
@@ -40,7 +39,7 @@
 
 .homeBody p {
   padding: 1em 0;
-  width: 60%;
+  width: 35%;
   font-weight: 300;
   line-height: 2.5em;
 }
@@ -50,8 +49,8 @@
 }
 
 .loginLink {
- padding: 2em 0; 
- width: max-content;
+  padding: 2em 0;
+  width: max-content;
 }
 
 .portalBtn {
@@ -80,7 +79,7 @@
 .featuresSection {
   box-sizing: border-box;
   padding: 1rem 8rem;
-  background:rgba(187, 229, 219, 0.2);
+  background: rgba(187, 229, 219, 0.2);
   height: max-content;
 }
 
@@ -118,6 +117,73 @@
   margin: 0;
 }
 
-.featureLogo{
+.featureLogo {
   height: 9em;
+}
+
+@media screen and (max-width: 500px) {
+  .homePage {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home {
+    background: none;
+    /* background: url("../../assets/homebg.png");
+    background-position: bottom right;
+    background-size: contain;
+    background-repeat: no-repeat; */
+    padding: 1rem 2rem;
+    min-height: max-content;
+  }
+
+  .homeBody {
+    margin: 2em 0;
+  }
+
+  .home h1 {
+    font-size: 1.5em;
+  }
+
+  .homeBody p {
+    width: 60%;
+    font-size: 0.7em;
+  }
+
+  .portalBtn {
+    font-size: 1em;
+  }
+
+  .portalBtn span {
+    font-size: 1.5em;
+  }
+
+  .featuresSection {
+    padding: 1rem 3rem;
+  }
+
+  .featureHead {
+    font-size: 1.7em;
+    margin: 1em 0;
+  }
+
+  .featuresDiv {
+    flex-direction: column;
+    align-items: center;
+    margin: 3em 0;
+  }
+
+  .feature {
+    font-size: 1em;
+    width: 90%;
+    padding-bottom: 2em;
+  }
+
+  .feature h3 {
+    margin: 0.8em 0;
+  }
+
+  .feature p {
+    line-height: 2em;
+  }
 }

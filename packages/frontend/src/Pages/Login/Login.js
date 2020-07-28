@@ -19,7 +19,7 @@ const Login = () => {
       <div className="loginPage">
         <LogoHead isWhite={true} />
         <div className="loginDiv">
-          <div>
+          <div className="loginFormDiv">
             <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
               <h1>LOGIN</h1>
               <div>

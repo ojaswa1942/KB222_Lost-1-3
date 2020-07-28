@@ -4,11 +4,11 @@ import './HomeNav.css'
 const HomeNav = () => {
   return (
     <div>
-      <nav>
-        <a href="/#" className="homeNav">
+      <nav className="homeNav">
+        <a href="/#" className="homeNavLink">
           About Us
         </a>
-        <a href="/#" className="homeNav">
+        <a href="/#" className="homeNavLink">
           Contact Us
         </a>
       </nav>
