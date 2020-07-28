@@ -36,6 +36,9 @@ jobs:
       - name: Generate GraphQL types
         run: yarn codegen
 
+      - name: Setup required env variables
+        run: cp .env.example .env
+
       - name: Run tests
         run: yarn test
         env:
