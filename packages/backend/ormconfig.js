@@ -9,6 +9,11 @@ const { PG_HOST, PG_PORT, PG_USER, PG_PASS, DB_NAME } = process.env;
 const DEFAULTS = {
   type: 'postgres',
   entities: [path.join(__dirname, 'src/database/entity/**/*.ts')],
+  host: PG_HOST || 'localhost',
+  port: Number(PG_PORT) || 5432,
+  username: PG_USER || 'postgres',
+  password: PG_PASS,
+  database: DB_NAME || 'fund',
   synchronize: false,
   logging: false,
   cli: {
@@ -20,8 +25,7 @@ const DEFAULTS = {
 if (NODE_ENV === 'test') {
   module.exports = {
     ...DEFAULTS,
-    type: 'sqlite',
-    database: ':memory:',
+    database: 'fund-test',
     synchronize: true,
   };
 }
@@ -29,11 +33,6 @@ if (NODE_ENV === 'test') {
 if (NODE_ENV === 'staging') {
   module.exports = {
     ...DEFAULTS,
-    host: PG_HOST || 'localhost',
-    port: Number(PG_PORT) || 5432,
-    username: PG_USER || 'postgres',
-    password: PG_PASS,
-    database: DB_NAME || 'fund',
     logging: true,
     synchronize: true,
   };
@@ -42,11 +41,6 @@ if (NODE_ENV === 'staging') {
 if (NODE_ENV === 'production') {
   module.exports = {
     ...DEFAULTS,
-    host: PG_HOST || 'localhost',
-    port: Number(PG_PORT) || 5432,
-    username: PG_USER || 'postgres',
-    password: PG_PASS,
-    database: DB_NAME || 'fund',
     entities: [path.join(__dirname, 'dist/src/database/entity/**/*.js')],
   };
 }

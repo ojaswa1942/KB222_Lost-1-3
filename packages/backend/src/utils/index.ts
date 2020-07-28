@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 import ms from 'ms';
 import { Response } from 'express';
 import { JWTPayload } from '../interfaces';
@@ -12,6 +13,10 @@ export const genToken = (payload: JWTPayload): [string, string] => {
   });
 
   return [token, config.JWTExpiry];
+};
+
+export const genHash = (password: string): string => {
+  return bcrypt.hashSync(password, 8);
 };
 
 export const addAuthCookies = (

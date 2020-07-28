@@ -1,9 +1,9 @@
 import { getRepository } from 'typeorm';
-import bcrypt from 'bcryptjs';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
 import { User } from '../../database/entity/User';
 import errors from '../../utils/errors';
+import { genHash } from '../../utils';
 
 const resolvers: Resolvers<Context> = {
   Mutation: {
@@ -14,11 +14,11 @@ const resolvers: Resolvers<Context> = {
       const chkUser = await userRepo.findOne({ email });
       if (chkUser) throw errors.emailExists;
 
-      const hash = await bcrypt.hash(password, 8);
+      const hash = genHash(password);
 
       const user = userRepo.create({ name, email, hash, isVerified: true });
 
-      userRepo.save(user);
+      await userRepo.save(user);
 
       return {
         code: '200',
