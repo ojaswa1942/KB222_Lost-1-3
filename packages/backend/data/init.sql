@@ -1,0 +1,2 @@
+CREATE DATABASE "fund";
+CREATE DATABASE "fund-test";

@@ -1,0 +1,40 @@
+name: Tests
+on: push
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    container: node:12
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: dubidubi
+          POSTGRES_DB: fund-test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run tests
+        run: yarn test
+        env:
+          PG_HOST: postgres
+          PG_PASS: dubidubi
