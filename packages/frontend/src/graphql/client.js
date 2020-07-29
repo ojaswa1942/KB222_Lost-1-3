@@ -7,13 +7,15 @@ const uri = config.apiEndpoint;
 const apiLink = new HttpLink({ uri });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
-	if (graphQLErrors)
+	if(graphQLErrors){
 		graphQLErrors.map(({ message, locations, path }) =>
 			// eslint-disable-next-line no-console
 			console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
 		);
-	if (networkError) {
-  	if (networkError.statusCode === 401) {
+	}
+
+	if(networkError) {
+  	if(networkError.statusCode === 401) {
   		// logout();
 			// eslint-disable-next-line
   		console.log(`unauthorized, logout`);

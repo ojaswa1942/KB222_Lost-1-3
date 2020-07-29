@@ -1,11 +1,20 @@
-import React from "react";
-// import logo from './logo.svg';
-import "./App.css";
-import Home from "./Pages/Home/Home";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
+import getToast from "./utils/getToast";
+import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import "./App.css";
 
-function App() {
+const App = () => {
+
+  useEffect(() => {
+    const toast = getToast();
+    toast.fire({
+      icon: 'success',
+      title: 'Okay loaded'
+    });
+  }, []);
+
   return (
     <div className="App">
       <Switch>

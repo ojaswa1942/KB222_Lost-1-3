@@ -13,3 +13,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.toast-custom-popup {
+  min-width: 180px;
+  box-shadow: 10px 8px 30px 0 rgba(0, 0, 0, 0.05) !important;
+}
+.toast-custom-title {
+  color: white;
+}
+.toast-custom-icon.swal2-success div {
+  /*border-color: #49c469 !important;*/
+}
+.toast-custom-icon.swal2-success span {
+  background-color: #58ea7e !important;
+  /*background-color: #fff !important;*/
+}
+.swal2-timer-progress-bar {
+  background: rgba(255,255,255,0.6) !important;
+}
