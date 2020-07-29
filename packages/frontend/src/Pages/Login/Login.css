@@ -12,7 +12,7 @@
   margin: 2em 2em 5em 2em;
 }
 
-.loginFormDiv{
+.loginFormDiv {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -27,6 +27,7 @@
   border: 1px solid #707070;
   border-radius: 10px;
   width: 40%;
+  min-width: max-content;
 }
 
 .loginForm h1 {
@@ -47,7 +48,7 @@
   font-weight: 400;
 }
 
-.radioGroup {
+/* .radioGroup {
   display: flex;
   flex-direction: row;
 }
@@ -73,7 +74,7 @@
 
 .loginRadio span {
   padding: 0.4em 1em 0.4em 0.5em;
-}
+} */
 
 .loginEmail input,
 .loginDept select {
@@ -113,11 +114,11 @@
   cursor: pointer;
   padding: 0;
 }
-
+/* 
 .loginDept option {
   font-size: 1rem;
   border: none;
-}
+} */
 
 .loginBtn {
   background: #4c7260;
@@ -143,4 +144,52 @@
 
 .fieldError {
   color: red;
+}
+
+@media screen and (max-width: 500px) {
+  .loginPage {
+    padding: 1rem 2rem;
+  }
+
+  .loginDiv {
+    margin: 2em 0 5em 0;
+  }
+
+  .loginForm {
+    padding: 2em;
+    width: 100%;
+  }
+
+  .loginForm h1 {
+    font-size: 1.5em;
+    letter-spacing: 0.5em;
+  }
+
+  .loginForm > label,
+  .loginForm > div {
+    font-size: 0.7em;
+  }
+
+  /* .loginRadio {
+    font-size: 1.2em;
+  }
+
+  .loginRadio input {
+    height: 1em;
+    width: 1em;
+  } */
+
+  .loginPass button {
+    width: 10%;
+    height: 2.7em;
+  }
+
+  .loginBtn {
+    font-size: 0.8em;
+  }
+
+  .loginForm a {
+    font-size: 0.5em;
+    padding-top: 0.5em;
+  }
 }

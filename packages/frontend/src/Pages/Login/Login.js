@@ -22,7 +22,7 @@ const Login = () => {
           <div className="loginFormDiv">
             <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
               <h1>LOGIN</h1>
-              <div>
+              {/* <div>
                 <h3> Choose Entity*</h3>
                 <div className="radioGroup">
                   <label>
@@ -51,7 +51,7 @@ const Login = () => {
                 {errors.entity && (
                   <span className="fieldError">This field is required</span>
                 )}
-              </div>
+              </div> */}
               <label className="loginEmail">
                 E-mail address*
                 <input
@@ -82,7 +82,7 @@ const Login = () => {
                   <span className="fieldError">It should contain atleast 6 characters</span>
                 )}
               </label>
-              <label className="loginDept">
+              {/* <label className="loginDept">
                 Select Department*
                 <select ref={register({ required: true })} name="department">
                   <option value="">Select</option>
@@ -94,7 +94,7 @@ const Login = () => {
                 {errors.department && (
                   <span className="fieldError">This field is required</span>
                 )}
-              </label>
+              </label> */}
               <button type="submit" className="loginBtn">
                 SUBMIT
               </button>

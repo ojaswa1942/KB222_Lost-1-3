@@ -19,9 +19,7 @@ const Home = () => {
         <div className="homeBody">
           <h1>
             Seamless <span className="green">Disbursal</span>
-          </h1>
-          <h1>
-            for <span className="green">Streamlined</span> Government
+            <br /> for <span className="green">Streamlined</span> Government
           </h1>
           <p>
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
