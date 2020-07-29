@@ -2,12 +2,3 @@ interface MutationResponse {
   code: String!
   message: String!
 }
-
-type Channel {
-  id: Int!
-  name: String
-  scheme: Scheme
-  department: Department
-  rooms: [Room!]
-  createdAt: String
-}

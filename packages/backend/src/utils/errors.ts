@@ -8,4 +8,6 @@ export default {
   unauthenticated: new AuthenticationError('Unauthenticated'),
   unauthorized: new ApolloError('User not authorized', 'FORBIDDEN'),
   notVerified: new ApolloError('User not verified', 'NOT_VERIFIED'),
+  invalidInput: new UserInputError('Invalid input'),
+  channelExists: new ApolloError('Channel for given scheme and department already exists', 'CHANNEL_EXISTS'),
 };

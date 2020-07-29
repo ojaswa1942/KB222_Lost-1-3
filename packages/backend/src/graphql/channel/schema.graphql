@@ -1,0 +1,21 @@
+extend type Mutation {
+  createChannel(input: CreateChannelInput!): CreateChannelResponse @requireAuthentication(isRoot: true)
+}
+
+type Channel {
+  id: Int!
+  scheme: Scheme
+  department: Department
+  rooms: [Room!]
+  createdAt: String
+}
+
+type CreateChannelResponse implements MutationResponse {
+  code: String!
+  message: String!
+}
+
+input CreateChannelInput {
+  schemeID: Int!
+  departmentID: Int!
+}
