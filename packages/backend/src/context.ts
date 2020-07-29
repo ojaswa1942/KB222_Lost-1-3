@@ -32,13 +32,10 @@ const context = ({ req, res }: ContextInput): Context => {
     const decoded = jwt.verify(token, config.JWTSecret, {
       algorithms: ['HS512'],
       subject: 'login',
-    });
+    }) as JWTPayload;
 
     payload.isValid = true;
-    payload.jwt = {
-      email: (decoded as JWTPayload).email,
-      id: (decoded as JWTPayload).id,
-    };
+    payload.jwt = decoded;
   } catch (err) {}
 
   return payload;

@@ -1,5 +1,5 @@
 extend type Mutation {
-  signup(input: SignUpInput): SignUpResponse!
+  signup(input: SignUpInput!): SignUpResponse!
 }
 
 enum UserType {
@@ -9,12 +9,12 @@ enum UserType {
 }
 
 type User {
-  id: Int
+  id: Int!
   name: String
   email: String
   type: UserType
-  # schemes: [Scheme]
-  # departments: [Department]
+  schemes: [Scheme!]
+  departments: [Department!]
   isVerified: Boolean
   createdAt: String
 }

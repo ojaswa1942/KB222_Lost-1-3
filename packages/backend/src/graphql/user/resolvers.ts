@@ -23,7 +23,12 @@ const resolvers: Resolvers<Context> = {
       return {
         code: '200',
         message: 'Successfully signed up',
-        user,
+        user: {
+          id: user.id,
+          email: user.email,
+          isVerified: user.isVerified,
+          createdAt: user.createdAt.toISOString(),
+        },
       };
     },
   },

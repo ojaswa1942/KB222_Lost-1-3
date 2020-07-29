@@ -8,7 +8,7 @@ generates:
       useIndexSignature: true
       mappers:
         UserType: ../interfaces#UserType as UserTypeEnum
-        User: ../database/entity/User#User as UserEntity
+        # User: ../database/entity/User#User as UserEntity
     plugins:
       - typescript
       - typescript-resolvers

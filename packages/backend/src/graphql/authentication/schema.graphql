@@ -1,4 +1,4 @@
-directive @requireAuthentication on FIELD_DEFINITION
+directive @requireAuthentication(isRoot: Boolean = false) on FIELD_DEFINITION
 
 extend type Query {
   """

@@ -1,6 +1,7 @@
 export interface JWTPayload {
   email: string;
   id: number;
+  type: UserType;
 }
 
 export enum UserType {

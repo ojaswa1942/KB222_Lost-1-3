@@ -10,7 +10,17 @@ import { JWTPayload } from '../../interfaces';
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    user: (_, __, { jwt: { id } }) => getRepository(User).findOne({ id }),
+    user: async (_, __, { jwt: { id: userID } }) => {
+      const { id, name, email, isVerified, createdAt } = await getRepository(User).findOne({ id: userID });
+
+      return {
+        id,
+        name,
+        email,
+        isVerified,
+        createdAt: createdAt.toISOString(),
+      };
+    },
   },
 
   Mutation: {
@@ -28,6 +38,7 @@ const resolvers: Resolvers<Context> = {
       const payload: JWTPayload = {
         email: user.email,
         id: user.id,
+        type: user.type,
       };
 
       const [token, expiry] = genToken(payload);

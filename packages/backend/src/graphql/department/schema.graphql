@@ -1,0 +1,29 @@
+extend type Query {
+  department(input: DepartmentInput!): Department! @requireAuthentication
+  departments: [Department!] @requireAuthentication
+}
+
+extend type Mutation {
+  createDepartment(input: CreateDepartmentInput!): CreateDepartmentResponse! @requireAuthentication(isRoot: true)
+}
+
+type Department {
+  id: Int!
+  name: String
+  users: [User!]
+  channels: [Channel!]
+  createdAt: String
+}
+
+type CreateDepartmentResponse implements MutationResponse {
+  code: String!
+  message: String!
+}
+
+input DepartmentInput {
+  id: Int!
+}
+
+input CreateDepartmentInput {
+  name: String!
+}
