@@ -8,13 +8,13 @@ import { UserType } from '../../interfaces';
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    department: async (_, { input: { id: departmentID } }, { jwt: { id } }) => {
+    department: async (_, { input: { id: departmentID } }, { jwt: { id, type } }) => {
       const departmentRepo = getRepository(Department);
 
       const dep = await departmentRepo.findOne({ relations: ['users'], where: { id: departmentID } });
 
       const [usr] = dep.users.filter((u) => u.id === id);
-      if (!usr) throw errors.unauthorized;
+      if (!usr && type !== UserType.ROOT) throw errors.unauthorized;
 
       return {
         id: dep.id,

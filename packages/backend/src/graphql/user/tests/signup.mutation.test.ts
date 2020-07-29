@@ -5,7 +5,7 @@ test('signup mutation', async () => {
   // When
   const res = await createTestClient().mutate({
     mutation: gql`
-      mutation($input: SignUpInput) {
+      mutation($input: SignUpInput!) {
         signup(input: $input) {
           code
           message

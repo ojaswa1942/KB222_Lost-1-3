@@ -25,6 +25,7 @@ const resolvers: Resolvers<Context> = {
         message: 'Successfully signed up',
         user: {
           id: user.id,
+          name: user.name,
           email: user.email,
           isVerified: user.isVerified,
           createdAt: user.createdAt.toISOString(),

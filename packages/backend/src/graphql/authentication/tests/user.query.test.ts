@@ -9,7 +9,10 @@ describe('user query', () => {
     const currentUser = await createUser();
 
     // When
-    const res = await createTestClient({ isValid: true, jwt: { id: currentUser.id, email: currentUser.email } }).query({
+    const res = await createTestClient({
+      isValid: true,
+      jwt: { id: currentUser.id, email: currentUser.email, type: currentUser.type },
+    }).query({
       query: gql`
         query {
           user {

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`department query fetch department with member user 1`] = `
+Object {
+  "id": 1,
+}
+`;
+
+exports[`department query fetch department with root 1`] = `
+Object {
+  "id": 1,
+}
+`;

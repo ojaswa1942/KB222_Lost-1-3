@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`departments query fetch departments with root 1`] = `
+Array [
+  Object {
+    "id": 1,
+  },
+  Object {
+    "id": 2,
+  },
+  Object {
+    "id": 3,
+  },
+]
+`;
+
+exports[`departments query fetch departments with state user 1`] = `
+Array [
+  Object {
+    "id": 2,
+  },
+  Object {
+    "id": 4,
+  },
+]
+`;
