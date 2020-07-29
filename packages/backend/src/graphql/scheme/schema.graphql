@@ -3,6 +3,10 @@ extend type Query {
   schemes: [Scheme]
 }
 
+extend type Mutation {
+  createScheme(input: CreateSchemeInput!): CreateSchemeResponse! @requireAuthentication(isRoot: true)
+}
+
 type Scheme {
   id: Int
   name: String
@@ -11,6 +15,15 @@ type Scheme {
   createdAt: String
 }
 
+type CreateSchemeResponse implements MutationResponse {
+  code: String!
+  message: String!
+}
+
 input SchemeInput {
   id: Int!
+}
+
+input CreateSchemeInput {
+  name: String!
 }
