@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "./Login.css";
 import LogoHead from "../../Components/LogoHead/LogoHead";
@@ -6,10 +7,13 @@ import Footer from "../../Components/Footer/Footer";
 import { ReactComponent as Eye } from "../../assets/eye.svg";
 
 const Login = () => {
+  const history = useHistory();
   const [showPass, setShowPass] = useState(false);
-
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    history.push('/dashboard');
+  };
   const showPassword = () => {
     setShowPass(!showPass);
   };

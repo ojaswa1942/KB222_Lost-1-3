@@ -1,0 +1,195 @@
+.loginPage {
+  box-sizing: border-box;
+  background: #4c7260;
+  padding: 1rem 6rem;
+  width: 100%;
+  color: #191919;
+}
+
+.loginDiv {
+  display: flex;
+  justify-content: center;
+  margin: 2em 2em 5em 2em;
+}
+
+.loginFormDiv {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.loginForm {
+  box-sizing: border-box;
+  padding: 3em;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  width: 40%;
+  min-width: max-content;
+}
+
+.loginForm h1 {
+  text-align: center;
+  color: #4c7260;
+  font-size: 2.8em;
+  letter-spacing: 0.5em;
+  margin: 0 auto;
+  margin-bottom: 0.5em;
+}
+
+.loginForm > label,
+.loginForm > div {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
+/* .radioGroup {
+  display: flex;
+  flex-direction: row;
+}
+
+.loginForm > div > h3 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.loginRadio {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.loginRadio input {
+  height: 1.2em;
+  width: 1.2em;
+  padding: 1em 2em;
+  border: 1px solid #707070;
+}
+
+.loginRadio span {
+  padding: 0.4em 1em 0.4em 0.5em;
+} */
+
+.loginEmail input,
+.loginDept select {
+  background: #f6f6f6;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 1em;
+  font-size: 1em;
+  margin: 0.2em 0;
+}
+
+.loginPass {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.loginPass input {
+  background: #f6f6f6;
+  width: 90%;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  padding: 1em;
+  font-size: 1em;
+  margin: 0.2em 0;
+}
+
+.loginPass button {
+  width: 10%;
+  background: #f6f6f6;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  height: 3.2em;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+}
+/* 
+.loginDept option {
+  font-size: 1rem;
+  border: none;
+} */
+
+.loginBtn {
+  background: #4c7260;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 0.8em;
+  color: #ffffff;
+  padding: 1em 0;
+  margin: 1em;
+  cursor: pointer;
+}
+
+.loginForm a {
+  color: #bb6a57;
+  text-align: center;
+  font-size: 0.8em;
+  padding-top: 1em;
+}
+
+.fieldError {
+  color: red;
+}
+
+@media screen and (max-width: 500px) {
+  .loginPage {
+    padding: 1rem 2rem;
+  }
+
+  .loginDiv {
+    margin: 2em 0 5em 0;
+  }
+
+  .loginForm {
+    padding: 2em;
+    width: 100%;
+  }
+
+  .loginForm h1 {
+    font-size: 1.5em;
+    letter-spacing: 0.5em;
+  }
+
+  .loginForm > label,
+  .loginForm > div {
+    font-size: 0.7em;
+  }
+
+  /* .loginRadio {
+    font-size: 1.2em;
+  }
+
+  .loginRadio input {
+    height: 1em;
+    width: 1em;
+  } */
+
+  .loginPass button {
+    width: 10%;
+    height: 2.7em;
+  }
+
+  .loginBtn {
+    font-size: 0.8em;
+  }
+
+  .loginForm a {
+    font-size: 0.5em;
+    padding-top: 0.5em;
+  }
+}

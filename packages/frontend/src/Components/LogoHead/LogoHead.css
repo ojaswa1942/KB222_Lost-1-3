@@ -16,6 +16,11 @@
 .apLogo {
   height: 5em;
   padding: 1em 0;
+  transition: filter 0.6s ease-in-out;
+}
+
+.apLogo:hover {
+  filter: opacity(0.9);
 }
 
 .logoSubHead {
