@@ -7,12 +7,22 @@ import { genToken, addAuthCookies } from '../../utils';
 import { User } from '../../database/entity/User';
 import errors from '../../utils/errors';
 import { JWTPayload } from '../../interfaces';
+import config from '../../config';
 
 const resolvers: Resolvers<Context> = {
   Query: {
     user: async (_, __, { jwt: { id: userID } }) => {
-      const { id, name, email, isVerified, createdAt } = await getRepository(User).findOne({ id: userID });
+      // const { id, name, email, isVerified, createdAt } = await getRepository(User).findOne({ id: userID });
 
+      const usr: User = await getRepository(User)
+        .createQueryBuilder('user')
+        .select(
+          `user.id, pgp_sym_decrypt(name::bytea, '${config.JWTSecret}') as name, user.email, user.isVerified, user.createdAt`
+        )
+        .where('user.id = :id', { id: userID })
+        .getRawOne();
+
+      const { id, name, email, isVerified, createdAt } = usr;
       return {
         id,
         name,

@@ -1,5 +1,5 @@
 # Docker volumes
-data/db/*
+docker/db/*
 
 *.generated.ts
 

@@ -7,7 +7,7 @@ test('.createUser', async () => {
 
   user = await createUser({ name: 'Bob' });
   expect(user.name).toBe('Bob');
-  expect(user.email).toBe('Bailey.Koepp@gmail.com');
+  expect(user.email).toBe('Deion4@gmail.com');
 
   user = await createUser({ name: 'Bob', email: 'john@email.com' });
   expect(user.name).toBe('Bob');
