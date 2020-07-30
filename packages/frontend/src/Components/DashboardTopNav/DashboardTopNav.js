@@ -1,10 +1,12 @@
 import React from "react";
-import styles from './DashboardTopNav.module.css'
+import BellNotification from "../BellNotification/BellNotification";
+import styles from "./DashboardTopNav.module.css";
 
 const DashboardTopNav = () => {
   return (
-    <div className={styles.topNav} >
-      <span> TopNav hun mai ! </span> 
+    <div className={styles.topNav}>
+      <span> TopNav hun mai ! </span>
+      <BellNotification />
     </div>
   );
 };

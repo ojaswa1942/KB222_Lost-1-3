@@ -1,6 +1,5 @@
 {
   "printWidth": 100,
   "trailingComma": "es5",
-  "endOfLine": "lf",
-  "useTabs": true
+  "endOfLine": "lf"
 }

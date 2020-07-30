@@ -25,13 +25,10 @@ code {
 .toast-custom-title {
   color: white;
 }
-.toast-custom-icon.swal2-success div {
-  /*border-color: #49c469 !important;*/
+.toast-custom-icon.swal2-success {
+  border: none;
 }
-.toast-custom-icon.swal2-success span {
-  background-color: #58ea7e !important;
-  /*background-color: #fff !important;*/
-}
+
 .swal2-timer-progress-bar {
   background: rgba(255,255,255,0.6) !important;
 }

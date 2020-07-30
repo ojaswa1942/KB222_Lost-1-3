@@ -1,4 +1,8 @@
 .topNav {
+  box-sizing: border-box;
+  z-index: 1;
+  /*overflow-x: hidden;*/
+  padding: 10px 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
