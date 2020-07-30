@@ -1,0 +1,5 @@
+.dashboardContentContainer {
+	min-width: calc(100% - var(--dashboard-sidenav-width));
+	margin-left: var(--dashboard-sidenav-width);
+	min-height: 100%;
+}

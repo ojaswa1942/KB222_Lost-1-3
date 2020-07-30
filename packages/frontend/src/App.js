@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import getToast from "./utils/getToast";
 import DashboardTopNav from "./Components/DashboardTopNav/DashboardTopNav";
 import DashboardSideNav from "./Components/DashboardSideNav/DashboardSideNav";
+import DashboardContentContainer from "./Components/_DashboardContentContainer/DashboardContentContainer";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import DisbursalStatus from "./Pages/DisbursalStatus/DisbursalStatus";
@@ -28,14 +29,16 @@ const App = () => {
           <Login />
         </Route>
         <Route path="/dashboard">
-          <DashboardTopNav />
           <DashboardSideNav />
-          <Switch>
-            <Route exact path="/dashboard/disbursal">
-              <DisbursalStatus />
-            </Route>
-            <Redirect to='/dashboard/disbursal' />
-          </Switch>
+          <DashboardContentContainer>
+            <DashboardTopNav />
+            <Switch>
+              <Route exact path="/dashboard/disbursal">
+                <DisbursalStatus />
+              </Route>
+              <Redirect to="/dashboard/disbursal" />
+            </Switch>
+          </DashboardContentContainer>
         </Route>
       </Switch>
     </div>

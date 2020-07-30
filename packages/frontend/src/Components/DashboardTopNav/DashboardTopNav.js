@@ -1,11 +1,10 @@
 import React from "react";
-import LogoHead from "../../Components/LogoHead/LogoHead";
-import './DashboardTopNav.module.css'
+import styles from './DashboardTopNav.module.css'
 
 const DashboardTopNav = () => {
   return (
-    <div>
-      <LogoHead />
+    <div className={styles.topNav} >
+      <span> TopNav hun mai ! </span> 
     </div>
   );
 };
