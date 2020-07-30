@@ -20,7 +20,7 @@ const resolvers: Resolvers<Context> = {
       // const user = userRepo.create({ name, email, hash, isVerified: true });
 
       // await userRepo.save(user);
-      const res = await userRepo
+      await userRepo
         .createQueryBuilder('user')
         .insert()
         .values({
@@ -34,14 +34,38 @@ const resolvers: Resolvers<Context> = {
       return {
         code: '200',
         message: 'Successfully signed up',
-        user: {
-          id: res.generatedMaps[0].id,
-          name: name,
-          email: email,
-          isVerified: true,
-          createdAt: res.generatedMaps[0].createdAt.toISOString(),
-        },
       };
+    },
+  },
+
+  User: {
+    name: async ({ id }, __, { userLoader }) => {
+      const { name } = await userLoader.load(id);
+      return name;
+    },
+    email: async ({ id }, __, { userLoader }) => {
+      const { email } = await userLoader.load(id);
+      return email;
+    },
+    type: async ({ id }, __, { userLoader }) => {
+      const { type } = await userLoader.load(id);
+      return type;
+    },
+    isVerified: async ({ id }, __, { userLoader }) => {
+      const { isVerified } = await userLoader.load(id);
+      return isVerified;
+    },
+    departments: async ({ id }, __, { userLoader }) => {
+      const { departments } = await userLoader.load(id);
+      return departments.map((d) => ({ id: d.id }));
+    },
+    schemes: async ({ id }, __, { userLoader }) => {
+      const { schemes } = await userLoader.load(id);
+      return schemes.map((d) => ({ id: d.id }));
+    },
+    createdAt: async ({ id }, __, { userLoader }) => {
+      const { createdAt } = await userLoader.load(id);
+      return createdAt.toISOString();
     },
   },
 };

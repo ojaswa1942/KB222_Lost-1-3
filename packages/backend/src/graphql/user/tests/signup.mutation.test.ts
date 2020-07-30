@@ -9,12 +9,6 @@ test('signup mutation', async () => {
         signup(input: $input) {
           code
           message
-          user {
-            id
-            name
-            email
-            createdAt
-          }
         }
       }
     `,
@@ -33,12 +27,6 @@ test('signup mutation', async () => {
     signup: {
       code: '200',
       message: expect.any(String),
-      user: {
-        id: expect.any(Number),
-        name: 'Test',
-        email: 'test@example.com',
-        createdAt: expect.any(String),
-      },
     },
   });
 });

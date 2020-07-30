@@ -22,7 +22,6 @@ type User {
 type SignUpResponse implements MutationResponse {
   code: String!
   message: String!
-  user: User!
 }
 
 input SignUpInput {

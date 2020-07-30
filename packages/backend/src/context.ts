@@ -1,8 +1,11 @@
 import { Request, Response } from 'express';
+import DataLoader from 'dataloader';
 import { IncomingHttpHeaders } from 'http';
 import jwt from 'jsonwebtoken';
 
 import config from './config';
+import { buildUserLoader } from './loaders';
+import { User } from './database/entity/User';
 import { JWTPayload } from './interfaces';
 
 export interface ContextInput {
@@ -16,6 +19,7 @@ export interface Context {
   res: Response;
   isValid: boolean;
   jwt?: JWTPayload;
+  userLoader: DataLoader<number, User>;
 }
 
 const context = ({ req, res }: ContextInput): Context => {
@@ -24,6 +28,7 @@ const context = ({ req, res }: ContextInput): Context => {
     req: req,
     res: res,
     isValid: false,
+    userLoader: buildUserLoader(),
   };
 
   const token = req.cookies['token'] || '';
