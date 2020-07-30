@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import "./Login.css";
+import styles from "./Login.module.css";
 import LogoHead from "../../Components/LogoHead/LogoHead";
 import Footer from "../../Components/Footer/Footer";
 import { ReactComponent as Eye } from "../../assets/eye.svg";
@@ -12,7 +12,7 @@ const Login = () => {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    history.push('/dashboard');
+    history.push("/dashboard");
   };
   const showPassword = () => {
     setShowPass(!showPass);
@@ -20,17 +20,17 @@ const Login = () => {
 
   return (
     <div>
-      <div className="loginPage">
-        <LogoHead isWhite={true} />
-        <div className="loginDiv">
-          <div className="loginFormDiv">
-            <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+      <div className={styles.loginPage}>
+        <LogoHead isWhite />
+        <div className={styles.loginDiv}>
+          <div className={styles.loginFormDiv}>
+            <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
               <h1>LOGIN</h1>
               {/* <div>
                 <h3> Choose Entity*</h3>
-                <div className="radioGroup">
+                <div className={styles.radioGroup}>
                   <label>
-                    <div className="loginRadio">
+                    <div className={styles.loginRadio}>
                       <input
                         type="radio"
                         value="State"
@@ -41,7 +41,7 @@ const Login = () => {
                     </div>
                   </label>
                   <label>
-                    <div className="loginRadio">
+                    <div className={styles.loginRadio}>
                       <input
                         type="radio"
                         value="Centre"
@@ -53,23 +53,17 @@ const Login = () => {
                   </label>
                 </div>
                 {errors.entity && (
-                  <span className="fieldError">This field is required</span>
+                  <span className={styles.fieldError}>This field is required</span>
                 )}
               </div> */}
-              <label className="loginEmail">
+              <label htmlFor="email" className={styles.loginEmail}>
                 E-mail address*
-                <input
-                  ref={register({ required: true })}
-                  name="email"
-                  type="email"
-                />
-                {errors.email && (
-                  <span className="fieldError">This field is required</span>
-                )}
+                <input ref={register({ required: true })} name="email" type="email" />
+                {errors.email && <span className={styles.fieldError}>This field is required</span>}
               </label>
-              <label>
+              <label htmlFor="password">
                 Password*
-                <div className="loginPass">
+                <div className={styles.loginPass}>
                   <input
                     ref={register({ required: true, minLength: 6 })}
                     name="password"
@@ -80,13 +74,13 @@ const Login = () => {
                   </button>
                 </div>
                 {errors.password && errors.password.type === "required" && (
-                  <span className="fieldError">This field is required</span>
+                  <span className={styles.fieldError}>This field is required</span>
                 )}
                 {errors.password && errors.password.type === "minLength" && (
-                  <span className="fieldError">It should contain atleast 6 characters</span>
+                  <span className={styles.fieldError}>It should contain atleast 6 characters</span>
                 )}
               </label>
-              {/* <label className="loginDept">
+              {/* <label className={styles.loginDept}>
                 Select Department*
                 <select ref={register({ required: true })} name="department">
                   <option value="">Select</option>
@@ -96,10 +90,10 @@ const Login = () => {
                   <option value="dep4">dep4</option>
                 </select>
                 {errors.department && (
-                  <span className="fieldError">This field is required</span>
+                  <span className={styles.fieldError}>This field is required</span>
                 )}
               </label> */}
-              <button type="submit" className="loginBtn">
+              <button type="submit" className={styles.loginBtn}>
                 SUBMIT
               </button>
               <a href="/login">Forgot Password ? Contact admin</a>

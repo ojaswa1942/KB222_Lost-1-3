@@ -10,6 +10,7 @@ import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import DisbursalStatus from "./Pages/DisbursalStatus/DisbursalStatus";
 import "./App.css";
+import Schemes from "./Pages/Schemes/Schemes";
 
 const App = () => {
   useEffect(() => {
@@ -37,6 +38,9 @@ const App = () => {
             <Switch>
               <Route exact path="/dashboard/disbursal">
                 <DisbursalStatus />
+              </Route>
+              <Route exact path="/dashboard/schemes">
+                <Schemes />
               </Route>
               <Redirect to="/dashboard/disbursal" />
             </Switch>

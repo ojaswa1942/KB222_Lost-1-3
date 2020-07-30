@@ -1,0 +1,83 @@
+.schemeCard {
+  display: flex;
+  flex-direction: column;
+  background: #4c7260;
+  color: white;
+  border-radius: 10px;
+  padding: 2em;
+  padding-top: 1.5em;
+  margin: 1em 0;
+}
+
+.titleDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleDiv h2 {
+  font-weight: 600;
+  font-size: 1.3em;
+  margin: 0.5em 0;
+}
+
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: none;
+  border-radius: 100%;
+  outline: none;
+  width: 2.5em;
+  height: 2.5em;
+  cursor: pointer;
+}
+
+.deleteLogo {
+  align-self: center;
+  height: 1.2em;
+}
+
+.schemeCard p {
+  font-size: 0.8em;
+  width: 95%;
+  line-height: 2em;
+  margin: 0.5em 0 0.7em 0;
+}
+
+.lowerDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1em 2em 0 0;
+}
+
+.textDiv h4 {
+  font-weight: 500;
+  margin: 0.6em 0;
+}
+
+.btnsDiv {
+  display: flex;
+  align-items: center;
+}
+
+.cardBtns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: none;
+  border-radius: 30px;
+  color: #BB6A57;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.8em;
+  padding: 0.7em 3em;
+  margin: 0.5em 2em;
+}
+
+.chatLogo {
+  height: 1.2em;
+}

@@ -1,17 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import APLogo from "../../assets/APLogo.png";
-import "./LogoHead.css";
+import styles from "./LogoHead.module.css";
 
 const LogoHead = ({ isWhite }) => {
   return (
-    <div className="logoHead">
-      <Link to='/'>
-        <img src={APLogo} alt="AP Logo" className="apLogo" />
+    <div className={styles.logoHead}>
+      <Link to="/">
+        <img src={APLogo} alt="AP Logo" className={styles.apLogo} />
       </Link>
-      <div className={`logoBody ${isWhite && "whiteText"}`}>
-        <span className="logoHeading">Andhra Pradesh<br />Central Fund's Portal</span>
-        <span className="logoSubHead">Official State Portal</span>
+      <div className={`${styles.logoBody} ${isWhite && styles.whiteText}`}>
+        <span className={styles.logoHeading}>
+          Andhra Pradesh
+          <br />
+          Central Fund's Portal
+        </span>
+        <span className={styles.logoSubHead}>Official State Portal</span>
       </div>
     </div>
   );

@@ -1,14 +1,14 @@
 import React from "react";
-import './HomeNav.css'
+import styles from "./HomeNav.module.css";
 
 const HomeNav = () => {
   return (
     <div>
-      <nav className="homeNav">
-        <a href="/#" className="homeNavLink">
+      <nav className={styles.homeNav}>
+        <a href="/#" className={styles.homeNavLink}>
           About Us
         </a>
-        <a href="/#" className="homeNavLink">
+        <a href="/#" className={styles.homeNavLink}>
           Contact Us
         </a>
       </nav>

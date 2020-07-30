@@ -72,16 +72,15 @@
   letter-spacing: 0.1em;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1000px){
   .footerNav {
-    padding: 1em;
+    padding: 1em 2em;
   }
 
   .footerHead {
     width: max-content;
-    padding: 1em;
+    padding: 1em 1.5em;
   }
-
   .footerHead h3 {
     font-size: 0.7rem;
     line-height: 1.5em;
@@ -92,19 +91,40 @@
     width: 3em;
     align-self: center;
   }
-
   .footerSection {
     padding: 1em 0.8em;
   }
 
   .footerNavHeads {
-    font-size: 0.5em;
+    font-size: 0.7em;
     letter-spacing: 0.5em;
   }
 
   .footerLink {
-    font-size: 0.4em;
+    font-size: 0.5em;
     margin-bottom: 1em;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footerNav {
+    padding: 1em;
+  }
+
+  .footerHead {
+    padding: 1em;
+  }
+
+  .footerHead h3 {
+    font-size: 0.5rem;
+  }
+
+  .footerNavHeads {
+    font-size: 0.5em;
+  }
+
+  .footerLink {
+    font-size: 0.4em;
   }
 
   .footerCopyright {
@@ -114,3 +134,4 @@
     font-size: 0.5em;
   }
 }
+
