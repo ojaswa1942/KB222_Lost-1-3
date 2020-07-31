@@ -92,7 +92,7 @@
   /*justify-content: center;*/
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .sideNav {
     background: #fff;
     z-index: 1;
@@ -110,11 +110,11 @@
     padding: 0em 0em;
   }
   .logoBlock {
-    padding: 0;
-    z-index: 1;
-    position: fixed;
-    top: 0;
-    left: 0;
+    display: none;
+    /*padding: 0;*/
+    /*position: fixed;*/
+    /*top: 0;*/
+    /*left: 0;*/
   }
   .routesBlock {
     height: auto;

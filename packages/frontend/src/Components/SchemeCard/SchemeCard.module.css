@@ -51,23 +51,27 @@
 }
 
 .lowerDiv {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 1em 2em 0 0;
+  padding: 1em 0;
 }
 
-.textDiv h4 {
+.textDiv {
   font-weight: 500;
-  margin: 0.6em 0;
+  margin: 0.5em 0;
 }
 
 .btnsDiv {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .cardBtns {
+  white-space: nowrap;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,7 +88,7 @@
 }
 
 .chatLogo {
-  height: 1.5em;
+  width: 1.2em;
   padding-right: 1em;
   color: #BB6A57;
 }
@@ -99,4 +103,33 @@
   85% { transform: rotate(-2deg); }
   92% { transform: rotate(1deg); }
   100% { transform: rotate(0); }
+}
+@media screen and (max-width: 1200px) {
+  .lowerDiv {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .btnsDiv {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .schemeCard {
+    margin: 0.5em 0;
+  }
+  .schemeCard p {
+    line-height: unset;
+  }
+  .textDiv {
+    font-size: 14px;
+  }
+  .btnsDiv {
+    justify-content: space-evenly;
+    white-space: nowrap;
+  }
+  .cardBtns {
+    margin: unset;
+    font-weight: bold;
+    padding: 0.7em 2em;
+  }
 }

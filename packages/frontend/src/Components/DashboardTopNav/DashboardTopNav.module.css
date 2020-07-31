@@ -11,14 +11,25 @@
   top: 0;
   right: 0;
 }
+.logoHead {
+  display: none;
+}
+.rightSide {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 .itemGap {
   margin: 0 16px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .topNav {
     padding: .6em;
-    /*position: fixed;*/
+    justify-content: space-between;
+  }
+  .logoHead {
+    display: unset;
   }
   .itemGap {
     margin: 0 6px;

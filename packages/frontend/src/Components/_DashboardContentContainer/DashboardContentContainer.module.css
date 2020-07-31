@@ -3,7 +3,7 @@
 	margin-left: var(--dashboard-sidenav-width);
 	min-height: 100%;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
 	.dashboardContentContainer {
 		min-width: 100vw;
 		margin-left: unset;

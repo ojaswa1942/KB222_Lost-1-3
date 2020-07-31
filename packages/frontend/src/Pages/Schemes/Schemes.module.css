@@ -48,51 +48,13 @@
   flex-direction: column;
   overflow: auto;
 }
-/* 
-@media screen and (max-width: 500px) {
-  .loginPage {
-    padding: 1rem 2rem;
-  }
 
-  .loginDiv {
-    margin: 2em 0 5em 0;
+@media screen and (max-width: 800px) {
+  .schemesPage {
+    padding: 0 2em 2em 2em;
   }
-
-  .loginForm {
-    padding: 2em;
-    width: 100%;
+  .header {
+    position: unset;
+    padding: unset;
   }
-
-  .loginForm h1 {
-    font-size: 1.5em;
-    letter-spacing: 0.5em;
-  }
-
-  .loginForm > label,
-  .loginForm > div {
-    font-size: 0.7em;
-  }
-
-  .loginRadio {
-    font-size: 1.2em;
-  }
-
-  .loginRadio input {
-    height: 1em;
-    width: 1em;
-  }
-
-  .loginPass button {
-    width: 10%;
-    height: 2.7em;
-  }
-
-  .loginBtn {
-    font-size: 0.8em;
-  }
-
-  .loginForm a {
-    font-size: 0.5em;
-    padding-top: 0.5em;
-  }
-} */
+}

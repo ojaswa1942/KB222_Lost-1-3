@@ -108,7 +108,7 @@
   100% { transform: rotate(0); }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .bellContainer{
     height: unset;
     width: min-content;

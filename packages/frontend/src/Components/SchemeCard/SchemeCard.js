@@ -25,8 +25,8 @@ const SchemeCard = ({ id, name, description, entity, sanctionedAmount, handleDel
       <p>{description}</p>
       <div className={styles.lowerDiv}>
         <div className={styles.textDiv}>
-          <h4>Entity : {entity}</h4>
-          <h4>Sanctioned Amount : Rs.{sanctionedAmount}</h4>
+          <div>Entity : {entity}</div>
+          <div>Sanctioned Amount : Rs.{sanctionedAmount}</div>
         </div>
         <div className={styles.btnsDiv}>
           <button type="button" className={styles.cardBtns}>
