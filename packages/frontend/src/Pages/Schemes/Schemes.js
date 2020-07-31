@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Schemes.module.css";
 import SchemeCard from "../../Components/SchemeCard/SchemeCard";
 import { ReactComponent as Add } from "../../assets/icons/add.svg";
@@ -51,10 +52,12 @@ const Schemes = () => {
     <div className={styles.schemesPage}>
       <div className={styles.header}>
         <h1 className={styles.head}>Schemes</h1>
-        <button className={styles.addSchemeBtn} type="button">
-          <Add className={styles.addScheme} />
-          Add Scheme
-        </button>
+        <Link to="/dashboard/schemes/add">
+          <button className={styles.addSchemeBtn} type="button">
+            <Add className={styles.addScheme} />
+            Add Scheme
+          </button>
+        </Link>
       </div>
       <div className={styles.schemes}>
         {schemes.map((scheme) => {

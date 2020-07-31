@@ -11,6 +11,7 @@ import Login from "./Pages/Login/Login";
 import DisbursalStatus from "./Pages/DisbursalStatus/DisbursalStatus";
 import "./App.css";
 import Schemes from "./Pages/Schemes/Schemes";
+import AddScheme from "./Pages/AddScheme/AddScheme";
 
 const App = () => {
   useEffect(() => {
@@ -38,6 +39,9 @@ const App = () => {
             <Switch>
               <Route exact path="/dashboard/disbursal">
                 <DisbursalStatus />
+              </Route>
+              <Route exact path="/dashboard/schemes/add">
+                <AddScheme />
               </Route>
               <Route exact path="/dashboard/schemes">
                 <Schemes />

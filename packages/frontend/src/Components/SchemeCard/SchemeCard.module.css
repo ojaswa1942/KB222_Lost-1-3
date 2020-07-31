@@ -36,7 +36,8 @@
 
 .deleteLogo {
   align-self: center;
-  height: 1.2em;
+  height: 1.5em;
+  color: #BB6A57;
 }
 
 .schemeCard p {
@@ -72,6 +73,7 @@
   border-radius: 30px;
   color: #BB6A57;
   cursor: pointer;
+  outline: none;
   font-weight: 600;
   font-size: 0.8em;
   padding: 0.7em 3em;
@@ -79,5 +81,7 @@
 }
 
 .chatLogo {
-  height: 1.2em;
+  height: 1.5em;
+  padding-right: 1em;
+  color: #BB6A57;
 }
