@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  outline: none;
 }
 .userContainer svg {
   transition: transform 0.15s ease-in;

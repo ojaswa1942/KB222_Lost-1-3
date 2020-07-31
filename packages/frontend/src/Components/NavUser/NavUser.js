@@ -31,7 +31,7 @@ const NavUser = () => {
 
   return (
     <div
-      role="button"
+      role="menu"
       tabIndex={0}
       className={styles.userContainer}
       onKeyDown={(e) => {
