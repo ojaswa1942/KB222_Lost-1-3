@@ -44,7 +44,7 @@ const NavUser = () => {
         <div className={styles.personName}>Hi, {userName}</div>
         <div className={styles.personPost}>{userPost}</div>
       </div>
-      <ExpandIcon />
+      <ExpandIcon className={styles.expandIcon} />
       {isOpen && <UserDropdown toggleOpen={handleClick} />}
     </div>
   );

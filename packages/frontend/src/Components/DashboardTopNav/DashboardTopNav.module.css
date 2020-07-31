@@ -11,4 +11,16 @@
   top: 0;
   right: 0;
 }
+.itemGap {
+  margin: 0 16px;
+}
 
+@media screen and (max-width: 600px) {
+  .topNav {
+    padding: .6em;
+    /*position: fixed;*/
+  }
+  .itemGap {
+    margin: 0 6px;
+  }
+}

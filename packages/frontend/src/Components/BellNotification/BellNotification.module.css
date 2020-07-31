@@ -10,6 +10,10 @@
   align-items: center;
   position: relative;
 }
+.bellContainer svg {
+  color: #fff;
+  width: 27.85px;
+}
 
 .bellContainer:hover svg {
   animation: bellshake .5s cubic-bezier(.36,.07,.19,.97) both;
@@ -102,4 +106,30 @@
   85% { transform: rotate(-2deg); }
   92% { transform: rotate(1deg); }
   100% { transform: rotate(0); }
+}
+
+@media screen and (max-width: 600px) {
+  .bellContainer{
+    height: unset;
+    width: min-content;
+    background: transparent;
+    position: unset;
+  }
+  .bellContainer svg {
+    color: #4C7260;
+  }
+  .notifCount {
+    font-size: 12px;
+    width: 16px;
+    height: 16px;
+    top: unset;
+    right: unset;
+    bottom: 50%;
+    margin-left: 11px;
+  }
+  .dropdownNotification {
+    z-index: 2;
+    width: fit-content;
+    top: 80%;
+  }
 }

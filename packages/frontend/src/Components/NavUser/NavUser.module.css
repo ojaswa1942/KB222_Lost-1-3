@@ -68,3 +68,31 @@
 .dropdownCard:hover {
   background: #ebebeb;
 }
+
+@media screen and (max-width: 600px) {
+  .userContainer {
+    padding: unset;
+    background: transparent;
+    flex-direction: column;
+    border-radius: 40px;
+  }
+  .personInfo {
+    display: none;
+  }
+  .expandIcon {
+    position: absolute;
+    bottom: 0;
+    right: 0px;
+    background: #BB6A57;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    border-radius: 10px;
+  }
+  .dropdown {
+    top: 100%;
+    right: 0;
+    width: max-content;
+    min-width: 50vw;
+  }
+}

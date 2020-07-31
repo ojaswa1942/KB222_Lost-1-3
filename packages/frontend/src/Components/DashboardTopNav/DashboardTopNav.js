@@ -7,7 +7,7 @@ const DashboardTopNav = () => {
   return (
     <div className={styles.topNav}>
       <BellNotification />
-      <span style={{ margin: "0 16px" }} />
+      <span className={styles.itemGap} />
       <NavUser />
     </div>
   );
