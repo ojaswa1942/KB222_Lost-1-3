@@ -8,10 +8,8 @@ import { UserType } from '../../interfaces';
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    scheme: async (_, { input: { id: schemeID } }, { jwt: { id, type } }) => {
-      const schemeRepo = getRepository(Scheme);
-
-      const sch = await schemeRepo.findOne({ relations: ['users'], where: { id: schemeID } });
+    scheme: async (_, { input: { id: schemeID } }, { jwt: { id, type }, schemeLoader }) => {
+      const sch = await schemeLoader.load(schemeID);
 
       const [usr] = sch.users.filter((u) => u.id === id);
       if (!usr && type !== UserType.ROOT) throw errors.unauthorized;
@@ -53,6 +51,25 @@ const resolvers: Resolvers<Context> = {
         code: '200',
         message: 'Scheme created successfully',
       };
+    },
+  },
+
+  Scheme: {
+    name: async ({ id }, __, { schemeLoader }) => {
+      const { name } = await schemeLoader.load(id);
+      return name;
+    },
+    users: async ({ id }, __, { schemeLoader }) => {
+      const { users } = await schemeLoader.load(id);
+      return users.map((u) => ({ id: u.id }));
+    },
+    channels: async ({ id }, __, { schemeLoader }) => {
+      const { channels } = await schemeLoader.load(id);
+      return channels.map((c) => ({ id: c.id }));
+    },
+    createdAt: async ({ id }, __, { schemeLoader }) => {
+      const { createdAt } = await schemeLoader.load(id);
+      return createdAt.toISOString();
     },
   },
 };

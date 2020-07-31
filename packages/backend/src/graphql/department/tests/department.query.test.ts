@@ -9,6 +9,13 @@ describe('department query', () => {
     query($input: DepartmentInput!) {
       department(input: $input) {
         id
+        name
+        users {
+          id
+        }
+        channels {
+          id
+        }
       }
     }
   `;

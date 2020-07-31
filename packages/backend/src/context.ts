@@ -4,8 +4,20 @@ import { IncomingHttpHeaders } from 'http';
 import jwt from 'jsonwebtoken';
 
 import config from './config';
-import { buildUserLoader } from './loaders';
+import {
+  buildUserLoader,
+  buildDepartmentLoader,
+  buildSchemeLoader,
+  buildChannelLoader,
+  buildRoomLoader,
+  buildMessageLoader,
+} from './loaders';
 import { User } from './database/entity/User';
+import { Department } from './database/entity/Department';
+import { Scheme } from './database/entity/Scheme';
+import { Channel } from './database/entity/Channel';
+import { Room } from './database/entity/Room';
+import { Message } from './database/entity/Message';
 import { JWTPayload } from './interfaces';
 
 export interface ContextInput {
@@ -20,6 +32,11 @@ export interface Context {
   isValid: boolean;
   jwt?: JWTPayload;
   userLoader: DataLoader<number, User>;
+  departmentLoader: DataLoader<number, Department>;
+  schemeLoader: DataLoader<number, Scheme>;
+  channelLoader: DataLoader<number, Channel>;
+  roomLoader: DataLoader<number, Room>;
+  messageLoader: DataLoader<number, Message>;
 }
 
 const context = ({ req, res }: ContextInput): Context => {
@@ -29,6 +46,11 @@ const context = ({ req, res }: ContextInput): Context => {
     res: res,
     isValid: false,
     userLoader: buildUserLoader(),
+    departmentLoader: buildDepartmentLoader(),
+    schemeLoader: buildSchemeLoader(),
+    channelLoader: buildChannelLoader(),
+    roomLoader: buildRoomLoader(),
+    messageLoader: buildMessageLoader(),
   };
 
   const token = req.cookies['token'] || '';

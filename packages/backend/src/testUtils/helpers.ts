@@ -3,7 +3,14 @@ import { ApolloServerTestClient, createTestClient as createApolloTestClient } fr
 
 import { Context } from '../context';
 import { rootSchema } from '../graphql/rootSchema';
-import { buildUserLoader } from '../loaders';
+import {
+  buildUserLoader,
+  buildDepartmentLoader,
+  buildSchemeLoader,
+  buildChannelLoader,
+  buildRoomLoader,
+  buildMessageLoader,
+} from '../loaders';
 
 export const createTestClient = (ctx?: Partial<Context>): ApolloServerTestClient => {
   const server = new ApolloServer({
@@ -17,6 +24,11 @@ export const createTestClient = (ctx?: Partial<Context>): ApolloServerTestClient
         },
       },
       userLoader: buildUserLoader(),
+      departmentLoader: buildDepartmentLoader(),
+      schemeLoader: buildSchemeLoader(),
+      channelLoader: buildChannelLoader(),
+      roomLoader: buildRoomLoader(),
+      messageLoader: buildMessageLoader(),
       isValid: false,
       ...ctx,
     },

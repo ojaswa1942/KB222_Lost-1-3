@@ -2,12 +2,22 @@
 
 exports[`department query fetch department with member user 1`] = `
 Object {
+  "channels": Array [],
   "id": 1,
+  "name": "Solutions Department",
+  "users": Array [
+    Object {
+      "id": 1,
+    },
+  ],
 }
 `;
 
 exports[`department query fetch department with root 1`] = `
 Object {
+  "channels": Array [],
   "id": 1,
+  "name": "Solutions Department",
+  "users": Array [],
 }
 `;

@@ -37,6 +37,25 @@ const resolvers: Resolvers<Context> = {
       };
     },
   },
+
+  Channel: {
+    department: async ({ id }, _, { channelLoader }) => {
+      const { department } = await channelLoader.load(id);
+      return { id: department.id };
+    },
+    scheme: async ({ id }, __, { channelLoader }) => {
+      const { scheme } = await channelLoader.load(id);
+      return { id: scheme.id };
+    },
+    rooms: async ({ id }, _, { channelLoader }) => {
+      const { rooms } = await channelLoader.load(id);
+      return rooms.map((r) => ({ id: r.id }));
+    },
+    createdAt: async ({ id }, _, { channelLoader }) => {
+      const { createdAt } = await channelLoader.load(id);
+      return createdAt.toISOString();
+    },
+  },
 };
 
 export default resolvers;

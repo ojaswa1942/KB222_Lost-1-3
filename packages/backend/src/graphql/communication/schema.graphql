@@ -12,15 +12,16 @@ type Room {
 
 type Message {
   id: Int!
-  body: String!
+  body: String
   files: [File!]
-  isNotification: Boolean!
+  isNotification: Boolean
   user: User
-  createdAt: String!
+  createdAt: String
 }
 
 type File {
-  key: String!
-  name: String!
-  message: Message!
+  id: Int!
+  key: String
+  name: String
+  message: Message
 }
