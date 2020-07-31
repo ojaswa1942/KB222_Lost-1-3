@@ -40,8 +40,8 @@
   width: 25rem;
   max-height: 25rem;
   overflow-y: auto;
-  top: 60px;
-  right: 10px;
+  top: calc(100% + 3px);
+  right: 5px;
   background-color: #fff;
   padding: 6px;
   border: 1px solid #dbdbdb;

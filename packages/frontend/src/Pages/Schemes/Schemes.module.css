@@ -1,13 +1,16 @@
 .schemesPage {
   box-sizing: border-box;
   width: 100%;
-  padding: 3em;
+  padding: 0 3em 3em 3em;
   color: #191919;
+  position: relative;
 }
 
 .header {
+  box-sizing: border-box;
   position: sticky;
-  top: 0;
+  padding: 1em 0 0 0;
+  top: 7.35em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,6 +46,7 @@
 .schemes {
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 /* 
 @media screen and (max-width: 500px) {
