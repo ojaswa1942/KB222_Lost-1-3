@@ -1,5 +1,9 @@
 extend type Query {
-  messages: [Message!]
+  messages(input: MessagesInput!): [Message!] @requireAuthentication
+}
+
+extend type Mutation {
+  sendMessage(input: SendMessageInput!): SendMessageResponse @requireAuthentication
 }
 
 type Room {
@@ -24,4 +28,24 @@ type File {
   key: String
   name: String
   message: Message
+}
+
+type SendMessageResponse implements MutationResponse {
+  code: String!
+  message: String!
+}
+
+input FileInput {
+  key: String!
+  name: String!
+}
+
+input MessagesInput {
+  roomID: Int!
+}
+
+input SendMessageInput {
+  roomID: Int!
+  body: String!
+  files: [FileInput!]
 }

@@ -9,7 +9,6 @@ describe('departments query', () => {
     query {
       departments {
         id
-        name
       }
     }
   `;

@@ -11,7 +11,7 @@ const batchUsers: DataLoader.BatchLoadFn<number, User> = async (ids) => {
     .where('user.id IN (:...ids)', { ids })
     .getRawMany();
 
-  const users = await getRepository(User).findByIds([...ids], { relations: ['departments', 'schemes'] });
+  const users = await getRepository(User).findByIds([...ids], { relations: ['departments', 'schemes', 'rooms'] });
 
   const byID = normalize<User>(users);
   const rawByID = normalize(raw);

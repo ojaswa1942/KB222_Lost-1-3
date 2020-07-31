@@ -4,15 +4,12 @@ exports[`departments query fetch departments with root 1`] = `
 Array [
   Object {
     "id": 1,
-    "name": "Solutions Department",
   },
   Object {
     "id": 2,
-    "name": "Group Department",
   },
   Object {
     "id": 3,
-    "name": "Functionality Department",
   },
 ]
 `;
@@ -21,11 +18,9 @@ exports[`departments query fetch departments with state user 1`] = `
 Array [
   Object {
     "id": 2,
-    "name": "Functionality Department",
   },
   Object {
     "id": 4,
-    "name": "Functionality Department",
   },
 ]
 `;
