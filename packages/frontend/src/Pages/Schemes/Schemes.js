@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Schemes.module.css";
 import SchemeCard from "../../Components/SchemeCard/SchemeCard";
+import DeleteScheme from "../../Components/SweetAlertModals/DeleteScheme/DeleteScheme";
 import { ReactComponent as Add } from "../../assets/icons/add.svg";
+import getModal from "../../utils/getModal";
 
 const Schemes = () => {
-  const schemes = [
+  const [schemes] = useState([
     {
       id: 1,
       name: "MNREGA",
@@ -46,7 +48,23 @@ const Schemes = () => {
       entity: "Central Government",
       sanctionedAmount: "45,000 Crores",
     },
-  ];
+  ]);
+
+  const handleDeleteFn = (id) => {
+    const modal = getModal();
+    modal.fire({
+      ...DeleteScheme,
+      preConfirm: () => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            // eslint-disable-next-line
+            alert(`YeeHaaww: Deleting ${id}`);
+            resolve(true);
+          }, 3000);
+        });
+      },
+    });
+  };
 
   return (
     <div className={styles.schemesPage}>
@@ -64,10 +82,12 @@ const Schemes = () => {
           return (
             <SchemeCard
               key={scheme.id}
+              id={scheme.id}
               name={scheme.name}
               description={scheme.description}
               entity={scheme.entity}
               sanctionedAmount={scheme.sanctionedAmount}
+              handleDeleteFn={handleDeleteFn}
             />
           );
         })}

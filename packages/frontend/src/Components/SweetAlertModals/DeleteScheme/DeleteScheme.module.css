@@ -1,0 +1,38 @@
+.popup {
+  border-radius: 10px;
+}
+
+.title {
+  color: #191919;
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.text {
+  display: inline-block;
+  max-width: 75%;
+  color: #191919;
+  font-size: 18px;
+  text-align: center;
+  font-weight: normal;
+  position: relative;
+}
+
+.cancelIcon {
+  outline: none;
+  color: #191919;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirmButton {
+  border-radius: 20px !important;
+  /*outline: none !important;*/
+}
+.cancelButton {
+  border-radius: 20px !important;
+  outline: none !important;
+}

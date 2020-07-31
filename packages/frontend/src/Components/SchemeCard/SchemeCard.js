@@ -3,12 +3,22 @@ import styles from "./SchemeCard.module.css";
 import { ReactComponent as Delete } from "../../assets/icons/delete_bin.svg";
 import { ReactComponent as ChatLogo } from "../../assets/icons/icons8_messaging.svg";
 
-const SchemeCard = ({ name, description, entity, sanctionedAmount }) => {
+const SchemeCard = ({ id, name, description, entity, sanctionedAmount, handleDeleteFn }) => {
+  const callDelete = (event) => {
+    if (event.type === `keydown` && event.key !== 13) return;
+    handleDeleteFn(id);
+  };
+
   return (
     <div className={styles.schemeCard}>
       <div className={styles.titleDiv}>
         <h2>Scheme Name : {name}</h2>
-        <button type="button" className={styles.deleteBtn}>
+        <button
+          type="button"
+          className={styles.deleteBtn}
+          onClick={callDelete}
+          onKeyDown={callDelete}
+        >
           <Delete className={styles.deleteLogo} />
         </button>
       </div>
