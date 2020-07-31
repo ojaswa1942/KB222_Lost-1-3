@@ -5,18 +5,15 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     container: node:12
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_PASSWORD: dubidubi
-          POSTGRES_DB: fund-test
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
     steps:
+      - name: Setup Postgres database
+        uses: Daniel-Marynicz/postgresql-action@master
+        with:
+          postgres_image_tag: 12-alpine
+          postgres_extensions: pgcrypto
+          postgres_db: fund-test
+          postgres_password: dubidubi
+
       - name: Check out repository code
         uses: actions/checkout@v2
 
@@ -42,5 +39,5 @@ jobs:
       - name: Run tests
         run: yarn test
         env:
-          PG_HOST: postgres
+          PG_HOST: localhost
           PG_PASS: dubidubi

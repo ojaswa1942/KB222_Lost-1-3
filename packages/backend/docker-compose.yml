@@ -7,8 +7,8 @@ services:
       POSTGRES_PASSWORD: dubidubi
       PGDATA: /data/pg
     volumes:
-      - ./docker/10-init.sql:/docker-entrypoint-initdb.d/10-init.sql
-      - ./docker/20-init-pgcrypto.sh:/docker-entrypoint-initdb.d/20-init-pgcrypto.sh
+      - ./docker/10-init-pgcrypto.sh:/docker-entrypoint-initdb.d/10-init-pgcrypto.sh
+      - ./docker/20-init.sql:/docker-entrypoint-initdb.d/20-init.sql
       - ./docker/db:/data
     restart: always
     ports:
