@@ -1,5 +1,5 @@
 {
-  "name": "fund-disbursal-backend",
+  "name": "backend",
   "version": "0.1.0",
   "description": "Backend for Fund Disbursal. Project for Grand Finale, SIH 2020",
   "main": "dist/server.js",
@@ -55,7 +55,6 @@
     "lint-staged": "^10.2.11",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
-    "sqlite3": "^5.0.0",
     "ts-jest": "^26.1.4",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.6"
