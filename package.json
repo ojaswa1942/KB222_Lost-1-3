@@ -7,7 +7,9 @@
     ],
     "nohoist": [
       "**/typeorm/**",
-      "**/typeorm"
+      "**/typeorm",
+      "**/jest/**",
+      "**/jest"
     ]
   },
   "scripts": {
