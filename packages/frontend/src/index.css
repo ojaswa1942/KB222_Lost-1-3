@@ -6,8 +6,10 @@
 }
 
 button:focus {
-  outline: none !important;
+}
+input:focus, select:focus {
   box-shadow: none !important;
+  outline: none !important;
 }
 
 body {
