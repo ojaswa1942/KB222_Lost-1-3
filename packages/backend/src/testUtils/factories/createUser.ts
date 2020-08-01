@@ -17,8 +17,8 @@ export async function createUser(attributes: CreateUserAttributes = {}): Promise
     email: faker.internet.email(),
     hash: genHash(password || 'password'),
     isVerified: true,
-    departments: [],
-    schemes: [],
+    departmentRoles: [],
+    schemeRoles: [],
     rooms: [],
     ...userAttributes,
   };

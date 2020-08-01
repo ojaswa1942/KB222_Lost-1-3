@@ -7,10 +7,20 @@ extend type Mutation {
   createScheme(input: CreateSchemeInput!): CreateSchemeResponse! @requireAuthentication(isRoot: true)
 }
 
+enum SchRoles {
+  ADMIN
+  VIEWER
+}
+
+type SchRoleUser {
+  role: SchRoles
+  user: User
+}
+
 type Scheme {
   id: Int
   name: String
-  users: [User]
+  users: [SchRoleUser]
   channels: [Channel]
   createdAt: String
 }

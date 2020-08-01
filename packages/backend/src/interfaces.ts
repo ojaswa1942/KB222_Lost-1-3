@@ -9,3 +9,13 @@ export enum UserType {
   CENTRE = 'CENTRE',
   STATE = 'STATE',
 }
+
+export enum DeptRoles {
+  ADMIN = 'ADMIN',
+  VIEWER = 'VIEWER',
+}
+
+export enum SchRoles {
+  ADMIN = 'ADMIN',
+  VIEWER = 'VIEWER',
+}

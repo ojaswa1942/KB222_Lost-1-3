@@ -11,7 +11,7 @@ const resolvers: Resolvers<Context> = {
     department: async (_, { input: { id: departmentID } }, { jwt: { id, type }, departmentLoader }) => {
       const dep = await departmentLoader.load(departmentID);
 
-      const [usr] = dep.users.filter((u) => u.id === id);
+      const [usr] = dep.departmentRoles.filter((u) => u.userId === id);
       if (!usr && type !== UserType.ROOT) throw errors.unauthorized;
 
       return {
@@ -32,7 +32,7 @@ const resolvers: Resolvers<Context> = {
       if (usr.type === UserType.ROOT) {
         deps = await departmentRepo.find();
       } else {
-        deps = usr.departments;
+        deps = usr.departmentRoles.map((d) => ({ ...d.department, id: d.departmentId }));
       }
 
       return deps.map((d) => ({ id: d.id }));
@@ -60,8 +60,8 @@ const resolvers: Resolvers<Context> = {
       return name;
     },
     users: async ({ id }, __, { departmentLoader }) => {
-      const { users } = await departmentLoader.load(id);
-      return users.map((u) => ({ id: u.id }));
+      const { departmentRoles } = await departmentLoader.load(id);
+      return departmentRoles.map((u) => ({ role: u.role, user: { id: u.userId } }));
     },
     channels: async ({ id }, __, { departmentLoader }) => {
       const { channels } = await departmentLoader.load(id);

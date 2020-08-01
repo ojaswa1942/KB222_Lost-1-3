@@ -17,9 +17,6 @@ const resolvers: Resolvers<Context> = {
 
       const hash = genHash(password);
 
-      // const user = userRepo.create({ name, email, hash, isVerified: true });
-
-      // await userRepo.save(user);
       await userRepo
         .createQueryBuilder('user')
         .insert()
@@ -56,12 +53,12 @@ const resolvers: Resolvers<Context> = {
       return isVerified;
     },
     departments: async ({ id }, __, { userLoader }) => {
-      const { departments } = await userLoader.load(id);
-      return departments.map((d) => ({ id: d.id }));
+      const { departmentRoles } = await userLoader.load(id);
+      return departmentRoles.map((d) => ({ role: d.role, department: { id: d.departmentId } }));
     },
     schemes: async ({ id }, __, { userLoader }) => {
-      const { schemes } = await userLoader.load(id);
-      return schemes.map((d) => ({ id: d.id }));
+      const { schemeRoles } = await userLoader.load(id);
+      return schemeRoles.map((s) => ({ role: s.role, scheme: { id: s.schemeId } }));
     },
     createdAt: async ({ id }, __, { userLoader }) => {
       const { createdAt } = await userLoader.load(id);

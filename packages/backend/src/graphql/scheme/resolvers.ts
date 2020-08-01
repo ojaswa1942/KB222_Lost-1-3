@@ -11,7 +11,7 @@ const resolvers: Resolvers<Context> = {
     scheme: async (_, { input: { id: schemeID } }, { jwt: { id, type }, schemeLoader }) => {
       const sch = await schemeLoader.load(schemeID);
 
-      const [usr] = sch.users.filter((u) => u.id === id);
+      const [usr] = sch.schemeRoles.filter((u) => u.userId === id);
       if (!usr && type !== UserType.ROOT) throw errors.unauthorized;
 
       return {
@@ -23,7 +23,7 @@ const resolvers: Resolvers<Context> = {
       const schemeRepo = getRepository(Scheme);
       const userRepo = getRepository(User);
 
-      const usr = await userRepo.findOne({ relations: ['schemes'], where: { id } });
+      const usr = await userRepo.findOne({ relations: ['schemeRoles'], where: { id } });
       if (!usr) throw errors.internalServerError;
 
       if (usr.type === UserType.STATE) throw errors.unauthorized;
@@ -32,7 +32,7 @@ const resolvers: Resolvers<Context> = {
       if (usr.type === UserType.ROOT) {
         schemeList = await schemeRepo.find();
       } else {
-        schemeList = usr.schemes;
+        schemeList = usr.schemeRoles.map((s) => ({ ...s.scheme, id: s.schemeId }));
       }
 
       return schemeList.map((s) => ({ id: s.id }));
@@ -60,8 +60,8 @@ const resolvers: Resolvers<Context> = {
       return name;
     },
     users: async ({ id }, __, { schemeLoader }) => {
-      const { users } = await schemeLoader.load(id);
-      return users.map((u) => ({ id: u.id }));
+      const { schemeRoles } = await schemeLoader.load(id);
+      return schemeRoles.map((u) => ({ role: u.role, user: { id: u.userId } }));
     },
     channels: async ({ id }, __, { schemeLoader }) => {
       const { channels } = await schemeLoader.load(id);

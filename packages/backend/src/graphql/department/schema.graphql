@@ -7,10 +7,20 @@ extend type Mutation {
   createDepartment(input: CreateDepartmentInput!): CreateDepartmentResponse! @requireAuthentication(isRoot: true)
 }
 
+enum DeptRoles {
+  ADMIN
+  VIEWER
+}
+
+type DeptRoleUser {
+  role: DeptRoles
+  user: User
+}
+
 type Department {
   id: Int!
   name: String
-  users: [User!]
+  users: [DeptRoleUser!]
   channels: [Channel!]
   createdAt: String
 }

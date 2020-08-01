@@ -8,13 +8,23 @@ enum UserType {
   STATE
 }
 
+type DepartmentRole {
+  role: DeptRoles
+  department: Department
+}
+
+type SchemeRole {
+  role: SchRoles
+  scheme: Scheme
+}
+
 type User {
   id: Int!
   name: String
   email: String
   type: UserType
-  schemes: [Scheme!]
-  departments: [Department!]
+  schemes: [SchemeRole!]
+  departments: [DepartmentRole!]
   isVerified: Boolean
   createdAt: String
 }

@@ -4,7 +4,7 @@ import { Scheme } from '../database/entity/Scheme';
 import { normalize } from './normalize';
 
 const batchSchemes: DataLoader.BatchLoadFn<number, Scheme> = async (ids) => {
-  const schemes = await getRepository(Scheme).findByIds([...ids], { relations: ['users', 'channels'] });
+  const schemes = await getRepository(Scheme).findByIds([...ids], { relations: ['schemeRoles', 'channels'] });
 
   const byID = normalize<Scheme>(schemes);
 
