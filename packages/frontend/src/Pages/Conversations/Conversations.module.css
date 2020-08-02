@@ -1,0 +1,84 @@
+.conversationsPage {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 3em 3em 3em;
+  color: #191919;
+  position: relative;
+}
+
+.header {
+  z-index: 1;
+  box-sizing: border-box;
+  position: sticky;
+  padding: 1em 0 1em 0;
+  top: var(--dashboard-page-header-top);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+}
+
+.head {
+  font-size: 1.8em;
+  font-weight: 600;
+}
+.inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.select {
+  background: #F6F6F6;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.select:focus-within, .select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.select .react-dropdown-select-content {
+  background: red;
+}
+.select .react-dropdown-select-item-selected {
+  background: red;
+}
+
+.addChannelBtn {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  background: #4C7260;
+  border: none;
+  box-shadow: 0px 3px 6px #bb6a5729;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  color: white;
+  height: max-content;
+  padding: 1em 2em;
+  font-weight: 600;
+}
+
+.addChannel {
+  height: 1.2em;
+  padding-right: 0.8em ;
+}
+
+.conversations {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .conversationsPage {
+    padding: 0 2em 2em 2em;
+  }
+  .header {
+    position: unset;
+    padding: unset;
+  }
+}

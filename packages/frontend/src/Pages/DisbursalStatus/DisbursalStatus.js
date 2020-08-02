@@ -7,7 +7,12 @@ import { ReactComponent as AddSign } from "../../assets/icons/add.svg";
 import { ReactComponent as ChatSign } from "../../assets/icons/icons8_messaging.svg";
 
 const DisbursalStatus = () => {
+<<<<<<< HEAD
   // const [selectedScheme, updateScheme] = useState("");
+=======
+  // eslint-disable-next-line
+  const [selectedScheme, updateScheme] = useState("");
+>>>>>>> c9913cbbb885ffa6a679e8b223db9e26ec901c8f
   const [schemeTxns] = useState({
     scheme: "MNREGA",
     previousTxns: [

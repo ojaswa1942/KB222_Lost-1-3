@@ -1,0 +1,136 @@
+.messengerView {
+  display: grid;
+  grid-template-columns: var(--dashboard-conversation-left-width) auto;
+  grid-gap: 16px;
+  color: black;
+  box-sizing: border-box;
+  min-height: 400px;
+  max-height: calc(100vh - 120px - 156px - 48px);
+  overflow-y: hidden;
+  position: relative;
+}
+
+.titleDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleDiv h2 {
+  font-weight: 600;
+  font-size: 1.3em;
+  margin: 0.5em 0;
+}
+
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: none;
+  border-radius: 100%;
+  outline: none;
+  width: 2.5em;
+  height: 2.5em;
+  cursor: pointer;
+}
+.deleteBtn:hover svg {
+  animation: bellshake .5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.deleteLogo {
+  align-self: center;
+  height: 1.5em;
+  color: #BB6A57;
+}
+
+.schemeCard p {
+  font-size: 0.8em;
+  width: 95%;
+  line-height: 2em;
+  margin: 0.5em 0 0.7em 0;
+}
+
+.lowerDiv {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1em 0;
+}
+
+.textDiv {
+  font-weight: 500;
+  margin: 0.5em 0;
+}
+
+.btnsDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardBtns {
+  white-space: nowrap;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: none;
+  border-radius: 30px;
+  color: #BB6A57;
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
+  font-size: 0.8em;
+  padding: 0.7em 3em;
+  margin: 0.5em 2em;
+}
+
+.chatLogo {
+  width: 1.2em;
+  padding-right: 1em;
+  color: #BB6A57;
+}
+
+@keyframes bellshake {
+  0% { transform: rotate(0); }
+  15% { transform: rotate(6deg); }
+  30% { transform: rotate(-6deg); }
+  45% { transform: rotate(4deg); }
+  60% { transform: rotate(-4deg); }
+  75% { transform: rotate(2deg); }
+  85% { transform: rotate(-2deg); }
+  92% { transform: rotate(1deg); }
+  100% { transform: rotate(0); }
+}
+@media screen and (max-width: 1200px) {
+  .lowerDiv {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .btnsDiv {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .schemeCard {
+    margin: 0.5em 0;
+  }
+  .schemeCard p {
+    line-height: unset;
+  }
+  .textDiv {
+    font-size: 14px;
+  }
+  .btnsDiv {
+    justify-content: space-evenly;
+    white-space: nowrap;
+  }
+  .cardBtns {
+    margin: unset;
+    font-weight: bold;
+    padding: 0.7em 2em;
+  }
+}

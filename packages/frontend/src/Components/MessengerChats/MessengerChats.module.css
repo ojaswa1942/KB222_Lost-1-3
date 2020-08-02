@@ -1,0 +1,183 @@
+.messengerChats {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column-reverse;
+  color: black;
+  border-radius: 10px;
+  width: 100%;
+  background-color: #F6F6F6;
+  border-radius: 5px;
+  grid-column-start: 2;
+  padding: 2em;
+  min-height: inherit;
+  max-height: inherit;
+  overflow-y: auto;
+}
+.messageList {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: max-content;
+}
+.notifCard {
+  background: #4C7260 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 11px;
+  padding: 0.2em 0.5em;
+  margin: 1.2em 0;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.messageCard {
+  box-sizing: border-box;
+  background: #BB6A57 0% 0% no-repeat padding-box;
+  border-radius: 7px;
+  font-size: 12px;
+  padding: 1em;
+  width: 80%;
+  min-width: 160px;
+  margin: 1.2em 0;
+  position: relative;
+}
+.messageSentInfo {
+  box-sizing: border-box;
+  color: #191919;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: space-between;
+}
+.senderName {
+  font-size: 14px;
+}
+.sentTime {
+  font-size: 11px;
+}
+.messageBody {
+  text-align: left;
+  letter-spacing: 0.64px;
+  color: #FFFFFF;
+}
+
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: none;
+  border-radius: 100%;
+  outline: none;
+  width: 2.5em;
+  height: 2.5em;
+  cursor: pointer;
+}
+.deleteBtn:hover svg {
+  animation: bellshake .5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.deleteLogo {
+  align-self: center;
+  height: 1.5em;
+  color: #BB6A57;
+}
+
+.schemeCard p {
+  font-size: 0.8em;
+  width: 95%;
+  line-height: 2em;
+  margin: 0.5em 0 0.7em 0;
+}
+
+.lowerDiv {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 1em 0;
+}
+
+.textDiv {
+  font-weight: 500;
+  margin: 0.5em 0;
+}
+
+.btnsDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardBtns {
+  white-space: nowrap;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: none;
+  border-radius: 30px;
+  color: #BB6A57;
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
+  font-size: 0.8em;
+  padding: 0.7em 3em;
+  margin: 0.5em 2em;
+}
+
+.chatLogo {
+  width: 1.2em;
+  padding-right: 1em;
+  color: #BB6A57;
+}
+
+@keyframes bellshake {
+  0% { transform: rotate(0); }
+  15% { transform: rotate(6deg); }
+  30% { transform: rotate(-6deg); }
+  45% { transform: rotate(4deg); }
+  60% { transform: rotate(-4deg); }
+  75% { transform: rotate(2deg); }
+  85% { transform: rotate(-2deg); }
+  92% { transform: rotate(1deg); }
+  100% { transform: rotate(0); }
+}
+@media screen and (max-width: 1200px) {
+  .lowerDiv {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .btnsDiv {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .schemeCard {
+    margin: 0.5em 0;
+  }
+  .schemeCard p {
+    line-height: unset;
+  }
+  .textDiv {
+    font-size: 14px;
+  }
+  .btnsDiv {
+    justify-content: space-evenly;
+    white-space: nowrap;
+  }
+  .cardBtns {
+    margin: unset;
+    font-weight: bold;
+    padding: 0.7em 2em;
+  }
+}
