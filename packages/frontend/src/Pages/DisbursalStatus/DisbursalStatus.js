@@ -7,6 +7,7 @@ import { ReactComponent as AddSign } from "../../assets/icons/add.svg";
 // import { ReactComponent as ChatSign } from "../../assets/icons/icons8_messaging.svg";
 
 const DisbursalStatus = () => {
+  // eslint-disable-next-line
   const [selectedScheme, updateScheme] = useState("");
   const [schemeTxns] = useState({
     scheme: "MNREGA",
