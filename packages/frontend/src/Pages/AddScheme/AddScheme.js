@@ -42,7 +42,7 @@ const AddScheme = () => {
             <div className={styles.amountDiv}>
               <input
                 type="number"
-                ref={register({ required: true })}
+                ref={register({ required: true, min: 1 })}
                 name="amountBase"
                 className={styles.amountBase}
                 placeholder="Base Amount"
@@ -55,9 +55,13 @@ const AddScheme = () => {
                 <option value="">Select Unit</option>
                 <option value="10000000">Crores</option>
                 <option value="100000">Lakhs</option>
+                <option value="1000">Thousands</option>
               </select>
             </div>
           </div>
+          {errors.amountBase && errors.amountBase.type === "min" && (
+            <span className={styles.fieldError}>Invalid input.</span>
+          )}
           {(errors.amountBase || errors.amountUnit) && (
             <span className={styles.fieldError}>*This field is required</span>
           )}
@@ -96,25 +100,24 @@ const AddScheme = () => {
             <div className={styles.durationDiv}>
               <input
                 type="number"
-                ref={register({ max: 11 })}
+                ref={register({ max: 11, min: 0 })}
                 name="durMonths"
                 className={styles.durMonths}
                 placeholder="Months"
               />
-              {/* {errors.durMonths && errors.password.type === "max" && (
-                <span className={styles.fieldError}>
-                  The value should be maximum upto 11 months.
-                </span>
-              )} */}
               <input
                 type="number"
-                ref={register({ required: true })}
+                ref={register({ required: true, min: 1 })}
                 name="durYears"
                 className={styles.durYears}
                 placeholder="Years"
               />
             </div>
           </div>
+          {errors.durMonths &&
+            (errors.durMonths.type === "max" || errors.durMonths.type === "min") && (
+              <span className={styles.fieldError}>Invalid input.</span>
+            )}
           {errors.durYears && <span className={styles.fieldError}>*This field is required</span>}
           <div className={styles.btnsDiv}>
             <button type="button" className={styles.cancelBtn}>

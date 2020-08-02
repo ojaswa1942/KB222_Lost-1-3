@@ -152,51 +152,129 @@
   color: red;
 }
 
-/* 
-@media screen and (max-width: 500px) {
-  .loginPage {
-    padding: 1rem 2rem;
+@media screen and (max-width: 800px) {
+  .addSchemePage {
+    padding: 0 2em 5em 2em;
   }
-
-  .loginDiv {
-    margin: 2em 0 5em 0;
+  .header {
+    position: unset;
+    padding: unset;
   }
-
-  .loginForm {
-    padding: 2em;
+  .schemeFormDiv {
     width: 100%;
   }
-
-  .loginForm h1 {
-    font-size: 1.5em;
-    letter-spacing: 0.5em;
+  
+  .schemeName,
+  .schemeDes,
+  .schemeBudget,
+  .schemeDep,
+  .schemeDur {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.7em 0;
   }
-
-  .loginForm > label,
-  .loginForm > div {
-    font-size: 0.7em;
+  
+  .schemeName h4,
+  .schemeBudget h4,
+  .schemeDes h4,
+  .schemeDep h4,
+  .schemeDur h4 {
+    font-size: 0.8em;
+    margin: 0.5em;
   }
-
-  .loginRadio {
-    font-size: 1.2em;
+  
+  .schemeName input,
+  .schemeDes textarea {
+    width: 100%;
   }
-
-  .loginRadio input {
-    height: 1em;
-    width: 1em;
+  
+  .amountDiv,
+  .depDiv,
+  .durationDiv {
+    width: 100%;
   }
-
-  .loginPass button {
-    width: 10%;
-    height: 2.7em;
-  }
-
-  .loginBtn {
+  
+  .amountDiv input,
+  .amountDiv select,
+  .durationDiv input {
     font-size: 0.8em;
   }
-
-  .loginForm a {
-    font-size: 0.5em;
-    padding-top: 0.5em;
+  
+  .department {
+    width: max-content;
   }
-} */
+  
+  .department span {
+    font-size: 0.7em;
+  }
+  
+  .depInput:checked + span {
+    background: #093824;
+  }
+  
+  .saveBtn,
+  .cancelBtn {
+    width: max-content;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  
+  .schemeFormDiv {
+    width: 100%;
+  }
+  
+  .schemeName,
+  .schemeDes,
+  .schemeBudget,
+  .schemeDep,
+  .schemeDur {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.7em 0;
+  }
+  
+  .schemeName h4,
+  .schemeBudget h4,
+  .schemeDes h4,
+  .schemeDep h4,
+  .schemeDur h4 {
+    font-size: 0.8em;
+    margin: 0.5em;
+  }
+  
+  .schemeName input,
+  .schemeDes textarea {
+    width: 100%;
+  }
+  
+  .amountDiv,
+  .depDiv,
+  .durationDiv {
+    width: 100%;
+  }
+  
+  .amountDiv input,
+  .amountDiv select,
+  .durationDiv input {
+    font-size: 0.8em;
+  }
+  
+  .department {
+    width: max-content;
+  }
+  
+  .department span {
+    font-size: 0.7em;
+  }
+  
+  .depInput:checked + span {
+    background: #093824;
+  }
+  
+  .saveBtn,
+  .cancelBtn {
+    width: max-content;
+  }
+  
+}
