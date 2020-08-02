@@ -42,4 +42,5 @@ input CreateSchemeInput {
   description: String
   budget: Int!
   adminIds: [Int!]
+  departmentIds: [Int!]
 }

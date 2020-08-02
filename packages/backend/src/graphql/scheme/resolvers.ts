@@ -1,9 +1,10 @@
 import { getRepository } from 'typeorm';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
-import { User, Scheme, SchemeRole } from '../../database/entity';
+import { User, Scheme, SchemeRole, Department, Channel } from '../../database/entity';
 import errors from '../../utils/errors';
 import { UserType, SchRoles } from '../../interfaces';
+import { createRoom } from '../communication/helpers';
 
 const resolvers: Resolvers<Context> = {
   Query: {
@@ -38,16 +39,27 @@ const resolvers: Resolvers<Context> = {
     },
   },
   Mutation: {
-    createScheme: async (_, { input: { name, budget, adminIds, description } }) => {
+    createScheme: async (_, { input: { name, budget, adminIds, description, departmentIds } }) => {
       if (!name || !budget) throw errors.fieldsRequired;
       const userRepo = getRepository(User);
       const schRoleRepo = getRepository(SchemeRole);
+      const deptRepo = getRepository(Department);
+      const channelRepo = getRepository(Channel);
+
       const users = await userRepo.findByIds(adminIds);
+      const departments = await deptRepo.findByIds(departmentIds, {
+        relations: ['departmentRoles', 'departmentRoles.user'],
+      });
 
       const schemeRepo = getRepository(Scheme);
       const sch = schemeRepo.create({ name, budget, description });
 
-      await schemeRepo.save(sch);
+      const newSch = await schemeRepo.save(sch);
+
+      departments.forEach(async (dep) => {
+        const ch = await channelRepo.save(channelRepo.create({ department: dep, scheme: newSch }));
+        createRoom('main', ch, [...users, ...dep.departmentRoles.map((dr) => dr.user)]);
+      });
 
       users.forEach((u) => {
         schRoleRepo.save(schRoleRepo.create({ role: SchRoles.ADMIN, user: u }));
