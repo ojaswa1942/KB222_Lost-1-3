@@ -5,6 +5,8 @@ docker/db/*
 
 !.keep
 
+service-account.json
+
 # Logs
 logs
 *.log

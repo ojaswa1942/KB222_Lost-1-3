@@ -2,3 +2,30 @@ interface MutationResponse {
   code: String!
   message: String!
 }
+
+extend type Mutation {
+  upload(input: UploadInput!): UploadResponse!
+  download(input: DownloadInput!): DownloadResponse!
+}
+
+type UploadResponse implements MutationResponse {
+  code: String!
+  message: String!
+  url: String!
+  file: File!
+}
+
+type DownloadResponse implements MutationResponse {
+  code: String!
+  message: String!
+  url: String!
+  file: File!
+}
+
+input UploadInput {
+  name: String!
+}
+
+input DownloadInput {
+  key: String!
+}

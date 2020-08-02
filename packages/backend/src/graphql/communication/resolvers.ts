@@ -3,6 +3,7 @@ import { Message, File } from '../../database/entity';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
 import errors from '../../utils/errors';
+import { moveFile } from '../../utils/storage';
 
 const resolvers: Resolvers<Context> = {
   Query: {
@@ -32,7 +33,10 @@ const resolvers: Resolvers<Context> = {
       if (!room) throw errors.unauthorized;
 
       const dbFiles = await Promise.all(
-        (files || []).map((f) => fileRepo.save(fileRepo.create({ key: f.key, name: f.name })))
+        (files || []).map((f) => {
+          moveFile(`tmp/${f.key}`, `files/${f.key}`);
+          return fileRepo.save(fileRepo.create({ key: f.key, name: f.name }));
+        })
       );
 
       await msgRepo.save(msgRepo.create({ body, isNotification: false, user: usr, room, files: dbFiles }));
