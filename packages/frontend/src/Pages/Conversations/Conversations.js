@@ -75,7 +75,10 @@ const Conversations = () => {
     history.push(`/dashboard/conversations/${values[0].id}`);
   }
 
-  const handleDeleteFn = (id) => {
+  const handleCreateChannelFn = (event) => {
+    if(event.type === `keydown` && event.key !== 13)
+      return;
+
     const modal = getModal();
     modal.fire({
       ...DeleteScheme,
@@ -83,7 +86,7 @@ const Conversations = () => {
         return new Promise((resolve) => {
           setTimeout(() => {
             // eslint-disable-next-line
-            alert(`YeeHaaww: Deleting ${id}`);
+            alert(`YeeHaaww: Deleting `);
             resolve(true);
           }, 3000);
         });
@@ -99,10 +102,15 @@ const Conversations = () => {
           <Select
             name="scheme-select"
             options={schemes}
+            color="#4C7260"
             values={activeScheme}
             clearable={false}
             onChange={updateSchemeChange}
-            style={{ width: "300px", borderRadius: "5px", borderColor: "#e4e4e4" }}
+            style={{ 
+              width: "var(--dashboard-conversation-left-width)", 
+              borderRadius: "5px", 
+              borderColor: "#e4e4e4",
+            }}
             className={styles.select}
             dropdownPosition="auto"
             dropdownGap={0}
@@ -112,29 +120,13 @@ const Conversations = () => {
             valueField="id"
             placeholder={`Select Scheme`}
           />
-          <Link to="/dashboard/schemes/add">
-            <button className={styles.addChannelBtn} type="button">
-              <Add className={styles.addChannel} />
-              Create Channel
-            </button>
-          </Link>
+          <button className={styles.addChannelBtn} type="button" onClick={handleCreateChannelFn} onKeyDown={handleCreateChannelFn} >
+            <Add className={styles.addChannel} />
+            Create Room
+          </button>
         </div>
       </div>
-      <div className={styles.schemes}>
-        {schemes.map((scheme) => {
-          return (
-            <MessengerView
-              key={scheme.id}
-              id={scheme.id}
-              name={scheme.name}
-              description={scheme.description}
-              entity={scheme.entity}
-              sanctionedAmount={scheme.sanctionedAmount}
-              handleDeleteFn={handleDeleteFn}
-            />
-          );
-        })}
-      </div>
+      {schemes.length && activeScheme.length && <MessengerView activeScheme={activeScheme} />}
     </div>
   );
 };

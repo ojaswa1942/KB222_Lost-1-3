@@ -1,43 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./MessengerView.module.css";
 import { ReactComponent as Delete } from "../../assets/icons/delete_bin.svg";
 import { ReactComponent as ChatLogo } from "../../assets/icons/icons8_messaging.svg";
+import MessengerNameList from "../MessengerNameList/MessengerNameList";
+import MessengerChats from "../MessengerChats/MessengerChats";
+import { randomTime } from "../../utils/utils";
 
-const MessengerView = ({ id, name, description, entity, sanctionedAmount, handleDeleteFn }) => {
-  const callDelete = (event) => {
-    if (event.type === `keydown` && event.key !== 13) return;
-    handleDeleteFn(id);
-  };
+const MessengerView = ({ activeScheme }) => {
+  const [currentSelected, updateSelected] = useState(null);
+  const [rooms] = useState([
+    { id: 0, name: "First room", lastMessage: {body: "Yes, I have received the black money officially", createdAt: randomTime()} },
+    { id: 1, name: "Yay room", lastMessage: {body: "Yes, I have received the black money officially and I will not tell everyone hopefully.", createdAt: randomTime()} },
+    { id: 2, name: "Nay room", lastMessage: {body: "Yes, I have received the black money officially", createdAt: randomTime()} },
+    { id: 3, name: "room", lastMessage: {body: "Yes, I have received the black money officially", createdAt: randomTime()} },
+    { id: 4, name: "Bad room", lastMessage: {body: "Yes, I have received the black money officially", createdAt: randomTime()} },
+    { id: 5, name: "Not wanna talk room", lastMessage: {body: "Yes, I have received the black money officially", createdAt: randomTime()} },
+    { id: 6, name: "Only file room", lastMessage: {body: "Yes, I have received the black money officially", createdAt: randomTime()} },
+    { id: 7, name: "Groom", lastMessage: {body: "Yes, I have received the black money officially", createdAt: randomTime()} },
+  ]);
+
+  useEffect(() => {
+    if(!currentSelected && rooms.length){
+      updateSelected(rooms[0].id);
+    }
+  }, [rooms])
 
   return (
-    <div className={styles.schemeCard}>
-      <div className={styles.titleDiv}>
-        <h2>Scheme Name : {name}</h2>
-        <button
-          type="button"
-          className={styles.deleteBtn}
-          onClick={callDelete}
-          onKeyDown={callDelete}
-        >
-          <Delete className={styles.deleteLogo} />
-        </button>
-      </div>
-      <p>{description}</p>
-      <div className={styles.lowerDiv}>
-        <div className={styles.textDiv}>
-          <div>Entity : {entity}</div>
-          <div>Sanctioned Amount : Rs.{sanctionedAmount}</div>
-        </div>
-        <div className={styles.btnsDiv}>
-          <button type="button" className={styles.cardBtns}>
-            Know More
-          </button>
-          <button type="button" className={styles.cardBtns}>
-            <ChatLogo className={styles.chatLogo} />
-            Chat
-          </button>
-        </div>
-      </div>
+    <div className={styles.messengerView}>
+      <MessengerNameList rooms={rooms} currentSelected={currentSelected} updateSelected={updateSelected} />
+      <MessengerChats selectedRoomId={currentSelected} />
     </div>
   );
 };

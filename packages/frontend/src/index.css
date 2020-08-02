@@ -3,6 +3,7 @@
 :root {
   --dashboard-sidenav-width: 360px;
   --dashboard-page-header-top: 7.35em;
+  --dashboard-conversation-left-width: 300px;
 }
 
 button:focus {

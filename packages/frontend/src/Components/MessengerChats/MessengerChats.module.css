@@ -1,11 +1,10 @@
-.messengerView {
-  display: grid;
-  grid-template-columns: var(--dashboard-conversation-left-width) auto;
-  /*flex-direction: row;*/
-  color: black;
-  /*padding: 2em;*/
-  /*padding-top: 1.5em;*/
-  /*margin: 1em 0;*/
+.messengerChats {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  border-radius: 10px;
+  width: 100%;
 }
 
 .titleDiv {

@@ -65,7 +65,7 @@ const App = () => {
                 </Switch>
 
               </Route>
-              <Redirect to="/dashboard/conversations" />
+              <Redirect to="/dashboard/schemes" />
             </Switch>
 
           </DashboardContentContainer>

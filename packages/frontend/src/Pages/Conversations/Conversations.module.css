@@ -31,11 +31,19 @@
   box-sizing: border-box;
   padding: 12px;
   border-radius: 5px;
+  font-size: 13px;
 }
 .select:focus-within, .select:focus {
   outline: none !important;
   box-shadow: none !important;
 }
+.select .react-dropdown-select-content {
+  background: red;
+}
+.select .react-dropdown-select-item-selected {
+  background: red;
+}
+
 .addChannelBtn {
   white-space: nowrap;
   display: flex;
@@ -58,7 +66,7 @@
   padding-right: 0.8em ;
 }
 
-.schemes {
+.conversations {
   display: flex;
   flex-direction: column;
   overflow: auto;
