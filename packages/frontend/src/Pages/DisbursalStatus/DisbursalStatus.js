@@ -4,10 +4,10 @@ import styles from "./DisbursalStatus.module.css";
 import { ReactComponent as CheckSign } from "../../assets/icons/icons8_checked_1.svg";
 import { ReactComponent as IssueSign } from "../../assets/icons/icons8-high-importance.svg";
 import { ReactComponent as AddSign } from "../../assets/icons/add.svg";
-// import { ReactComponent as ChatSign } from "../../assets/icons/icons8_messaging.svg";
+import { ReactComponent as ChatSign } from "../../assets/icons/icons8_messaging.svg";
 
 const DisbursalStatus = () => {
-  const [selectedScheme, updateScheme] = useState("");
+  // const [selectedScheme, updateScheme] = useState("");
   const [schemeTxns] = useState({
     scheme: "MNREGA",
     previousTxns: [
@@ -47,8 +47,8 @@ const DisbursalStatus = () => {
     },
   });
 
-  const handleSubmit = (e) => {
-    updateScheme(e.target.value);
+  const handleSubmit = () => {
+    // updateScheme(e.target.value);
   };
 
   const toIndSys = (x) => {
@@ -148,9 +148,9 @@ const DisbursalStatus = () => {
           </button>
         </div>
       </div>
-      {/* <button className={styles.chatBtn} type="button">
+      <button className={styles.chatBtn} type="button">
         <ChatSign />
-      </button> */}
+      </button>
     </>
   );
 };

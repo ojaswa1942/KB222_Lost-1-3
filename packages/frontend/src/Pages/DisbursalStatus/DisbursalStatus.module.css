@@ -15,8 +15,8 @@
   padding: 1em 0 0 0;
   top: var(--dashboard-page-header-top);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
   background: white;
 }
 
@@ -48,7 +48,8 @@
   margin: 0.5em 0;
 } */
 
-.ongoingTxnDiv, .txnTableDiv {
+.ongoingTxnDiv,
+.txnTableDiv {
   background: #4c7260;
   box-shadow: 8px 8px 19px #4c72603d;
   border-radius: 10px;
@@ -58,6 +59,7 @@
   margin: 1.5em 0;
   padding: 1.5em;
   color: white;
+  width: 90%;
 }
 
 .datesDiv {
@@ -81,7 +83,8 @@
 }
 
 .recievedBtn,
-.issueBtn, .loadMoreBtn {
+.issueBtn,
+.loadMoreBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,7 +106,7 @@
 }
 
 .issueBtn {
-  background: #9A9A9A;
+  background: #9a9a9a;
   color: #ffffff;
 }
 
@@ -116,7 +119,7 @@
   display: none;
 }
 
-.txnHeader{
+.txnHeader {
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -146,12 +149,13 @@
   letter-spacing: 0.1em;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 1.5em;
 }
 
-.table td{
-  border-bottom: 1px solid #CECECE;
+.table td {
+  border-bottom: 1px solid #cecece;
 }
 
 .loadMoreBtn {
@@ -164,15 +168,19 @@
   height: 1.5em;
   padding-left: 1em;
 }
-/* 
+
 .chatBtn {
+  box-sizing: border-box;
+  padding: 1.2em;
   margin: 1em;
   width: 5em;
+  height: 5em;
   border-radius: 100%;
-  background: #BB6A57;
+  background: #bb6a57;
   color: white;
   border: none;
-  position: sticky;
-  bottom: 0px;
-  right: 0px;
-} */
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  cursor: pointer;
+}
