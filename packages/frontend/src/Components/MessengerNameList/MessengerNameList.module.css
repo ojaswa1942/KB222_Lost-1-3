@@ -55,5 +55,7 @@
 
 }
 @media screen and (max-width: 800px) {
-
+  .MessengerNameList {
+    padding-bottom: 74px;
+  }
 }

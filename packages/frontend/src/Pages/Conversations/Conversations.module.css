@@ -7,7 +7,6 @@
 }
 
 .header {
-  z-index: 1;
   box-sizing: border-box;
   position: sticky;
   padding: 1em 0 1em 0;
@@ -76,9 +75,19 @@
 @media screen and (max-width: 800px) {
   .conversationsPage {
     padding: 0 2em 2em 2em;
+    padding: unset;
+  }
+  .head {
+    font-size: 1.4em;
   }
   .header {
     position: unset;
-    padding: unset;
+    padding: 0 2em 1em 2em;
+  }
+  .inputContainer {
+    flex-direction: column;
+  }
+  .addChannelBtn {
+    margin-top: 0.4em;
   }
 }

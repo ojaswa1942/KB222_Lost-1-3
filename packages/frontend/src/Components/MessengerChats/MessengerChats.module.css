@@ -5,6 +5,7 @@
   color: black;
   border-radius: 10px;
   width: 100%;
+  min-width: var(--dashboard-conversation-left-width);
   background-color: #F6F6F6;
   border-radius: 5px;
   grid-column-start: 2;
@@ -17,7 +18,7 @@
   box-sizing: border-box;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: flex-end;
   justify-content: flex-end;
   height: max-content;
@@ -42,14 +43,15 @@
   padding: 1em;
   width: 80%;
   min-width: 160px;
-  margin: 1.2em 0;
-  position: relative;
+  margin: 0.6em 0;
 }
 .messageSentInfo {
+  margin-bottom: 0.5em;
   box-sizing: border-box;
+  line-height: 1em;
   color: #191919;
-  position: absolute;
-  bottom: 100%;
+  font-weight: bold;
+  color: #fff;
   left: 0;
   width: 100%;
   display: flex;
@@ -58,9 +60,11 @@
   justify-content: space-between;
 }
 .senderName {
+  white-space: nowrap;
   font-size: 14px;
 }
 .sentTime {
+  text-align: right;
   font-size: 11px;
 }
 .messageBody {
@@ -68,116 +72,111 @@
   letter-spacing: 0.64px;
   color: #FFFFFF;
 }
-
-.deleteBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: white;
-  border: none;
-  border-radius: 100%;
-  outline: none;
-  width: 2.5em;
-  height: 2.5em;
-  cursor: pointer;
-}
-.deleteBtn:hover svg {
-  animation: bellshake .5s cubic-bezier(.36,.07,.19,.97) both;
-}
-
-.deleteLogo {
-  align-self: center;
-  height: 1.5em;
-  color: #BB6A57;
-}
-
-.schemeCard p {
-  font-size: 0.8em;
-  width: 95%;
-  line-height: 2em;
-  margin: 0.5em 0 0.7em 0;
-}
-
-.lowerDiv {
+.messageFileContainer {
   box-sizing: border-box;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0.2em 0 0 0;
+}
+.messageFile {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 1em 0;
+  padding: 0.6em;
+  margin: 0.2em;
+  background: #fff;
+  box-shadow: 6px 6px 9px #00000029;
+  border-radius: 9px;
+  color: #BB6A57;
+  font-size: 12px;
 }
-
-.textDiv {
-  font-weight: 500;
-  margin: 0.5em 0;
+.fileName {
+  margin: 0 6px;
 }
-
-.btnsDiv {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cardBtns {
-  white-space: nowrap;
+.downloadIcon {
   box-sizing: border-box;
+  background-color: #BB6A57;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.messageInputContainer {
+  margin-top: .5em;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.msgInput {
+  outline: none;
   border: none;
-  border-radius: 30px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 99px #00000029;
+  border-radius: 24px;
+  width: 100%;
+  padding: 1em 2.6em;
+  position: relative;
+}
+.msgInput::placeholder {
+  color: #B6B7B8;
+}
+
+.fileInput {
+  display: none;
+}
+.fileInputIcon {
+  cursor: pointer;
+  position: absolute;
+  padding: 8px;
+  z-index: 1;
+  margin: auto 0;
+  top: 0;
+  bottom: 0;
+}
+.sendButton {
+  display: none;
+}
+.sendIcon {
+  cursor: pointer;
+  position: absolute;
+  padding: 10px;
+  background-color: #BB6A57;
+  border-radius: 20px;
+  z-index: 0;
+  right: 8px;
+  margin: auto 0;
+  top: 0;
+  bottom: 0;
+}
+
+.goBack {
+  box-sizing: border-box;
+  padding: 5px;
+  display: none;
+  position: absolute;
+  right: 100%;
   color: #BB6A57;
   cursor: pointer;
-  outline: none;
-  font-weight: 600;
-  font-size: 0.8em;
-  padding: 0.7em 3em;
-  margin: 0.5em 2em;
+  /*background: red;*/
+  /*padding: 50px;*/
 }
 
-.chatLogo {
-  width: 1.2em;
-  padding-right: 1em;
-  color: #BB6A57;
-}
-
-@keyframes bellshake {
-  0% { transform: rotate(0); }
-  15% { transform: rotate(6deg); }
-  30% { transform: rotate(-6deg); }
-  45% { transform: rotate(4deg); }
-  60% { transform: rotate(-4deg); }
-  75% { transform: rotate(2deg); }
-  85% { transform: rotate(-2deg); }
-  92% { transform: rotate(1deg); }
-  100% { transform: rotate(0); }
-}
 @media screen and (max-width: 1200px) {
-  .lowerDiv {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .btnsDiv {
-    width: 100%;
+  .goBack {
+    display: block;
   }
 }
 @media screen and (max-width: 800px) {
-  .schemeCard {
-    margin: 0.5em 0;
-  }
-  .schemeCard p {
-    line-height: unset;
-  }
-  .textDiv {
-    font-size: 14px;
-  }
-  .btnsDiv {
-    justify-content: space-evenly;
-    white-space: nowrap;
-  }
-  .cardBtns {
-    margin: unset;
-    font-weight: bold;
-    padding: 0.7em 2em;
+  .messengerChats {
+    padding-bottom: 74px;
   }
 }
