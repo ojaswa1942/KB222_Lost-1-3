@@ -1,22 +1,72 @@
 .messengerChats {
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
-  color: white;
+  flex-direction: column-reverse;
+  color: black;
   border-radius: 10px;
   width: 100%;
+  background-color: #F6F6F6;
+  border-radius: 5px;
+  grid-column-start: 2;
+  padding: 2em;
+  min-height: inherit;
+  max-height: inherit;
+  overflow-y: auto;
 }
-
-.titleDiv {
+.messageList {
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: max-content;
+}
+.notifCard {
+  background: #4C7260 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 11px;
+  padding: 0.2em 0.5em;
+  margin: 1.2em 0;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.titleDiv h2 {
-  font-weight: 600;
-  font-size: 1.3em;
-  margin: 0.5em 0;
+.messageCard {
+  box-sizing: border-box;
+  background: #BB6A57 0% 0% no-repeat padding-box;
+  border-radius: 7px;
+  font-size: 12px;
+  padding: 1em;
+  width: 80%;
+  min-width: 160px;
+  margin: 1.2em 0;
+  position: relative;
+}
+.messageSentInfo {
+  box-sizing: border-box;
+  color: #191919;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: space-between;
+}
+.senderName {
+  font-size: 14px;
+}
+.sentTime {
+  font-size: 11px;
+}
+.messageBody {
+  text-align: left;
+  letter-spacing: 0.64px;
+  color: #FFFFFF;
 }
 
 .deleteBtn {

@@ -21,8 +21,8 @@ const NameCard = ({ id, name, lastMessage, lastTime, isSelected, updateSelected 
 const MessengerNameList = ({ rooms, currentSelected, updateSelected }) => {
   return (
     <div className={styles.MessengerNameList}>
-      {rooms.map(room => {
-        return <NameCard {...room} isSelected={currentSelected === room.id} updateSelected={updateSelected} />;
+      {rooms.map((room, i) => {
+        return <NameCard key={i} {...room} isSelected={currentSelected === room.id} updateSelected={updateSelected} />;
       })}
     </div>
   );

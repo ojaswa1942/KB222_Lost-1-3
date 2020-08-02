@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import styles from "./Conversations.module.css";
 import MessengerView from "../../Components/MessengerView/MessengerView";
 import DeleteScheme from "../../Components/SweetAlertModals/DeleteScheme/DeleteScheme";

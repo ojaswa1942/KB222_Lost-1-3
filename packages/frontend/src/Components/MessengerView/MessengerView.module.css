@@ -1,11 +1,13 @@
 .messengerView {
   display: grid;
   grid-template-columns: var(--dashboard-conversation-left-width) auto;
-  /*flex-direction: row;*/
+  grid-gap: 16px;
   color: black;
-  /*padding: 2em;*/
-  /*padding-top: 1.5em;*/
-  /*margin: 1em 0;*/
+  box-sizing: border-box;
+  min-height: 400px;
+  max-height: calc(100vh - 120px - 156px - 48px);
+  overflow-y: hidden;
+  position: relative;
 }
 
 .titleDiv {

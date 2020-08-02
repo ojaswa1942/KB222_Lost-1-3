@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./MessengerView.module.css";
-import { ReactComponent as Delete } from "../../assets/icons/delete_bin.svg";
-import { ReactComponent as ChatLogo } from "../../assets/icons/icons8_messaging.svg";
 import MessengerNameList from "../MessengerNameList/MessengerNameList";
 import MessengerChats from "../MessengerChats/MessengerChats";
 import { randomTime } from "../../utils/utils";
@@ -23,6 +21,7 @@ const MessengerView = ({ activeScheme }) => {
     if(!currentSelected && rooms.length){
       updateSelected(rooms[0].id);
     }
+  // eslint-disable-next-line
   }, [rooms])
 
   return (
