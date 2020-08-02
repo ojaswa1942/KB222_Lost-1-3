@@ -6,7 +6,7 @@ import errors from '../../utils/errors';
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    messages: async (_, { input: { roomID } }, { jwt: { id }, roomLoader, messageLoader }) => {
+    messages: async (_, { input: { roomID, page, limit } }, { jwt: { id }, roomLoader, messageLoader }) => {
       const room = await roomLoader.load(roomID);
       if (!room || !room.users.some((u) => u.id === id)) throw errors.unauthorized;
 
@@ -14,6 +14,8 @@ const resolvers: Resolvers<Context> = {
         relations: ['files', 'user', 'room'],
         where: { room },
         order: { createdAt: 'DESC' },
+        skip: page * limit,
+        take: limit,
       });
       messages.forEach((m) => messageLoader.prime(m.id, m));
 

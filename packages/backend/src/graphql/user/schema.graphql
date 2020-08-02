@@ -1,3 +1,7 @@
+extend type Query {
+  users(input: UsersInput): [User!]
+}
+
 extend type Mutation {
   signup(input: SignUpInput!): SignUpResponse! @requireAuthentication(isRoot: true)
 }
@@ -40,4 +44,12 @@ input SignUpInput {
   email: String!
   password: String!
   type: UserType!
+}
+
+input UsersInput {
+  filter: UsersFilter
+}
+
+input UsersFilter {
+  types: [UserType]
 }

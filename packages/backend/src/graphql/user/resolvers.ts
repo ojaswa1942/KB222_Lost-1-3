@@ -1,4 +1,4 @@
-import { getRepository } from 'typeorm';
+import { getRepository, FindConditions, In } from 'typeorm';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
 import { User } from '../../database/entity';
@@ -7,6 +7,19 @@ import { genHash } from '../../utils';
 import config from '../../config';
 
 const resolvers: Resolvers<Context> = {
+  Query: {
+    users: async (_, { input }) => {
+      const filter: FindConditions<User> = {};
+      if (input?.filter?.types) {
+        filter.type = In(input.filter.types);
+      }
+
+      const userRepo = getRepository(User);
+      const users = await userRepo.find({ where: filter });
+
+      return users.map((u) => ({ id: u.id }));
+    },
+  },
   Mutation: {
     signup: async (_, { input: { email, name, password, type } }) => {
       if (!name || !email || !password) throw errors.fieldsRequired;

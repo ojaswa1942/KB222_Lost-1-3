@@ -43,6 +43,8 @@ input FileInput {
 
 input MessagesInput {
   roomID: Int!
+  page: Int = 0
+  limit: Int = 100
 }
 
 input SendMessageInput {
