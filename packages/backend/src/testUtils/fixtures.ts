@@ -1,5 +1,5 @@
 // import { getConnection } from 'typeorm';
-// import { User } from '../database/entity/User';
+// import { User } from '../database/entity';
 
 import { createUser } from './factories';
 import { UserType } from '../interfaces';

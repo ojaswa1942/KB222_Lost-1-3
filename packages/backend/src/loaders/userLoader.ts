@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
 import { getRepository } from 'typeorm';
-import { User } from '../database/entity/User';
+import { User } from '../database/entity';
 import { normalize } from './normalize';
 import config from '../config';
 

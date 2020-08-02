@@ -12,12 +12,7 @@ import {
   buildRoomLoader,
   buildMessageLoader,
 } from './loaders';
-import { User } from './database/entity/User';
-import { Department } from './database/entity/Department';
-import { Scheme } from './database/entity/Scheme';
-import { Channel } from './database/entity/Channel';
-import { Room } from './database/entity/Room';
-import { Message } from './database/entity/Message';
+import { User, Department, Scheme, Channel, Room, Message } from './database/entity';
 import { JWTPayload } from './interfaces';
 
 export interface ContextInput {

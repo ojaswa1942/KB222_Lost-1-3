@@ -1,8 +1,7 @@
 import { getRepository } from 'typeorm';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
-import { User } from '../../database/entity/User';
-import { Scheme } from '../../database/entity/Scheme';
+import { User, Scheme } from '../../database/entity';
 import errors from '../../utils/errors';
 import { UserType } from '../../interfaces';
 

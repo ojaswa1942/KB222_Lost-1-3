@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
 import { getRepository } from 'typeorm';
-import { Scheme } from '../database/entity/Scheme';
+import { Scheme } from '../database/entity';
 import { normalize } from './normalize';
 
 const batchSchemes: DataLoader.BatchLoadFn<number, Scheme> = async (ids) => {

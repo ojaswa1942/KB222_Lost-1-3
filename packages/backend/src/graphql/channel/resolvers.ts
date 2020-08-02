@@ -1,9 +1,7 @@
 import { getRepository } from 'typeorm';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
-import { Channel } from '../../database/entity/Channel';
-import { Department } from '../../database/entity/Department';
-import { Scheme } from '../../database/entity/Scheme';
+import { Channel, Department, Scheme } from '../../database/entity';
 import errors from '../../utils/errors';
 import { createRoom } from '../communication/helpers';
 

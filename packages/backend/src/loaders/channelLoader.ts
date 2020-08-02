@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
 import { getRepository } from 'typeorm';
-import { Channel } from '../database/entity/Channel';
+import { Channel } from '../database/entity';
 import { normalize } from './normalize';
 
 const batchChannels: DataLoader.BatchLoadFn<number, Channel> = async (ids) => {

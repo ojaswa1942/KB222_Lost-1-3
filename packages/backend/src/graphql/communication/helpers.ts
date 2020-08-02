@@ -1,8 +1,5 @@
 import { getRepository } from 'typeorm';
-import { Room } from '../../database/entity/Room';
-import { Channel } from '../../database/entity/Channel';
-import { Message } from '../../database/entity/Message';
-import { User } from '../../database/entity/User';
+import { User, Channel, Message, Room } from '../../database/entity';
 
 export const createRoom = async (name: string, channel: Channel, users: User[]): Promise<Room> => {
   const roomRepo = getRepository(Room);

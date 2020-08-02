@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
 import { getRepository } from 'typeorm';
-import { Room } from '../database/entity/Room';
+import { Room } from '../database/entity';
 import { normalize } from './normalize';
 
 const batchRooms: DataLoader.BatchLoadFn<number, Room> = async (ids) => {

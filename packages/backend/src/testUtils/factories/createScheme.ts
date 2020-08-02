@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import { Scheme } from '../../database/entity/Scheme';
+import { Scheme } from '../../database/entity';
 import { createEntity } from './createEntity';
 
 export async function createScheme(attributes: Partial<Scheme> = {}): Promise<Scheme> {

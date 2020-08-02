@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
 import { getRepository } from 'typeorm';
-import { Message } from '../database/entity/Message';
+import { Message } from '../database/entity';
 import { normalize } from './normalize';
 
 const batchMessages: DataLoader.BatchLoadFn<number, Message> = async (ids) => {

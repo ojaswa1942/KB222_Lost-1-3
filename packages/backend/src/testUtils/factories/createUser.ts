@@ -2,7 +2,7 @@ import faker from 'faker';
 import { getRepository } from 'typeorm';
 
 import { genHash } from '../../utils';
-import { User } from '../../database/entity/User';
+import { User } from '../../database/entity';
 import config from '../../config';
 
 export type CreateUserAttributes = Partial<User> & {

@@ -1,9 +1,8 @@
 import { getRepository } from 'typeorm';
-import { Message } from '../../database/entity/Message';
+import { Message, File } from '../../database/entity';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
 import errors from '../../utils/errors';
-import { File } from '../../database/entity/File';
 
 const resolvers: Resolvers<Context> = {
   Query: {
