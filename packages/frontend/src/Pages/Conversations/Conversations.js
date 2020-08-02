@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import styles from "./Conversations.module.css";
 import MessengerView from "../../Components/MessengerView/MessengerView";
-import DeleteScheme from "../../Components/SweetAlertModals/DeleteScheme/DeleteScheme";
+import CreateRoom from "../../Components/SweetAlertModals/CreateRoom/CreateRoom";
 import Select from "react-dropdown-select";
 import { ReactComponent as Add } from "../../assets/icons/add.svg";
 import getModal from "../../utils/getModal";
@@ -81,12 +81,12 @@ const Conversations = () => {
 
     const modal = getModal();
     modal.fire({
-      ...DeleteScheme,
+      ...CreateRoom,
       preConfirm: () => {
         return new Promise((resolve) => {
           setTimeout(() => {
             // eslint-disable-next-line
-            alert(`YeeHaaww: Deleting `);
+            alert(`YeeHaaww: Adding `);
             resolve(true);
           }, 1000);
         });
