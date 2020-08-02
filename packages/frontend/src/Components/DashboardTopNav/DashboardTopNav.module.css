@@ -1,7 +1,7 @@
 .topNav {
+  z-index: 1;
   box-sizing: border-box;
   background: #fff;
-  z-index: 1;
   padding: 1.2em;
   display: flex;
   flex-direction: row;
@@ -11,6 +11,7 @@
   top: 0;
   right: 0;
 }
+
 .logoHead {
   display: none;
 }

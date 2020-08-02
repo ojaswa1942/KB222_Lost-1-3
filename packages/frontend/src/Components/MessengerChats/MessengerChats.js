@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./MessengerChats.module.css";
 import { ReactComponent as AttachIcon } from "../../assets/icons/icons8-attach.svg";
 import { ReactComponent as DownloadIcon } from "../../assets/icons/icons8-download.svg";
+import { ReactComponent as SendIcon } from "../../assets/icons/icons8_email_send.svg";
 import { randomTime, calculateDateTime } from "../../utils/utils";
 
 let dummyMessages = [
@@ -56,7 +57,7 @@ let dummyMessages = [
 	{ 
 		id: 4, 
 		body: "Khaate se pesa chala gya", 
-		files: [], 
+		files: [{ name: "Big file 12.txt", key: "1" }, { name: "Small.pdf", key: "2" }], 
 		isNotification: false,
 		user: { name: "Lal Chopra" },
 		createdAt: randomTime(),
@@ -64,12 +65,8 @@ let dummyMessages = [
 ];
 
 
-const MessageCard = ({ message }) => {
-	const handleDownload = (key) => {
-		alert(`Downloaded file ${key}`);
-	}
+const MessageCard = ({ message, handleDownload }) => {
 	if(message.isNotification){
-		console.log(message.body);
 		return(
 			<div className={styles.notifCard}>
 				<div className={styles.messageBody}>{message.body}</div>
@@ -85,14 +82,14 @@ const MessageCard = ({ message }) => {
 			</div>
 			<div className={styles.messageBody}>{message.body}</div>
 			{
-				message.files && message.files.length && 
+				message.files && (message.files.length > 0) && 
 				<div className={styles.messageFileContainer} >
 					{message.files.map((file, i) => {
 						return (
 							<div key={i} className={styles.messageFile}>
 								<AttachIcon />
-								{file.name}
-								<DownloadIcon onClick={() => handleDownload(file.key)} />
+								<span className={styles.fileName}>{file.name}</span>
+								<DownloadIcon className={styles.downloadIcon} onClick={() => handleDownload(file.key)} />
 							</div>
 						);
 					})}
@@ -101,17 +98,72 @@ const MessageCard = ({ message }) => {
 		</div>
 	);
 }
+
+const MessageInput = ({ handleMessageSubmit }) => {
+	const [message, updateMessage] = useState("");
+	const [files, updateFiles] = useState([]);
+
+	const submitForm = (e) => {
+		e.preventDefault();
+		handleMessageSubmit({ newMessage: message, files });
+		updateMessage("");
+		updateFiles([]);
+	}
+
+	return(
+		<form className={styles.messageInputContainer} onSubmit={submitForm} >
+			<label for="uploadFiles">
+				<AttachIcon className={styles.fileInputIcon} />
+			</label>
+			<input 
+				id="uploadFiles"
+				className={styles.fileInput}
+				type="file" 
+				multiple={true}
+				onChange={e => updateFiles(e.target.files)}
+			/>
+			<input 
+				required 
+				type="text"
+				value={message}
+				placeholder="Type a Message" 
+				className={styles.msgInput} 
+				onChange={(e) => updateMessage(e.target.value)} 
+			/>
+			<label for="sendMessage">
+				<SendIcon className={styles.sendIcon} />
+			</label>
+			<button 
+				id="sendMessage"
+				className={styles.sendButton}
+				type="submit" 
+			/>
+		</form>
+	);
+}
+
 const MessengerChats = ({ selectedRoomId }) => {
 	const [messages, updateMessages] = useState([]);
 	useEffect(() => {
 		updateMessages(dummyMessages);
 	}, [selectedRoomId]);
+
+	const handleDownload = (key) => {
+		alert(`Downloaded file ${key}`);
+	}
+
+	const handleMessageSubmit = ({ newMessage, files }) => {
+		console.log(newMessage, files);
+	} 
+
   return (
     <div className={styles.messengerChats}>
+			<MessageInput handleMessageSubmit={handleMessageSubmit} />
+      
       <div className={styles.messageList} >
 				{messages.map((message, i) => {
 					return (
-						<MessageCard key={i} message={message} />
+						<MessageCard key={i} message={message} handleDownload={handleDownload} />
 					);
 				})}
 			</div>

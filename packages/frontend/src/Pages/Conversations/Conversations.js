@@ -88,7 +88,7 @@ const Conversations = () => {
             // eslint-disable-next-line
             alert(`YeeHaaww: Deleting `);
             resolve(true);
-          }, 3000);
+          }, 1000);
         });
       },
     });
