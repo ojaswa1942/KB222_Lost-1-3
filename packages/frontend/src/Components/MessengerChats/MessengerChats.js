@@ -99,7 +99,7 @@ const MessageCard = ({ message, handleDownload }) => {
 	);
 }
 
-const MessageInput = ({ handleMessageSubmit }) => {
+const MessageInput = ({ handleMessageSubmit, onBack }) => {
 	const [message, updateMessage] = useState("");
 	const [files, updateFiles] = useState([]);
 
@@ -112,7 +112,9 @@ const MessageInput = ({ handleMessageSubmit }) => {
 
 	return(
 		<form className={styles.messageInputContainer} onSubmit={submitForm} >
-			<label for="uploadFiles">
+			<div className={styles.goBack} onClick={onBack}>{`<<`}</div>
+			
+			<label htmlFor="uploadFiles">
 				<AttachIcon className={styles.fileInputIcon} />
 			</label>
 			<input 
@@ -130,7 +132,7 @@ const MessageInput = ({ handleMessageSubmit }) => {
 				className={styles.msgInput} 
 				onChange={(e) => updateMessage(e.target.value)} 
 			/>
-			<label for="sendMessage">
+			<label htmlFor="sendMessage">
 				<SendIcon className={styles.sendIcon} />
 			</label>
 			<button 
@@ -142,7 +144,7 @@ const MessageInput = ({ handleMessageSubmit }) => {
 	);
 }
 
-const MessengerChats = ({ selectedRoomId }) => {
+const MessengerChats = ({ listReference, chatReference, selectedRoomId }) => {
 	const [messages, updateMessages] = useState([]);
 	useEffect(() => {
 		updateMessages(dummyMessages);
@@ -156,9 +158,18 @@ const MessengerChats = ({ selectedRoomId }) => {
 		console.log(newMessage, files);
 	} 
 
+	const gotoChat = () => {
+		if(listReference.current) {
+			listReference.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+		}
+	}
+
   return (
-    <div className={styles.messengerChats}>
-			<MessageInput handleMessageSubmit={handleMessageSubmit} />
+    <div className={styles.messengerChats} ref={chatReference} >
+			<MessageInput handleMessageSubmit={handleMessageSubmit} onBack={gotoChat} />
       
       <div className={styles.messageList} >
 				{messages.map((message, i) => {

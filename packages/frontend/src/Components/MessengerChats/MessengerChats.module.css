@@ -151,18 +151,32 @@
   padding: 10px;
   background-color: #BB6A57;
   border-radius: 20px;
-  z-index: 1;
+  z-index: 0;
   right: 8px;
   margin: auto 0;
   top: 0;
   bottom: 0;
 }
 
+.goBack {
+  box-sizing: border-box;
+  padding: 5px;
+  display: none;
+  position: absolute;
+  right: 100%;
+  color: #BB6A57;
+  cursor: pointer;
+  /*background: red;*/
+  /*padding: 50px;*/
+}
+
 @media screen and (max-width: 1200px) {
-  
+  .goBack {
+    display: block;
+  }
 }
 @media screen and (max-width: 800px) {
-  .schemeCard {
-    margin: 0.5em 0;
+  .messengerChats {
+    padding-bottom: 74px;
   }
 }

@@ -9,43 +9,15 @@
   overflow-y: hidden;
 }
 
-@keyframes bellshake {
-  0% { transform: rotate(0); }
-  15% { transform: rotate(6deg); }
-  30% { transform: rotate(-6deg); }
-  45% { transform: rotate(4deg); }
-  60% { transform: rotate(-4deg); }
-  75% { transform: rotate(2deg); }
-  85% { transform: rotate(-2deg); }
-  92% { transform: rotate(1deg); }
-  100% { transform: rotate(0); }
-}
 @media screen and (max-width: 1200px) {
-  .lowerDiv {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .btnsDiv {
-    width: 100%;
+  .messengerView {
+    grid-template-columns: 100% 100%;
   }
 }
+
 @media screen and (max-width: 800px) {
-  .schemeCard {
-    margin: 0.5em 0;
-  }
-  .schemeCard p {
-    line-height: unset;
-  }
-  .textDiv {
-    font-size: 14px;
-  }
-  .btnsDiv {
-    justify-content: space-evenly;
-    white-space: nowrap;
-  }
-  .cardBtns {
-    margin: unset;
-    font-weight: bold;
-    padding: 0.7em 2em;
+  .messengerView {
+    grid-template-columns: 100% 100%;
+    max-height: unset;
   }
 }
