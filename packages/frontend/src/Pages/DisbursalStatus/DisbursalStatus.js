@@ -11,41 +11,43 @@ const DisbursalStatus = () => {
   const [selectedScheme, updateScheme] = useState("");
   const [schemeTxns] = useState({
     scheme: "MNREGA",
-    previousTxns: [
+    txns: [
       {
         txnID: "N48FGHYSN489F4N684MXZ5HJKF",
         txnAmount: 1543500,
         recievedDate: "20/02/2020",
+        status: "initiated",
+        initiateDate: "07/03/2020",
       },
       {
         txnID: "N48FGHYSN489F4N684MXZ5HJKF",
         txnAmount: 1543500,
         recievedDate: "20/02/2020",
+        status: "initiated",
+        initiateDate: "07/03/2020",
       },
       {
         txnID: "N48FGHYSN489F4N684MXZ5HJKF",
         txnAmount: 1543500,
         recievedDate: "20/02/2020",
+        status: "initiated",
+        initiateDate: "07/03/2020",
       },
       {
         txnID: "N48FGHYSN489F4N684MXZ5HJKF",
         txnAmount: 1543500,
         recievedDate: "20/02/2020",
+        status: "initiated",
+        initiateDate: "07/03/2020",
       },
       {
         txnID: "N48FGHYSN489F4N684MXZ5HJKF",
         txnAmount: 1543500,
         recievedDate: "20/02/2020",
+        status: "initiated",
+        initiateDate: "07/03/2020",
       },
     ],
-    ongoingTxn: {
-      txnID: "N48FGHYSN489F4N684MXZ5HJKF",
-      txnAmount: 1543500,
-      initiateDate: "07/03/2020",
-      status: "FundsAlloted",
-      expectedDate: "20/03/2020",
-      raiseIssueDate: "25/03/2020",
-    },
   });
 
   const handleSubmit = () => {
@@ -79,46 +81,7 @@ const DisbursalStatus = () => {
             </label>
           </div>
         </div>
-        <div
-          className={`${styles.ongoingTxnDiv} ${
-            Object.keys(schemeTxns.ongoingTxn).length === 0 &&
-            schemeTxns.ongoingTxn.constructor === Object &&
-            styles.noOngoing
-          }`}
-        >
-          <div className={styles.datesDiv}>
-            <span>Initiated On: {schemeTxns.ongoingTxn.initiateDate}</span>
-            <span>Expected On: {schemeTxns.ongoingTxn.expectedDate}</span>
-          </div>
-          <div className={styles.statusDiv}>
-            <span className={styles.statusPoint} />
-            <span className={styles.statusConnector} />
-            <span className={styles.statusPoint} />
-            <span className={styles.statusConnector} />
-            <span className={styles.statusPoint} />
-            <span className={styles.statusConnector} />
-            <span className={styles.statusPoint} />
-            <span className={styles.statusConnector} />
-            <span className={styles.statusPoint} />
-          </div>
-          <div className={styles.buttons}>
-            <button value="recieved" type="button" className={styles.recievedBtn}>
-              Recieved
-              <CheckSign className={styles.buttonLogo} />
-            </button>
-            <div className={styles.issueDiv}>
-              <button type="button" className={styles.issueBtn} disabled>
-                Raise Issue
-                <IssueSign className={styles.buttonLogo} />
-              </button>
-              <span>*Will open on {schemeTxns.ongoingTxn.raiseIssueDate}</span>
-            </div>
-          </div>
-        </div>
         <div className={styles.txnTableDiv}>
-          <div className={styles.txnHeader}>
-            <h1 className={styles.txnHead}>PREVIOUS FUNDS</h1>
-          </div>
           <div className={styles.tableDiv}>
             <table className={styles.table}>
               <thead>
@@ -130,14 +93,120 @@ const DisbursalStatus = () => {
                 </tr>
               </thead>
               <tbody>
-                {schemeTxns.previousTxns.map((txn, i) => {
+                {schemeTxns.txns.map((txn, i) => {
                   return (
-                    <tr>
-                      <td>{i + 1}</td>
-                      <td>{txn.txnID}</td>
-                      <td>&#8377; {toIndSys(txn.txnAmount)}</td>
-                      <td>{txn.recievedDate}</td>
-                    </tr>
+                    <>
+                      <tr>
+                        <td>{i + 1}</td>
+                        <td>{txn.txnID}</td>
+                        <td>&#8377; {toIndSys(txn.txnAmount)}</td>
+                        <td>{txn.recievedDate}</td>
+                      </tr>
+                      <tr>
+                        <td colSpan="4">
+                          <div className={`${styles.ongoingTxnDiv}`}>
+                            <div className={styles.statusDiv}>
+                              <div className={styles.checkpointDiv}>
+                                <div className={`${styles.statusPoint} ${styles.donePoint} `}>
+                                  <div
+                                    className={`${styles.innerPoint} ${styles.innerActivePoint} `}
+                                  />
+                                </div>
+                                <span
+                                  className={`${styles.statusTextPoint} ${styles.doneTextPoint} `}
+                                >
+                                  Initiated
+                                </span>
+                              </div>
+                              <span
+                                className={`${styles.statusConnector} ${styles.doneConnector} `}
+                              />
+                              <div className={styles.checkpointDiv}>
+                                <div className={`${styles.statusPoint} ${styles.donePoint} `}>
+                                  <div
+                                    className={`${styles.innerPoint} ${styles.innerActivePoint} `}
+                                  />
+                                </div>
+                                <span
+                                  className={`${styles.statusTextPoint} ${styles.doneTextPoint} `}
+                                >
+                                  Processing Request
+                                </span>
+                              </div>
+                              <span
+                                className={`${styles.statusConnector} ${styles.doneConnector} `}
+                              />
+                              <div className={styles.checkpointDiv}>
+                                <div
+                                  className={`${styles.statusPoint} ${
+                                    txn.status === "completed" && styles.donePoint
+                                  } `}
+                                >
+                                  <div
+                                    className={`${styles.innerPoint} ${
+                                      txn.status === "completed" && styles.innerActivePoint
+                                    } `}
+                                  />
+                                </div>
+                                <span
+                                  className={`${styles.statusTextPoint} ${
+                                    txn.status === "completed" && styles.doneTextPoint
+                                  } `}
+                                >
+                                  Awaiting Confirmation
+                                </span>
+                              </div>
+                              <span
+                                className={`${styles.statusConnector} ${
+                                  txn.status === "completed" && styles.doneConnector
+                                } `}
+                              />
+                              <div className={styles.checkpointDiv}>
+                                <div
+                                  className={`${styles.statusPoint} ${
+                                    txn.status === "completed" && styles.donePoint
+                                  } `}
+                                >
+                                  <div
+                                    className={`${styles.innerPoint} ${
+                                      txn.status === "completed" && styles.innerActivePoint
+                                    } `}
+                                  />
+                                </div>
+                                <span
+                                  className={`${styles.statusTextPoint} ${
+                                    txn.status === "completed" && styles.doneTextPoint
+                                  } `}
+                                >
+                                  Completed
+                                </span>
+                              </div>
+                            </div>
+                            <div className={styles.lowerDiv}>
+                              <div className={styles.datesDiv}>
+                                <span>Initiated On: {txn.initiateDate}</span>
+                              </div>
+                              <div className={styles.buttons}>
+                                <button
+                                  value="recieved"
+                                  type="button"
+                                  className={`${styles.recievedBtn} ${
+                                    txn.status === "completed" && styles.noOngoing
+                                  }`}
+                                >
+                                  Recieved
+                                  <CheckSign className={styles.buttonLogo} />
+                                </button>
+                                <button type="button" className={styles.issueBtn}>
+                                  Raise Issue
+                                  <IssueSign className={styles.buttonLogo} />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </>
                   );
                 })}
               </tbody>
