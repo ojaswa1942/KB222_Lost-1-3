@@ -1,10 +1,9 @@
 .sideNav {
-  z-index: 2;
+  z-index: 1;
   position: fixed;
   left: 0;
   top: 0;
   width: var(--dashboard-sidenav-width);
-  /*min-height: 100vh;*/
   max-height: 100vh;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -24,8 +23,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  /*min-height: 100vh;*/
-  /*height: 100%;*/
   border-right: 1px solid #707070;
   padding-left: 3.5em;
   font-size: 18px;

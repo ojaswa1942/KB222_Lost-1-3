@@ -1,14 +1,56 @@
-import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import styles from "./DisbursalStatus.module.css";
 import { ReactComponent as CheckSign } from "../../assets/icons/icons8_checked_1.svg";
 import { ReactComponent as IssueSign } from "../../assets/icons/icons8-high-importance.svg";
 import { ReactComponent as AddSign } from "../../assets/icons/add.svg";
 import { ReactComponent as ChatSign } from "../../assets/icons/icons8_messaging.svg";
+import Select from "react-dropdown-select";
 
 const DisbursalStatus = () => {
-  // eslint-disable-next-line
-  const [selectedScheme, updateScheme] = useState("");
+  const [schemes] = useState([
+    {
+      id: 1,
+      name: "MNREGA",
+      description:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      entity: "Central Government",
+      sanctionedAmount: "45,000 Crores",
+    },
+    {
+      id: 2,
+      name: "Jan Dhan Yojana",
+      description:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      entity: "Central Government",
+      sanctionedAmount: "45,000 Crores",
+    },
+    {
+      id: 3,
+      name: "Man Se Bnao Yojana",
+      description:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      entity: "Central Government",
+      sanctionedAmount: "45,000 Crores",
+    },
+    {
+      id: 4,
+      name: "Kuch Bhi Yojana",
+      description:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      entity: "Central Government",
+      sanctionedAmount: "45,000 Crores",
+    },
+    {
+      id: 5,
+      name: "Yayyyyy Yojana",
+      description:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      entity: "Central Government",
+      sanctionedAmount: "45,000 Crores",
+    },
+  ]);
+
   const [schemeTxns] = useState({
     scheme: "MNREGA",
     previousTxns: [
@@ -48,9 +90,33 @@ const DisbursalStatus = () => {
     },
   });
 
-  const handleSubmit = () => {
+  const [activeScheme, updateActiveScheme] = useState([]);
+  const params = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
+    if(params.entityId){
+      let currentScheme = schemes.find(x => x.id.toString() === params.entityId);
+      if(currentScheme){
+        updateActiveScheme([currentScheme]);
+        return;
+      }
+    }
+
+    if(schemes.length) {
+      updateActiveScheme([schemes[0]]);
+      history.push(`/dashboard/disbursal/${schemes[0].id}`);
+    }
+    // eslint-disable-next-line
+  }, [params, schemes]);
+
+  const updateSchemeChange = (values) => {
+    history.push(`/dashboard/disbursal/${values[0].id}`);
+  }
+
+  // const handleSubmit = () => {
     // updateScheme(e.target.value);
-  };
+  // };
 
   const toIndSys = (x) => {
     const num = x.toString();
@@ -67,15 +133,29 @@ const DisbursalStatus = () => {
         <div className={styles.header}>
           <h1 className={styles.head}>Disbursal Status</h1>
           <div className={styles.selectschemeDiv}>
-            <label htmlFor="schemes" className={styles.selectScheme}>
-              <h4>Choose Scheme</h4>
-              <select name="schemes" onChange={handleSubmit}>
-                <option value="">Select Scheme</option>
-                <option value="MNREGA">MNREGA</option>
-                <option value="Jan Dhan Yojana">Jan Dhan Yojana</option>
-                <option value="Kuch bhi Yojana">Kuch bhi Yojana</option>
-                <option value="Yayy Yojana">Yayy Yojana</option>
-              </select>
+            <label htmlFor="scheme-select" className={styles.selectScheme}>
+              <span className={styles.selectLabel} >Choose Scheme</span>
+                <Select
+                  name="scheme-select"
+                  options={schemes}
+                  color="#4C7260"
+                  values={activeScheme}
+                  clearable={false}
+                  onChange={updateSchemeChange}
+                  style={{ 
+                    width: "var(--dashboard-conversation-left-width)", 
+                    borderRadius: "5px", 
+                    borderColor: "#e4e4e4",
+                  }}
+                  className={styles.select}
+                  dropdownPosition="auto"
+                  dropdownGap={0}
+                  searchable={true}
+                  searchBy="name"
+                  labelField="name" 
+                  valueField="id"
+                  placeholder={`Select Scheme`}
+                />
             </label>
           </div>
         </div>

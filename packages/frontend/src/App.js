@@ -39,7 +39,7 @@ const App = () => {
             <DashboardTopNav />
             
             <Switch>
-              <Route exact path="/dashboard/disbursal">
+              <Route exact path="/dashboard/disbursal/:entityId?">
                 <DisbursalStatus />
               </Route>
               <Route path="/dashboard/schemes">
