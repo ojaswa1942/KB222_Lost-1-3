@@ -152,7 +152,13 @@
   color: red;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
+  .schemeFormDiv {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
   .addSchemePage {
     padding: 0 2em 5em 2em;
   }
@@ -216,65 +222,4 @@
   .cancelBtn {
     width: max-content;
   }
-}
-
-@media screen and (max-width: 500px) {
-  
-  .schemeFormDiv {
-    width: 100%;
-  }
-  
-  .schemeName,
-  .schemeDes,
-  .schemeBudget,
-  .schemeDep,
-  .schemeDur {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0.7em 0;
-  }
-  
-  .schemeName h4,
-  .schemeBudget h4,
-  .schemeDes h4,
-  .schemeDep h4,
-  .schemeDur h4 {
-    font-size: 0.8em;
-    margin: 0.5em;
-  }
-  
-  .schemeName input,
-  .schemeDes textarea {
-    width: 100%;
-  }
-  
-  .amountDiv,
-  .depDiv,
-  .durationDiv {
-    width: 100%;
-  }
-  
-  .amountDiv input,
-  .amountDiv select,
-  .durationDiv input {
-    font-size: 0.8em;
-  }
-  
-  .department {
-    width: max-content;
-  }
-  
-  .department span {
-    font-size: 0.7em;
-  }
-  
-  .depInput:checked + span {
-    background: #093824;
-  }
-  
-  .saveBtn,
-  .cancelBtn {
-    width: max-content;
-  }
-  
 }
