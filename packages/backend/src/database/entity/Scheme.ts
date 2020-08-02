@@ -10,6 +10,15 @@ export class Scheme {
   @Column()
   name: string;
 
+  @Column()
+  description: string;
+
+  @Column()
+  budget: number;
+
+  @Column()
+  transferredAmount: number;
+
   @ManyToMany(() => SchemeRole, (schemeRole) => schemeRole.scheme)
   schemeRoles: SchemeRole[];
 

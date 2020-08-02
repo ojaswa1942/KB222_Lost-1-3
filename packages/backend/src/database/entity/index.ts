@@ -7,3 +7,4 @@ export { Channel } from './Channel';
 export { Room } from './Room';
 export { Message } from './Message';
 export { File } from './File';
+export { Transaction } from './Transaction';

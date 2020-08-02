@@ -20,6 +20,9 @@ type SchRoleUser {
 type Scheme {
   id: Int
   name: String
+  description: String
+  budget: Int
+  transferredAmount: Int
   users: [SchRoleUser]
   channels: [Channel]
   createdAt: String
@@ -36,4 +39,7 @@ input SchemeInput {
 
 input CreateSchemeInput {
   name: String!
+  description: String
+  budget: Int!
+  adminIds: [Int!]
 }

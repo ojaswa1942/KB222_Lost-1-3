@@ -1,9 +1,9 @@
 import { getRepository } from 'typeorm';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
-import { User, Scheme } from '../../database/entity';
+import { User, Scheme, SchemeRole } from '../../database/entity';
 import errors from '../../utils/errors';
-import { UserType } from '../../interfaces';
+import { UserType, SchRoles } from '../../interfaces';
 
 const resolvers: Resolvers<Context> = {
   Query: {
@@ -38,13 +38,20 @@ const resolvers: Resolvers<Context> = {
     },
   },
   Mutation: {
-    createScheme: async (_, { input: { name } }) => {
-      if (!name) throw errors.fieldsRequired;
+    createScheme: async (_, { input: { name, budget, adminIds, description } }) => {
+      if (!name || !budget) throw errors.fieldsRequired;
+      const userRepo = getRepository(User);
+      const schRoleRepo = getRepository(SchemeRole);
+      const users = await userRepo.findByIds(adminIds);
 
       const schemeRepo = getRepository(Scheme);
-      const sch = schemeRepo.create({ name });
+      const sch = schemeRepo.create({ name, budget, description });
 
       await schemeRepo.save(sch);
+
+      users.forEach((u) => {
+        schRoleRepo.save(schRoleRepo.create({ role: SchRoles.ADMIN, user: u }));
+      });
 
       return {
         code: '200',
@@ -58,9 +65,21 @@ const resolvers: Resolvers<Context> = {
       const { name } = await schemeLoader.load(id);
       return name;
     },
+    description: async ({ id }, __, { schemeLoader }) => {
+      const { description } = await schemeLoader.load(id);
+      return description;
+    },
     users: async ({ id }, __, { schemeLoader }) => {
       const { schemeRoles } = await schemeLoader.load(id);
       return schemeRoles.map((u) => ({ role: u.role, user: { id: u.userId } }));
+    },
+    budget: async ({ id }, __, { schemeLoader }) => {
+      const { budget } = await schemeLoader.load(id);
+      return budget;
+    },
+    transferredAmount: async ({ id }, __, { schemeLoader }) => {
+      const { transferredAmount } = await schemeLoader.load(id);
+      return transferredAmount;
     },
     channels: async ({ id }, __, { schemeLoader }) => {
       const { channels } = await schemeLoader.load(id);

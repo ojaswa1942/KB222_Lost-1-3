@@ -11,8 +11,9 @@ import {
   buildChannelLoader,
   buildRoomLoader,
   buildMessageLoader,
+  buildTransactionLoader,
 } from './loaders';
-import { User, Department, Scheme, Channel, Room, Message } from './database/entity';
+import { User, Department, Scheme, Channel, Room, Message, Transaction } from './database/entity';
 import { JWTPayload } from './interfaces';
 
 export interface ContextInput {
@@ -32,6 +33,7 @@ export interface Context {
   channelLoader: DataLoader<number, Channel>;
   roomLoader: DataLoader<number, Room>;
   messageLoader: DataLoader<number, Message>;
+  transactionLoader: DataLoader<number, Transaction>;
 }
 
 const context = ({ req, res }: ContextInput): Context => {
@@ -46,6 +48,7 @@ const context = ({ req, res }: ContextInput): Context => {
     channelLoader: buildChannelLoader(),
     roomLoader: buildRoomLoader(),
     messageLoader: buildMessageLoader(),
+    transactionLoader: buildTransactionLoader(),
   };
 
   const token = req.cookies['token'] || '';

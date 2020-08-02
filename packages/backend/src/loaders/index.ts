@@ -4,3 +4,4 @@ export { buildSchemeLoader } from './schemeLoader';
 export { buildChannelLoader } from './channelLoader';
 export { buildRoomLoader } from './roomLoader';
 export { buildMessageLoader } from './messageLoader';
+export { buildTransactionLoader } from './transactionLoader';

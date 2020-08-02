@@ -50,9 +50,13 @@ const resolvers: Resolvers<Context> = {
       const { department } = await channelLoader.load(id);
       return { id: department.id };
     },
-    scheme: async ({ id }, __, { channelLoader }) => {
+    scheme: async ({ id }, _, { channelLoader }) => {
       const { scheme } = await channelLoader.load(id);
       return { id: scheme.id };
+    },
+    transactions: async ({ id }, _, { channelLoader }) => {
+      const { transactions } = await channelLoader.load(id);
+      return transactions.map((trx) => ({ id: trx.id }));
     },
     rooms: async ({ id }, _, { channelLoader }) => {
       const { rooms } = await channelLoader.load(id);

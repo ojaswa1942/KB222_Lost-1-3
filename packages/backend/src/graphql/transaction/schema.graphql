@@ -1,0 +1,29 @@
+extend type Mutation {
+  createTransaction(input: CreateTransactionInput!): CreateTransactionResponse @requireAuthentication
+}
+enum TrxState {
+  INITIATED
+  COMPLETED
+}
+
+type Transaction {
+  id: Int!
+  trxId: String
+  amount: Int
+  state: TrxState
+  channel: Channel
+  user: User
+  createdAt: String
+  updatedAt: String
+}
+
+type CreateTransactionResponse implements MutationResponse {
+  code: String!
+  message: String!
+}
+
+input CreateTransactionInput {
+  trxId: String!
+  amount: Int!
+  channelId: Int!
+}

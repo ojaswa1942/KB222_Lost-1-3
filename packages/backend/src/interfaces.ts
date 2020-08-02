@@ -19,3 +19,8 @@ export enum SchRoles {
   ADMIN = 'ADMIN',
   VIEWER = 'VIEWER',
 }
+
+export enum TrxState {
+  INITIATED = 'INITIATED',
+  COMPLETED = 'COMPLETED',
+}

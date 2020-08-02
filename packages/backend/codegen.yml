@@ -10,6 +10,7 @@ generates:
         UserType: ../interfaces#UserType as UserTypeEnum
         DeptRoles: ../interfaces#DeptRoles as DeptRolesEnum
         SchRoles: ../interfaces#SchRoles as SchRolesEnum
+        TrxState: ../interfaces#TrxState as TrxStateEnum
         # User: ../database/entity/User#User as UserEntity
     plugins:
       - typescript
