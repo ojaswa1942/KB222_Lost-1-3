@@ -21,7 +21,7 @@ const resolvers: Resolvers<Context> = {
 
       const [schRole] = user.schemeRoles.filter((sr) => sr.schemeId === channel.schemeId);
 
-      if (user.type !== UserType.CENTRE || schRole.role !== SchRoles.ADMIN) throw errors.unauthorized;
+      if (user.type !== UserType.Centre || schRole.role !== SchRoles.ADMIN) throw errors.unauthorized;
 
       const trxRepo = getRepository(Transaction);
 
@@ -52,7 +52,7 @@ const resolvers: Resolvers<Context> = {
 
       const [deptRole] = user.departmentRoles.filter((sr) => sr.departmentId === trx.channel.departmentId);
 
-      if (user.type !== UserType.STATE || deptRole.role !== DeptRoles.ADMIN) throw errors.unauthorized;
+      if (user.type !== UserType.State || deptRole.role !== DeptRoles.ADMIN) throw errors.unauthorized;
 
       const trxRepo = getRepository(Transaction);
 

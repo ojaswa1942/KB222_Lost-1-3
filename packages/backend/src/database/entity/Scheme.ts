@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
 import { Channel } from './Channel';
 import { SchemeRole } from './SchemeRole';
 
@@ -16,10 +16,12 @@ export class Scheme {
   @Column()
   budget: number;
 
-  @Column()
+  @Column({
+    default: 0,
+  })
   transferredAmount: number;
 
-  @ManyToMany(() => SchemeRole, (schemeRole) => schemeRole.scheme)
+  @OneToMany(() => SchemeRole, (schemeRole) => schemeRole.scheme)
   schemeRoles: SchemeRole[];
 
   @OneToMany(() => Channel, (channel) => channel.scheme)

@@ -36,4 +36,6 @@ input DepartmentInput {
 
 input CreateDepartmentInput {
   name: String!
+  description: String
+  adminIds: [Int!]
 }

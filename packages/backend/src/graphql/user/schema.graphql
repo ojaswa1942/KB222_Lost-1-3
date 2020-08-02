@@ -1,5 +1,5 @@
 extend type Mutation {
-  signup(input: SignUpInput!): SignUpResponse!
+  signup(input: SignUpInput!): SignUpResponse! @requireAuthentication(isRoot: true)
 }
 
 enum UserType {
@@ -25,6 +25,7 @@ type User {
   type: UserType
   schemes: [SchemeRole!]
   departments: [DepartmentRole!]
+  rooms: [Room!]
   isVerified: Boolean
   createdAt: String
 }
@@ -38,4 +39,5 @@ input SignUpInput {
   name: String!
   email: String!
   password: String!
+  type: UserType!
 }

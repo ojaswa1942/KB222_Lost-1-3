@@ -14,7 +14,7 @@ export class RequiredAuthenticationDirective extends SchemaDirectiveVisitor {
       const { isValid, jwt } = context;
 
       if (!isValid) throw errors.unauthenticated;
-      if (isRoot && jwt.type !== UserType.ROOT) throw errors.unauthorized;
+      if (isRoot && jwt.type !== UserType.Root) throw errors.unauthorized;
 
       return originalResolve.call(this, rootValue, args, context, info);
     };

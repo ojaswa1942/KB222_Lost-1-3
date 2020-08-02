@@ -1,9 +1,9 @@
 import { getRepository } from 'typeorm';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
-import { User, Department } from '../../database/entity';
+import { User, Department, DepartmentRole } from '../../database/entity';
 import errors from '../../utils/errors';
-import { UserType } from '../../interfaces';
+import { UserType, DeptRoles } from '../../interfaces';
 
 const resolvers: Resolvers<Context> = {
   Query: {
@@ -11,7 +11,7 @@ const resolvers: Resolvers<Context> = {
       const dep = await departmentLoader.load(departmentID);
 
       const [usr] = dep.departmentRoles.filter((u) => u.userId === id);
-      if (!usr && type !== UserType.ROOT) throw errors.unauthorized;
+      if (!usr && type !== UserType.Root) throw errors.unauthorized;
 
       return {
         id: dep.id,
@@ -22,29 +22,41 @@ const resolvers: Resolvers<Context> = {
       const departmentRepo = getRepository(Department);
       const userRepo = getRepository(User);
 
-      const usr = await userRepo.findOne({ relations: ['departments'], where: { id } });
+      const usr = await userRepo.findOne({
+        relations: ['departmentRoles', 'departmentRoles.department'],
+        where: { id },
+      });
       if (!usr) throw errors.internalServerError;
 
-      if (usr.type === UserType.CENTRE) throw errors.unauthorized;
+      if (usr.type === UserType.Centre) throw errors.unauthorized;
 
       let deps: Department[];
-      if (usr.type === UserType.ROOT) {
+      if (usr.type === UserType.Root) {
         deps = await departmentRepo.find();
       } else {
         deps = usr.departmentRoles.map((d) => ({ ...d.department, id: d.departmentId }));
       }
 
+      console.log('safe and sound');
+
       return deps.map((d) => ({ id: d.id }));
     },
   },
   Mutation: {
-    createDepartment: async (_, { input: { name } }) => {
+    createDepartment: async (_, { input: { name, adminIds, description } }) => {
       if (!name) throw errors.fieldsRequired;
 
       const departmentRepo = getRepository(Department);
-      const dep = departmentRepo.create({ name });
+      const userRepo = getRepository(User);
+      const deptRoleRepo = getRepository(DepartmentRole);
+      const users = await userRepo.findByIds(adminIds);
+      const dep = departmentRepo.create({ name, description });
 
-      await departmentRepo.save(dep);
+      const newDept = await departmentRepo.save(dep);
+
+      users.forEach((u) => {
+        deptRoleRepo.save(deptRoleRepo.create({ role: DeptRoles.ADMIN, user: u, department: newDept }));
+      });
 
       return {
         code: '200',

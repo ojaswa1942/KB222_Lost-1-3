@@ -8,7 +8,7 @@ import config from '../../config';
 
 const resolvers: Resolvers<Context> = {
   Mutation: {
-    signup: async (_, { input: { email, name, password } }) => {
+    signup: async (_, { input: { email, name, password, type } }) => {
       if (!name || !email || !password) throw errors.fieldsRequired;
       const userRepo = getRepository(User);
 
@@ -24,6 +24,7 @@ const resolvers: Resolvers<Context> = {
           name: () => `pgp_sym_encrypt('${name}', '${config.JWTSecret}')`,
           email,
           hash,
+          type,
           isVerified: true,
         })
         .execute();
@@ -59,6 +60,10 @@ const resolvers: Resolvers<Context> = {
     schemes: async ({ id }, __, { userLoader }) => {
       const { schemeRoles } = await userLoader.load(id);
       return schemeRoles.map((s) => ({ role: s.role, scheme: { id: s.schemeId } }));
+    },
+    rooms: async ({ id }, __, { userLoader }) => {
+      const { rooms } = await userLoader.load(id);
+      return rooms.map((r) => ({ id: r.id }));
     },
     createdAt: async ({ id }, __, { userLoader }) => {
       const { createdAt } = await userLoader.load(id);

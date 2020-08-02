@@ -5,9 +5,9 @@ export interface JWTPayload {
 }
 
 export enum UserType {
-  ROOT = 'ROOT',
-  CENTRE = 'CENTRE',
-  STATE = 'STATE',
+  Root = 'ROOT',
+  Centre = 'CENTRE',
+  State = 'STATE',
 }
 
 export enum DeptRoles {

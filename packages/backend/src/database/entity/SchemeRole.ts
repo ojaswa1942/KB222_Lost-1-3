@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from './User';
 import { Scheme } from './Scheme';
 import { SchRoles } from '../../interfaces';
 
 @Entity()
 export class SchemeRole {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({

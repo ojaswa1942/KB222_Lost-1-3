@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
 import { Channel } from './Channel';
 import { DepartmentRole } from './DepartmentRole';
 @Entity()
@@ -9,7 +9,10 @@ export class Department {
   @Column()
   name: string;
 
-  @ManyToMany(() => DepartmentRole, (departmentRole) => departmentRole.department)
+  @Column()
+  description: string;
+
+  @OneToMany(() => DepartmentRole, (departmentRole) => departmentRole.department)
   departmentRoles: DepartmentRole[];
 
   @OneToMany(() => Channel, (channel) => channel.department)

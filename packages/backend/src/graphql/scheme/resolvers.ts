@@ -12,7 +12,7 @@ const resolvers: Resolvers<Context> = {
       const sch = await schemeLoader.load(schemeID);
 
       const [usr] = sch.schemeRoles.filter((u) => u.userId === id);
-      if (!usr && type !== UserType.ROOT) throw errors.unauthorized;
+      if (!usr && type !== UserType.Root) throw errors.unauthorized;
 
       return {
         id: sch.id,
@@ -26,10 +26,10 @@ const resolvers: Resolvers<Context> = {
       const usr = await userRepo.findOne({ relations: ['schemeRoles'], where: { id } });
       if (!usr) throw errors.internalServerError;
 
-      if (usr.type === UserType.STATE) throw errors.unauthorized;
+      if (usr.type === UserType.State) throw errors.unauthorized;
 
       let schemeList: Scheme[];
-      if (usr.type === UserType.ROOT) {
+      if (usr.type === UserType.Root) {
         schemeList = await schemeRepo.find();
       } else {
         schemeList = usr.schemeRoles.map((s) => ({ ...s.scheme, id: s.schemeId }));
@@ -62,7 +62,7 @@ const resolvers: Resolvers<Context> = {
       });
 
       users.forEach((u) => {
-        schRoleRepo.save(schRoleRepo.create({ role: SchRoles.ADMIN, user: u }));
+        schRoleRepo.save(schRoleRepo.create({ role: SchRoles.ADMIN, user: u, scheme: newSch }));
       });
 
       return {

@@ -10,7 +10,11 @@ const resolvers: Resolvers<Context> = {
       const room = await roomLoader.load(roomID);
       if (!room || !room.users.some((u) => u.id === id)) throw errors.unauthorized;
 
-      const messages = await getRepository(Message).find({ relations: ['files', 'user', 'room'], where: { room } });
+      const messages = await getRepository(Message).find({
+        relations: ['files', 'user', 'room'],
+        where: { room },
+        order: { createdAt: 'DESC' },
+      });
       messages.forEach((m) => messageLoader.prime(m.id, m));
 
       return messages.map((m) => ({ id: m.id }));
@@ -50,9 +54,8 @@ const resolvers: Resolvers<Context> = {
       const { channel } = await roomLoader.load(id);
       return { id: channel.id };
     },
-    lastMessage: async ({ id }, _, { roomLoader, messageLoader }) => {
-      const room = roomLoader.load(id);
-      const msg = await getRepository(Message).findOne({ where: { room }, order: { createdAt: 'DESC' } });
+    lastMessage: async ({ id }, _, { messageLoader }) => {
+      const msg = await getRepository(Message).findOne({ where: { roomId: id }, order: { createdAt: 'DESC' } });
       messageLoader.prime(msg.id, msg);
       return { id: msg.id };
     },

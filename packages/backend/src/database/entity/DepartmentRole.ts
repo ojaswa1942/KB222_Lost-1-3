@@ -1,11 +1,11 @@
-import { Entity, Column, PrimaryColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { User } from './User';
 import { Department } from './Department';
 import { DeptRoles } from '../../interfaces';
 
 @Entity()
 export class DepartmentRole {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
