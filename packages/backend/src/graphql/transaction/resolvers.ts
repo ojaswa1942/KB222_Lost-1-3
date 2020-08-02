@@ -1,10 +1,11 @@
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
 import errors from '../../utils/errors';
+import { stateIsAuthorized, centreIsAuthorized, CenterAction, StateAction } from '../../utils/roles';
 import { getRepository } from 'typeorm';
 import { Transaction } from '../../database/entity';
 import config from '../../config';
-import { UserType, SchRoles, TrxState, DeptRoles } from '../../interfaces';
+import { UserType, TrxState } from '../../interfaces';
 
 const resolvers: Resolvers<Context> = {
   Mutation: {
@@ -21,7 +22,8 @@ const resolvers: Resolvers<Context> = {
 
       const [schRole] = user.schemeRoles.filter((sr) => sr.schemeId === channel.schemeId);
 
-      if (user.type !== UserType.Centre || schRole.role !== SchRoles.ADMIN) throw errors.unauthorized;
+      if (user.type !== UserType.Centre || !centreIsAuthorized(CenterAction.InitiateTransaction, schRole.role))
+        throw errors.unauthorized;
 
       const trxRepo = getRepository(Transaction);
 
@@ -52,7 +54,8 @@ const resolvers: Resolvers<Context> = {
 
       const [deptRole] = user.departmentRoles.filter((sr) => sr.departmentId === trx.channel.departmentId);
 
-      if (user.type !== UserType.State || deptRole.role !== DeptRoles.ADMIN) throw errors.unauthorized;
+      if (user.type !== UserType.State || !stateIsAuthorized(StateAction.AckTransaction, deptRole.role))
+        throw errors.unauthorized;
 
       const trxRepo = getRepository(Transaction);
 
