@@ -4,7 +4,7 @@ import errors from '../../utils/errors';
 import { getRepository } from 'typeorm';
 import { Transaction } from '../../database/entity';
 import config from '../../config';
-import { UserType, SchRoles, TrxState } from '../../interfaces';
+import { UserType, SchRoles, TrxState, DeptRoles } from '../../interfaces';
 
 const resolvers: Resolvers<Context> = {
   Mutation: {
@@ -17,7 +17,7 @@ const resolvers: Resolvers<Context> = {
 
       const user = await userLoader.load(id);
       const channel = await channelLoader.load(channelId);
-      if (!user) throw errors.internalServerError;
+      if (!user || !channel) throw errors.internalServerError;
 
       const [schRole] = user.schemeRoles.filter((sr) => sr.schemeId === channel.schemeId);
 
@@ -40,6 +40,27 @@ const resolvers: Resolvers<Context> = {
       return {
         code: '200',
         message: 'Successfully created transaction',
+      };
+    },
+    ackTransaction: async (_, { input: { id: trxID } }, { jwt: { id }, userLoader, transactionLoader }) => {
+      if (!trxID) throw errors.fieldsRequired;
+
+      const trx = await transactionLoader.load(trxID);
+
+      const user = await userLoader.load(id);
+      if (!user) throw errors.internalServerError;
+
+      const [deptRole] = user.departmentRoles.filter((sr) => sr.departmentId === trx.channel.departmentId);
+
+      if (user.type !== UserType.STATE || deptRole.role !== DeptRoles.ADMIN) throw errors.unauthorized;
+
+      const trxRepo = getRepository(Transaction);
+
+      await trxRepo.update(trxID, { state: TrxState.COMPLETED });
+
+      return {
+        code: '200',
+        message: 'Successfully acknowledged transaction',
       };
     },
   },

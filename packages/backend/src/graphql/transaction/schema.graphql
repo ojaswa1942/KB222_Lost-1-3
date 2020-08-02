@@ -1,5 +1,6 @@
 extend type Mutation {
   createTransaction(input: CreateTransactionInput!): CreateTransactionResponse @requireAuthentication
+  ackTransaction(input: AckTransactionInput!): AckTransactionResponse @requireAuthentication
 }
 enum TrxState {
   INITIATED
@@ -22,8 +23,17 @@ type CreateTransactionResponse implements MutationResponse {
   message: String!
 }
 
+type AckTransactionResponse implements MutationResponse {
+  code: String!
+  message: String!
+}
+
 input CreateTransactionInput {
   trxId: String!
   amount: Int!
   channelId: Int!
+}
+
+input AckTransactionInput {
+  id: Int!
 }
