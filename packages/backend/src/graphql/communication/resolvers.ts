@@ -51,8 +51,14 @@ const resolvers: Resolvers<Context> = {
       const { channel } = await roomLoader.load(id);
       return { id: channel.id };
     },
-    createdAt: async ({ id }, _, { messageLoader }) => {
-      const { createdAt } = await messageLoader.load(id);
+    lastMessage: async ({ id }, _, { roomLoader, messageLoader }) => {
+      const room = roomLoader.load(id);
+      const msg = await getRepository(Message).findOne({ where: { room }, order: { createdAt: 'DESC' } });
+      messageLoader.prime(msg.id, msg);
+      return { id: msg.id };
+    },
+    createdAt: async ({ id }, _, { roomLoader }) => {
+      const { createdAt } = await roomLoader.load(id);
       return createdAt.toISOString();
     },
   },

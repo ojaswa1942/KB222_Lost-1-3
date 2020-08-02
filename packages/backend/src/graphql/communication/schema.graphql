@@ -11,6 +11,7 @@ type Room {
   name: String
   users: [User!]
   channel: Channel
+  lastMessage: Message
   createdAt: String
 }
 
