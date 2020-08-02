@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { useHistory } from "react-router-dom";
 import styles from "./DisbursalStatus.module.css";
-import { ReactComponent as CheckSign } from "../../assets/icons/icons8-checked.svg";
+import { ReactComponent as CheckSign } from "../../assets/icons/icons8_checked_1.svg";
 import { ReactComponent as IssueSign } from "../../assets/icons/icons8-high-importance.svg";
 import { ReactComponent as AddSign } from "../../assets/icons/add.svg";
 // import { ReactComponent as ChatSign } from "../../assets/icons/icons8_messaging.svg";
