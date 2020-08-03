@@ -92,11 +92,6 @@ const Faq = () => {
       answer:
         "Go to the Conversation tab on the dashboard, and click on Attach attachment button to add files from our computer.",
     },
-    {
-      id: 15,
-      question: " What is Central Funds Portal?",
-      answer: "Data is secured through end to end encryption protocol.",
-    },
   ]);
 
   const [openId, setOpenId] = useState();

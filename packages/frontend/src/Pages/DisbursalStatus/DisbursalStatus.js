@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import styles from "./DisbursalStatus.module.css";
 import TransactionPath from "../../Components/TransactionPath/TransactionPath";
 import { ReactComponent as AddSign } from "../../assets/icons/add.svg";
@@ -204,9 +204,11 @@ const DisbursalStatus = () => {
           </button>
         </div>
       </div>
-      <button className={styles.chatBtn} type="button">
+
+      {activeScheme && activeScheme.length && <Link to={`/dashboard/conversations/${activeScheme[0].id}`} className={styles.chatBtn} type="button">
         <ChatSign />
-      </button>
+      </Link>
+      }
     </>
   );
 };

@@ -64,7 +64,7 @@
   width: 100%;
   text-align: center;
   border-collapse: seperate;
-  border-spacing: 0 2em;
+  border-spacing: 0 1em;
 }
 
 .table th {
@@ -84,21 +84,26 @@
 }
 .table tr {
   margin: 25px;
-  border-spacing: 2em;
+  border-spacing: 1.5em;
 }
 .transactionCard {
   background-color: #4c7260;
   padding: 10px;
   width: 100%;
+  cursor: pointer;
 }
 .collapseRow {
   background-color: #4c7260;
   margin: 20px;
 }
-.transactionRow {
-}
-.collapseRow {
-}
+/*.collapseRow td:after {
+  content: "Hello";
+  position: absolute;
+  background-color: red;
+  top: -20px;
+  width: 100%;
+  height: 80px;
+}*/
 tbody tr {
   width: 100%;
   /*background-color: #4c7260;*/
@@ -134,18 +139,22 @@ tbody tr {
 }
 
 .chatBtn {
+  box-sizing: border-box;
+  padding: 10px;
+  box-shadow: 2 1 1 0 -1 rgba(0, 0, 0, 0.25);
   position: fixed;
-  bottom: 1.5em;
-  right: 1.5em;
+  bottom: 1.2em;
+  right: 1.2em;
   background: #bb6a57;
   color: #ffffff;
   border: none;
   border-radius: 100%;
   outline: none;
   cursor: pointer;
-  height: 5em;
-  width: 5em;
+  height: 3em;
+  width: 3em;
 }
+/*.chatBtn */
 
 table { border-collapse: separate; }
 tr td:first-child { border-radius: 10px 0 0 10px; }
