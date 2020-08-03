@@ -75,14 +75,7 @@ export default gql`
         createdAt
         lastMessage {
           body
-          files {
-            key
-            name
-          }
           isNotification
-          user {
-            name
-          }
           createdAt
         }
       }
