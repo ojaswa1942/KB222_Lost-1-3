@@ -1,0 +1,39 @@
+.faqPage {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 5em 3em 3em;
+  color: #191919;
+  position: relative;
+}
+
+.header {
+  box-sizing: border-box;
+  position: sticky;
+  padding: 1em 0 0 0;
+  top: var(--dashboard-page-header-top);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+}
+
+.head {
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+.questions {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+
+@media screen and (max-width: 800px) {
+  .faqPage {
+    padding: 0 2em 3em 2em;
+  }
+  .header {
+    position: unset;
+    padding: unset;
+  }
+}
