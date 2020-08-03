@@ -18,3 +18,7 @@ spec:
             backend:
               serviceName: frontend-svc
               servicePort: 80
+          - path: /api
+            backend:
+              serviceName: backend-svc
+              servicePort: 80
