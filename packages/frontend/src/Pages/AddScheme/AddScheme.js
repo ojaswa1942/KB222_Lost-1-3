@@ -1,23 +1,25 @@
 import React, { useState } from "react";
-// eslint-disable-next-line
 import { useForm, Controller } from "react-hook-form";
 // import { Link } from "react-router-dom";
 import styles from "./AddScheme.module.css";
 import { ReactComponent as SaveLogo } from "../../assets/icons/icons8_checked_1.svg";
 import { ReactComponent as CancelLogo } from "../../assets/icons/icons8_cancel.svg";
-// eslint-disable-next-line
 import Select from "react-dropdown-select";
 
 const AddScheme = () => {
-  const { register, handleSubmit, errors } = useForm();
-// eslint-disable-next-line
-  const [department] = useState(["Finance", "Farmers", "Rural", "Students"]);
+  const { register, handleSubmit, errors, control } = useForm();
+  const [department] = useState([
+    { id: 0, name: "Finance"}, 
+    { id: 1, name: "Farmers"}, 
+    { id: 2, name: "Rural"}, 
+    { id: 3, name: "Students"}, 
+  ]);
   const onSubmit = (data) => {
     const scheme = {
       name: data.schemeName,
       totalBudget: data.amountBase * Number(data.amountUnit),
       description: data.schemeDes,
-      departments: data.schemeDep,
+      departments: data.schemeDepartments,
       duration: `${data.durMonths && `${data.durMonths} Months `}${data.durYears} Years`,
     };
     // eslint-disable-next-line no-console
@@ -81,7 +83,38 @@ const AddScheme = () => {
           <div className={styles.schemeDep}>
             <h4>Departments</h4>
             <div className={styles.depDiv}>
-              
+              <Controller
+                name="schemeDepartments"
+                control={control}
+                defaultValue={false}
+                rules={{ required: true }}
+                render={props => 
+                  <Select
+                    {...props}
+                    name="schemeDepartments"
+                    options={department}
+                    color="#4C7260"
+                    // values={activeScheme}
+                    clearable={false}
+                    // onChange={updateSchemeChange}
+                    style={{ 
+                      width: "var(--dashboard-conversation-left-width)", 
+                      borderRadius: "5px", 
+                      borderColor: "#e4e4e4",
+                    }}
+                    required={true}
+                    multi={true}
+                    className={styles.selectDep}
+                    dropdownPosition="auto"
+                    dropdownGap={0}
+                    searchable={true}
+                    searchBy="name"
+                    labelField="name" 
+                    valueField="id"
+                    placeholder={`Select Department`}
+                  />
+                }
+              />
             </div>
           </div>
           {errors.schemeDep && <span className={styles.fieldError}>*This field is required</span>}
