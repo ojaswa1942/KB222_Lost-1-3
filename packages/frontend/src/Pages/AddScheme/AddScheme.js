@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+// eslint-disable-next-line
+import { useForm, Controller } from "react-hook-form";
 // import { Link } from "react-router-dom";
 import styles from "./AddScheme.module.css";
 import { ReactComponent as SaveLogo } from "../../assets/icons/icons8_checked_1.svg";
 import { ReactComponent as CancelLogo } from "../../assets/icons/icons8_cancel.svg";
+// eslint-disable-next-line
+import Select from "react-dropdown-select";
 
 const AddScheme = () => {
   const { register, handleSubmit, errors } = useForm();
+// eslint-disable-next-line
   const [department] = useState(["Finance", "Farmers", "Rural", "Students"]);
   const onSubmit = (data) => {
     const scheme = {
@@ -19,7 +23,7 @@ const AddScheme = () => {
     // eslint-disable-next-line no-console
     console.log(scheme);
   };
-
+ 
   return (
     <div className={styles.addSchemePage}>
       <div className={styles.header}>
@@ -77,21 +81,7 @@ const AddScheme = () => {
           <div className={styles.schemeDep}>
             <h4>Departments</h4>
             <div className={styles.depDiv}>
-              {department.map((dep, i) => {
-                return (
-                  // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                  <label className={styles.department} id={i} key={i}>
-                    <input
-                      type="checkbox"
-                      ref={register({ required: true })}
-                      name="schemeDep"
-                      value={dep}
-                      className={styles.depInput}
-                    />
-                    <span>{dep}</span>
-                  </label>
-                );
-              })}
+              
             </div>
           </div>
           {errors.schemeDep && <span className={styles.fieldError}>*This field is required</span>}

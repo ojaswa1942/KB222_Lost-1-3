@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import styles from "./DisbursalStatus.module.css";
-import { ReactComponent as CheckSign } from "../../assets/icons/icons8_checked_1.svg";
-import { ReactComponent as IssueSign } from "../../assets/icons/icons8-high-importance.svg";
+import TransactionPath from "../../Components/TransactionPath/TransactionPath";
 import { ReactComponent as AddSign } from "../../assets/icons/add.svg";
 import { ReactComponent as ChatSign } from "../../assets/icons/icons8_messaging.svg";
 import Select from "react-dropdown-select";
@@ -62,28 +61,28 @@ const DisbursalStatus = () => {
         initiateDate: "07/03/2020",
       },
       {
-        txnID: "N48FGHYSN489F4N684MXZ5HJKF",
+        txnID: "N48FGHYSN489F32684MXZ5HJKF",
         txnAmount: 1543500,
         recievedDate: "20/02/2020",
         status: "initiated",
         initiateDate: "07/03/2020",
       },
       {
-        txnID: "N48FGHYSN489F4N684MXZ5HJKF",
+        txnID: "N423GHYSN489F4N684MXZ5HJKF",
         txnAmount: 1543500,
         recievedDate: "20/02/2020",
         status: "initiated",
         initiateDate: "07/03/2020",
       },
       {
-        txnID: "N48FGHYSN489F4N684MXZ5HJKF",
+        txnID: "N48FG12YSN489F4N684MXZ5HJKF",
         txnAmount: 1543500,
         recievedDate: "20/02/2020",
         status: "initiated",
         initiateDate: "07/03/2020",
       },
       {
-        txnID: "N48FGHYSN489F4N684MXZ5HJKF",
+        txnID: "N38FGHYSN489F4N684MXZ5HJKF",
         txnAmount: 1543500,
         recievedDate: "20/02/2020",
         status: "initiated",
@@ -128,6 +127,12 @@ const DisbursalStatus = () => {
     const res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
     return res;
   };
+
+  const [expandedCard, updateExpanded] = useState(null);
+  useEffect(() => {
+    if(schemeTxns && schemeTxns.txns && schemeTxns.txns.length)
+      updateExpanded(schemeTxns.txns[0].txnID);
+  }, [schemeTxns])
 
   return (
     <>
@@ -176,116 +181,17 @@ const DisbursalStatus = () => {
                 {schemeTxns.txns.map((txn, i) => {
                   return (
                     <>
-                      <tr>
+                      <tr className={styles.transactionCard} onClick={() => updateExpanded(txn.txnID)} >
                         <td>{i + 1}</td>
                         <td>{txn.txnID}</td>
                         <td>&#8377; {toIndSys(txn.txnAmount)}</td>
                         <td>{txn.recievedDate}</td>
                       </tr>
-                      <tr>
+                      {expandedCard === txn.txnID && <tr className={styles.collapseRow} >
                         <td colSpan="4">
-                          <div className={`${styles.ongoingTxnDiv}`}>
-                            <div className={styles.statusDiv}>
-                              <div className={styles.checkpointDiv}>
-                                <div className={`${styles.statusPoint} ${styles.donePoint} `}>
-                                  <div
-                                    className={`${styles.innerPoint} ${styles.innerActivePoint} `}
-                                  />
-                                </div>
-                                <span
-                                  className={`${styles.statusTextPoint} ${styles.doneTextPoint} `}
-                                >
-                                  Initiated
-                                </span>
-                              </div>
-                              <span
-                                className={`${styles.statusConnector} ${styles.doneConnector} `}
-                              />
-                              <div className={styles.checkpointDiv}>
-                                <div className={`${styles.statusPoint} ${styles.donePoint} `}>
-                                  <div
-                                    className={`${styles.innerPoint} ${styles.innerActivePoint} `}
-                                  />
-                                </div>
-                                <span
-                                  className={`${styles.statusTextPoint} ${styles.doneTextPoint} `}
-                                >
-                                  Processing Request
-                                </span>
-                              </div>
-                              <span
-                                className={`${styles.statusConnector} ${styles.doneConnector} `}
-                              />
-                              <div className={styles.checkpointDiv}>
-                                <div
-                                  className={`${styles.statusPoint} ${
-                                    txn.status === "completed" && styles.donePoint
-                                  } `}
-                                >
-                                  <div
-                                    className={`${styles.innerPoint} ${
-                                      txn.status === "completed" && styles.innerActivePoint
-                                    } `}
-                                  />
-                                </div>
-                                <span
-                                  className={`${styles.statusTextPoint} ${
-                                    txn.status === "completed" && styles.doneTextPoint
-                                  } `}
-                                >
-                                  Awaiting Confirmation
-                                </span>
-                              </div>
-                              <span
-                                className={`${styles.statusConnector} ${
-                                  txn.status === "completed" && styles.doneConnector
-                                } `}
-                              />
-                              <div className={styles.checkpointDiv}>
-                                <div
-                                  className={`${styles.statusPoint} ${
-                                    txn.status === "completed" && styles.donePoint
-                                  } `}
-                                >
-                                  <div
-                                    className={`${styles.innerPoint} ${
-                                      txn.status === "completed" && styles.innerActivePoint
-                                    } `}
-                                  />
-                                </div>
-                                <span
-                                  className={`${styles.statusTextPoint} ${
-                                    txn.status === "completed" && styles.doneTextPoint
-                                  } `}
-                                >
-                                  Completed
-                                </span>
-                              </div>
-                            </div>
-                            <div className={styles.lowerDiv}>
-                              <div className={styles.datesDiv}>
-                                <span>Initiated On: {txn.initiateDate}</span>
-                              </div>
-                              <div className={styles.buttons}>
-                                <button
-                                  value="recieved"
-                                  type="button"
-                                  className={`${styles.recievedBtn} ${
-                                    txn.status === "completed" && styles.noOngoing
-                                  }`}
-                                >
-                                  Recieved
-                                  <CheckSign className={styles.buttonLogo} />
-                                </button>
-                                <button type="button" className={styles.issueBtn}>
-                                  Raise Issue
-                                  <IssueSign className={styles.buttonLogo} />
-                                </button>
-                              </div>
-                            </div>
-                          </div>
+                          <TransactionPath txn={txn} />
                         </td>
-                      </tr>
+                      </tr>}
                     </>
                   );
                 })}
