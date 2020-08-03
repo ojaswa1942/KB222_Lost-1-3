@@ -13,6 +13,7 @@ jobs:
           ENV_FILE: ${{ secrets.DOTENV }}
           SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
         run: |
+          echo "$ENV_FILE"
           echo "$ENV_FILE" | base64 -d > packages/backend/.env
           echo "$SERVICE_KEY" | base64 -d > packages/backend/service-account.json
           cp yarn.lock ./packages/backend/yarn.lock
