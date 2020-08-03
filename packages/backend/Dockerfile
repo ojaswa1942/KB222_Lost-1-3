@@ -4,6 +4,7 @@ WORKDIR /app
 
 ENV PORT 5000
 ENV PG_HOST db
+ENV NODE_ENV production
 EXPOSE $PORT
 
 COPY package.json yarn.lock ./

@@ -28,7 +28,7 @@ const main = async () => {
     context,
     mocks: !config.isProd,
     mockEntireSchema: false,
-    playground: !config.isProd,
+    playground: true,
     introspection: !config.isProd,
   });
 
