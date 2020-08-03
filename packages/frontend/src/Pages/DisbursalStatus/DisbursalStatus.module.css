@@ -74,7 +74,7 @@
 }
 
 .tbody {
-  width: 100%;
+  /*width: 100%;*/
 }
 
 .table th,
@@ -105,7 +105,7 @@
   height: 80px;
 }*/
 tbody tr {
-  width: 100%;
+  /*width: 100%;*/
   /*background-color: #4c7260;*/
 }
 
@@ -164,6 +164,8 @@ tr td:last-child { border-radius: 0 10px 10px 0; }
 @media screen and (max-width: 800px) {
   .disbursalPage {
     padding: 0 2em 2em 2em;
+    margin-bottom: 72px;
+    overflow-x: auto;
   }
   .header {
     flex-direction: column;
@@ -171,36 +173,33 @@ tr td:last-child { border-radius: 0 10px 10px 0; }
     padding: unset;
     align-items: flex-start;
   }
-
-  .select {
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 13px;
+  .head {
+    font-size: 18px;
   }
 
   .txnTableDiv {
-    margin: 0.8em 0;
-    padding: 1em 0 2em 0;
-    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    width: min-content;
   }
 
   .tableDiv {
-    margin: 1em 0;
+    margin: 0;
   }
 
   .table {
     border-collapse: separate;
-    border-spacing: 0 0.5em;
+    border-spacing: 0 0.4em;
   }
 
   .table th,
   .table td {
-    padding: 0.2em;
-    font-size: 0.5em;
+    padding: 0.8em;
+    font-size: 14px;
   }
 
   .loadMoreBtn {
-    font-size: 0.6em;
+    font-size: 14px;
   }
 
   .chatBtn {
