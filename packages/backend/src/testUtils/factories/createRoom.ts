@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import { Room } from '../../database/entity/Room';
+import { Room } from '../../database/entity';
 import { createEntity } from './createEntity';
 
 export async function createRoom(attributes: Partial<Room> = {}): Promise<Room> {

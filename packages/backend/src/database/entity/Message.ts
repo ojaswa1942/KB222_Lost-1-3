@@ -20,6 +20,9 @@ export class Message {
   @ManyToOne(() => User)
   user: User;
 
+  @Column()
+  roomId: number;
+
   @ManyToOne(() => Room, (room) => room.messages)
   room: Room;
 

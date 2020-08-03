@@ -11,6 +11,7 @@ type Room {
   name: String
   users: [User!]
   channel: Channel
+  lastMessage: Message
   createdAt: String
 }
 
@@ -24,10 +25,8 @@ type Message {
 }
 
 type File {
-  id: Int!
   key: String
   name: String
-  message: Message
 }
 
 type SendMessageResponse implements MutationResponse {
@@ -42,6 +41,8 @@ input FileInput {
 
 input MessagesInput {
   roomID: Int!
+  page: Int = 0
+  limit: Int = 100
 }
 
 input SendMessageInput {

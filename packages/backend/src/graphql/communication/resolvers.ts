@@ -1,17 +1,23 @@
 import { getRepository } from 'typeorm';
-import { Message } from '../../database/entity/Message';
+import { Message, File } from '../../database/entity';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
 import errors from '../../utils/errors';
-import { File } from '../../database/entity/File';
+import { moveFile } from '../../utils/storage';
 
 const resolvers: Resolvers<Context> = {
   Query: {
-    messages: async (_, { input: { roomID } }, { jwt: { id }, roomLoader, messageLoader }) => {
+    messages: async (_, { input: { roomID, page, limit } }, { jwt: { id }, roomLoader, messageLoader }) => {
       const room = await roomLoader.load(roomID);
       if (!room || !room.users.some((u) => u.id === id)) throw errors.unauthorized;
 
-      const messages = await getRepository(Message).find({ relations: ['files', 'user', 'room'], where: { room } });
+      const messages = await getRepository(Message).find({
+        relations: ['files', 'user', 'room'],
+        where: { room },
+        order: { createdAt: 'DESC' },
+        skip: page * limit,
+        take: limit,
+      });
       messages.forEach((m) => messageLoader.prime(m.id, m));
 
       return messages.map((m) => ({ id: m.id }));
@@ -27,7 +33,10 @@ const resolvers: Resolvers<Context> = {
       if (!room) throw errors.unauthorized;
 
       const dbFiles = await Promise.all(
-        (files || []).map((f) => fileRepo.save(fileRepo.create({ key: f.key, name: f.name })))
+        (files || []).map((f) => {
+          moveFile(`tmp/${f.key}`, `files/${f.key}`);
+          return fileRepo.save(fileRepo.create({ key: f.key, name: f.name }));
+        })
       );
 
       await msgRepo.save(msgRepo.create({ body, isNotification: false, user: usr, room, files: dbFiles }));
@@ -51,8 +60,13 @@ const resolvers: Resolvers<Context> = {
       const { channel } = await roomLoader.load(id);
       return { id: channel.id };
     },
-    createdAt: async ({ id }, _, { messageLoader }) => {
-      const { createdAt } = await messageLoader.load(id);
+    lastMessage: async ({ id }, _, { messageLoader }) => {
+      const msg = await getRepository(Message).findOne({ where: { roomId: id }, order: { createdAt: 'DESC' } });
+      messageLoader.prime(msg.id, msg);
+      return { id: msg.id };
+    },
+    createdAt: async ({ id }, _, { roomLoader }) => {
+      const { createdAt } = await roomLoader.load(id);
       return createdAt.toISOString();
     },
   },

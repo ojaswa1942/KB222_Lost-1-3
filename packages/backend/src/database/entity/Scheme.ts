@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, OneToMany } from 'typeorm';
-import { User } from './User';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
 import { Channel } from './Channel';
+import { SchemeRole } from './SchemeRole';
 
 @Entity()
 export class Scheme {
@@ -10,8 +10,19 @@ export class Scheme {
   @Column()
   name: string;
 
-  @ManyToMany(() => User, (user) => user.schemes)
-  users: User[];
+  @Column()
+  description: string;
+
+  @Column()
+  budget: number;
+
+  @Column({
+    default: 0,
+  })
+  transferredAmount: number;
+
+  @OneToMany(() => SchemeRole, (schemeRole) => schemeRole.scheme)
+  schemeRoles: SchemeRole[];
 
   @OneToMany(() => Channel, (channel) => channel.scheme)
   channels: Channel[];

@@ -1,9 +1,7 @@
 import { getRepository } from 'typeorm';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
-import { Channel } from '../../database/entity/Channel';
-import { Department } from '../../database/entity/Department';
-import { Scheme } from '../../database/entity/Scheme';
+import { Channel, Department, Scheme } from '../../database/entity';
 import errors from '../../utils/errors';
 import { createRoom } from '../communication/helpers';
 
@@ -15,10 +13,16 @@ const resolvers: Resolvers<Context> = {
       const schemeRepo = getRepository(Scheme);
       const deptRepo = getRepository(Department);
 
-      const chkScheme = await schemeRepo.findOne({ where: { id: schemeID }, relations: ['users'] });
+      const chkScheme = await schemeRepo.findOne({
+        where: { id: schemeID },
+        relations: ['schemeRoles', 'schemeRoles.user'],
+      });
       if (!chkScheme) throw errors.invalidInput;
 
-      const chkDept = await deptRepo.findOne({ where: { id: departmentID }, relations: ['users'] });
+      const chkDept = await deptRepo.findOne({
+        where: { id: departmentID },
+        relations: ['departmentRoles', 'departmentRoles.user'],
+      });
       if (!chkDept) throw errors.invalidInput;
 
       const ch = await channelRepo.findOne({
@@ -29,7 +33,10 @@ const resolvers: Resolvers<Context> = {
 
       const newChannel = await channelRepo.save(channelRepo.create({ scheme: chkScheme, department: chkDept }));
 
-      await createRoom('main', newChannel, [...chkDept.users, ...chkScheme.users]);
+      await createRoom('main', newChannel, [
+        ...chkDept.departmentRoles.map((dr) => dr.user),
+        ...chkScheme.schemeRoles.map((sr) => sr.user),
+      ]);
 
       return {
         code: '200',
@@ -43,9 +50,13 @@ const resolvers: Resolvers<Context> = {
       const { department } = await channelLoader.load(id);
       return { id: department.id };
     },
-    scheme: async ({ id }, __, { channelLoader }) => {
+    scheme: async ({ id }, _, { channelLoader }) => {
       const { scheme } = await channelLoader.load(id);
       return { id: scheme.id };
+    },
+    transactions: async ({ id }, _, { channelLoader }) => {
+      const { transactions } = await channelLoader.load(id);
+      return transactions.map((trx) => ({ id: trx.id }));
     },
     rooms: async ({ id }, _, { channelLoader }) => {
       const { rooms } = await channelLoader.load(id);

@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
 import { genToken, addAuthCookies } from '../../utils';
-import { User } from '../../database/entity/User';
+import { User } from '../../database/entity';
 import errors from '../../utils/errors';
 import { JWTPayload } from '../../interfaces';
 

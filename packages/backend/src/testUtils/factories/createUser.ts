@@ -2,7 +2,7 @@ import faker from 'faker';
 import { getRepository } from 'typeorm';
 
 import { genHash } from '../../utils';
-import { User } from '../../database/entity/User';
+import { User } from '../../database/entity';
 import config from '../../config';
 
 export type CreateUserAttributes = Partial<User> & {
@@ -17,8 +17,8 @@ export async function createUser(attributes: CreateUserAttributes = {}): Promise
     email: faker.internet.email(),
     hash: genHash(password || 'password'),
     isVerified: true,
-    departments: [],
-    schemes: [],
+    departmentRoles: [],
+    schemeRoles: [],
     rooms: [],
     ...userAttributes,
   };

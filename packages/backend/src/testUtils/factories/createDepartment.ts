@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import { Department } from '../../database/entity/Department';
+import { Department } from '../../database/entity';
 import { createEntity } from './createEntity';
 
 export async function createDepartment(attributes: Partial<Department> = {}): Promise<Department> {

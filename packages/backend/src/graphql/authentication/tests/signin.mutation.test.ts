@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-express';
 
-import { User } from '../../../database/entity/User';
+import { User } from '../../../database/entity';
 import { createUser } from '../../../testUtils/factories';
 import { createTestClient } from '../../../testUtils/helpers';
 

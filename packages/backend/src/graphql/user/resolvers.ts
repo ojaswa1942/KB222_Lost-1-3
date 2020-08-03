@@ -1,14 +1,27 @@
-import { getRepository } from 'typeorm';
+import { getRepository, FindConditions, In } from 'typeorm';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
-import { User } from '../../database/entity/User';
+import { User } from '../../database/entity';
 import errors from '../../utils/errors';
 import { genHash } from '../../utils';
 import config from '../../config';
 
 const resolvers: Resolvers<Context> = {
+  Query: {
+    users: async (_, { input }) => {
+      const filter: FindConditions<User> = {};
+      if (input?.filter?.types) {
+        filter.type = In(input.filter.types);
+      }
+
+      const userRepo = getRepository(User);
+      const users = await userRepo.find({ where: filter });
+
+      return users.map((u) => ({ id: u.id }));
+    },
+  },
   Mutation: {
-    signup: async (_, { input: { email, name, password } }) => {
+    signup: async (_, { input: { email, name, password, type } }) => {
       if (!name || !email || !password) throw errors.fieldsRequired;
       const userRepo = getRepository(User);
 
@@ -17,9 +30,6 @@ const resolvers: Resolvers<Context> = {
 
       const hash = genHash(password);
 
-      // const user = userRepo.create({ name, email, hash, isVerified: true });
-
-      // await userRepo.save(user);
       await userRepo
         .createQueryBuilder('user')
         .insert()
@@ -27,6 +37,7 @@ const resolvers: Resolvers<Context> = {
           name: () => `pgp_sym_encrypt('${name}', '${config.JWTSecret}')`,
           email,
           hash,
+          type,
           isVerified: true,
         })
         .execute();
@@ -56,12 +67,16 @@ const resolvers: Resolvers<Context> = {
       return isVerified;
     },
     departments: async ({ id }, __, { userLoader }) => {
-      const { departments } = await userLoader.load(id);
-      return departments.map((d) => ({ id: d.id }));
+      const { departmentRoles } = await userLoader.load(id);
+      return departmentRoles.map((d) => ({ role: d.role, department: { id: d.departmentId } }));
     },
     schemes: async ({ id }, __, { userLoader }) => {
-      const { schemes } = await userLoader.load(id);
-      return schemes.map((d) => ({ id: d.id }));
+      const { schemeRoles } = await userLoader.load(id);
+      return schemeRoles.map((s) => ({ role: s.role, scheme: { id: s.schemeId } }));
+    },
+    rooms: async ({ id }, __, { userLoader }) => {
+      const { rooms } = await userLoader.load(id);
+      return rooms.map((r) => ({ id: r.id }));
     },
     createdAt: async ({ id }, __, { userLoader }) => {
       const { createdAt } = await userLoader.load(id);

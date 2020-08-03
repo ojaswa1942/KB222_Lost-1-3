@@ -1,18 +1,17 @@
 import { getRepository } from 'typeorm';
 import { Resolvers } from '../resolvers-types.generated';
 import { Context } from '../../context';
-import { User } from '../../database/entity/User';
-import { Department } from '../../database/entity/Department';
+import { User, Department, DepartmentRole } from '../../database/entity';
 import errors from '../../utils/errors';
-import { UserType } from '../../interfaces';
+import { UserType, DeptRoles } from '../../interfaces';
 
 const resolvers: Resolvers<Context> = {
   Query: {
     department: async (_, { input: { id: departmentID } }, { jwt: { id, type }, departmentLoader }) => {
       const dep = await departmentLoader.load(departmentID);
 
-      const [usr] = dep.users.filter((u) => u.id === id);
-      if (!usr && type !== UserType.ROOT) throw errors.unauthorized;
+      const [usr] = dep.departmentRoles.filter((u) => u.userId === id);
+      if (!usr && type !== UserType.Root) throw errors.unauthorized;
 
       return {
         id: dep.id,
@@ -23,29 +22,41 @@ const resolvers: Resolvers<Context> = {
       const departmentRepo = getRepository(Department);
       const userRepo = getRepository(User);
 
-      const usr = await userRepo.findOne({ relations: ['departments'], where: { id } });
+      const usr = await userRepo.findOne({
+        relations: ['departmentRoles', 'departmentRoles.department'],
+        where: { id },
+      });
       if (!usr) throw errors.internalServerError;
 
-      if (usr.type === UserType.CENTRE) throw errors.unauthorized;
+      if (usr.type === UserType.Centre) throw errors.unauthorized;
 
       let deps: Department[];
-      if (usr.type === UserType.ROOT) {
+      if (usr.type === UserType.Root) {
         deps = await departmentRepo.find();
       } else {
-        deps = usr.departments;
+        deps = usr.departmentRoles.map((d) => ({ ...d.department, id: d.departmentId }));
       }
+
+      console.log('safe and sound');
 
       return deps.map((d) => ({ id: d.id }));
     },
   },
   Mutation: {
-    createDepartment: async (_, { input: { name } }) => {
+    createDepartment: async (_, { input: { name, adminIds, description } }) => {
       if (!name) throw errors.fieldsRequired;
 
       const departmentRepo = getRepository(Department);
-      const dep = departmentRepo.create({ name });
+      const userRepo = getRepository(User);
+      const deptRoleRepo = getRepository(DepartmentRole);
+      const users = await userRepo.findByIds(adminIds);
+      const dep = departmentRepo.create({ name, description });
 
-      await departmentRepo.save(dep);
+      const newDept = await departmentRepo.save(dep);
+
+      users.forEach((u) => {
+        deptRoleRepo.save(deptRoleRepo.create({ role: DeptRoles.ADMIN, user: u, department: newDept }));
+      });
 
       return {
         code: '200',
@@ -60,8 +71,8 @@ const resolvers: Resolvers<Context> = {
       return name;
     },
     users: async ({ id }, __, { departmentLoader }) => {
-      const { users } = await departmentLoader.load(id);
-      return users.map((u) => ({ id: u.id }));
+      const { departmentRoles } = await departmentLoader.load(id);
+      return departmentRoles.map((u) => ({ role: u.role, user: { id: u.userId } }));
     },
     channels: async ({ id }, __, { departmentLoader }) => {
       const { channels } = await departmentLoader.load(id);

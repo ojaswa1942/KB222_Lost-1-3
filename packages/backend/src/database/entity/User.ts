@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, JoinTable } from 'typeorm';
-import { Department } from './Department';
-import { Scheme } from './Scheme';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
+import { DepartmentRole } from './DepartmentRole';
 import { Room } from './Room';
 import { UserType } from '../../interfaces';
+import { SchemeRole } from './SchemeRole';
 
 @Entity()
 export class User {
@@ -23,17 +23,15 @@ export class User {
   @Column({
     type: 'enum',
     enum: UserType,
-    default: UserType.STATE,
+    default: UserType.State,
   })
   type: UserType;
 
-  @ManyToMany(() => Department, (department) => department.users)
-  @JoinTable()
-  departments: Department[];
+  @OneToMany(() => DepartmentRole, (departmentRole) => departmentRole.user)
+  departmentRoles: DepartmentRole[];
 
-  @ManyToMany(() => Scheme, (scheme) => scheme.users)
-  @JoinTable()
-  schemes: Scheme[];
+  @OneToMany(() => SchemeRole, (schemeRole) => schemeRole.user)
+  schemeRoles: SchemeRole[];
 
   @ManyToMany(() => Room, (room) => room.users)
   @JoinTable()

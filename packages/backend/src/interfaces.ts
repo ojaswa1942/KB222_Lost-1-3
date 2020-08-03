@@ -5,7 +5,22 @@ export interface JWTPayload {
 }
 
 export enum UserType {
-  ROOT = 'ROOT',
-  CENTRE = 'CENTRE',
-  STATE = 'STATE',
+  Root = 'ROOT',
+  Centre = 'CENTRE',
+  State = 'STATE',
+}
+
+export enum DeptRoles {
+  ADMIN = 'ADMIN',
+  VIEWER = 'VIEWER',
+}
+
+export enum SchRoles {
+  ADMIN = 'ADMIN',
+  VIEWER = 'VIEWER',
+}
+
+export enum TrxState {
+  INITIATED = 'INITIATED',
+  COMPLETED = 'COMPLETED',
 }

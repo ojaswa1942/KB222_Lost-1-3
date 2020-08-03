@@ -1,5 +1,9 @@
+extend type Query {
+  users(input: UsersInput): [User!]
+}
+
 extend type Mutation {
-  signup(input: SignUpInput!): SignUpResponse!
+  signup(input: SignUpInput!): SignUpResponse! @requireAuthentication(isRoot: true)
 }
 
 enum UserType {
@@ -8,13 +12,24 @@ enum UserType {
   STATE
 }
 
+type DepartmentRole {
+  role: DeptRoles
+  department: Department
+}
+
+type SchemeRole {
+  role: SchRoles
+  scheme: Scheme
+}
+
 type User {
   id: Int!
   name: String
   email: String
   type: UserType
-  schemes: [Scheme!]
-  departments: [Department!]
+  schemes: [SchemeRole!]
+  departments: [DepartmentRole!]
+  rooms: [Room!]
   isVerified: Boolean
   createdAt: String
 }
@@ -28,4 +43,13 @@ input SignUpInput {
   name: String!
   email: String!
   password: String!
+  type: UserType!
+}
+
+input UsersInput {
+  filter: UsersFilter
+}
+
+input UsersFilter {
+  types: [UserType]
 }
