@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   build-and-push-to-gcr:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -13,9 +13,9 @@ jobs:
           ENV_FILE: ${{ secrets.DOTENV }}
           SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
         run: |
-          echo "$ENV_FILE"
           echo "$ENV_FILE" | base64 -d > packages/backend/.env
-          echo "$SERVICE_KEY" | base64 -d > packages/backend/service-account.json
+          # cp ./packages/backend/.env.example ./packages/backend/.env
+          # echo "$SERVICE_KEY" | base64 -d > packages/backend/service-account.json
           cp yarn.lock ./packages/backend/yarn.lock
           cp yarn.lock ./packages/frontend/yarn.lock
 
