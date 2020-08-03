@@ -1,4 +1,6 @@
-import { ApolloClient, InMemoryCache, HttpLink, from } from "@apollo/client";
+ /* eslint-disable */
+ import { ApolloClient, InMemoryCache, HttpLink, from } from "@apollo/client";
+import { useLocation } from "react-router-dom";
 import { onError } from "@apollo/client/link/error";
 import getToast from "../utils/getToast";
 import config from "../utils/config";
@@ -8,12 +10,11 @@ const apiLink = new HttpLink({ uri });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    graphQLErrors.map(({ message, locations, path }) =>
+    graphQLErrors.map(({ message, locations, path, extensions }) =>
       // eslint-disable-next-line no-console
       console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
     );
   }
-
   if (networkError) {
     if (networkError.statusCode === 401) {
       // logout();

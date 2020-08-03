@@ -64,6 +64,14 @@ export default gql`
       rooms {
         id
         name
+        channel {
+          scheme {
+            id
+          }
+          department {
+            id
+          }
+        }
         createdAt
         lastMessage {
           body

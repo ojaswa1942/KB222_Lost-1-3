@@ -88,9 +88,14 @@ const Faq = () => {
     },
     {
       id: 14,
-      question: "How to upload an attachment in Conservation?",
+      question: "How to upload an attachment in Conversation?",
       answer:
         "Go to the Conversation tab on the dashboard, and click on Attach attachment button to add files from our computer.",
+    },
+    {
+      id: 15,
+      question: "Is the transactional and conversational data secure?",
+      answer: "Data is secured through end to end encryption protocol.",
     },
   ]);
 

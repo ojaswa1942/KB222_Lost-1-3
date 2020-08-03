@@ -1,6 +1,13 @@
+ /* eslint-disable */
+ 
 import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+
 import { useParams, useHistory } from "react-router-dom";
+import getToast from "../../utils/getToast";
 import styles from "./Conversations.module.css";
+import USER from "../../graphql/queries/user";
+import SchemeCard from "../../Components/SchemeCard/SchemeCard";
 import MessengerView from "../../Components/MessengerView/MessengerView";
 import CreateRoom from "../../Components/SweetAlertModals/CreateRoom/CreateRoom";
 import Select from "react-dropdown-select";
@@ -8,48 +15,34 @@ import { ReactComponent as Add } from "../../assets/icons/add.svg";
 import getModal from "../../utils/getModal";
 
 const Conversations = () => {
-  const [schemes] = useState([
-    {
-      id: 1,
-      name: "MNREGA",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      entity: "Central Government",
-      sanctionedAmount: "45,000 Crores",
+ 
+  const [schemes, setSchemes] = useState([]);
+
+  const [userType, setUserType] = useState(`MEMBER`);
+  const { data, loading } = useQuery(USER, {
+    onCompleted: () => {
+      console.log(data);
+      if(data.user.type === `CENTRE`)
+        setSchemes(data.user.departments.map(x => x.department));
+      else
+        setSchemes(data.user.schemes.map(x => x.scheme));
     },
-    {
-      id: 2,
-      name: "Jan Dhan Yojana",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      entity: "Central Government",
-      sanctionedAmount: "45,000 Crores",
+    onError: (error) => {
+      const toast = getToast();
+      if (error.graphQLErrors.length > 0) {
+        toast.fire({
+          title: error.graphQLErrors[0].message,
+          icon: "error",
+        });
+      } else {
+        toast.fire({
+          title: "Some error occurred",
+          icon: "error",
+        });
+      }
     },
-    {
-      id: 3,
-      name: "Man Se Bnao Yojana",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      entity: "Central Government",
-      sanctionedAmount: "45,000 Crores",
-    },
-    {
-      id: 4,
-      name: "Kuch Bhi Yojana",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      entity: "Central Government",
-      sanctionedAmount: "45,000 Crores",
-    },
-    {
-      id: 5,
-      name: "Yayyyyy Yojana",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-      entity: "Central Government",
-      sanctionedAmount: "45,000 Crores",
-    },
-  ]);
+  });
+
 
   const [activeScheme, updateActiveScheme] = useState([]);
   const params = useParams();
@@ -93,6 +86,17 @@ const Conversations = () => {
       },
     });
   };
+  let filteredRooms = [];
+  if(!loading && activeScheme.length) {
+    filteredRooms = data.user.rooms.filter(room => {
+      if(data.user.type === `CENTRE`){
+        return ( room.channel.department.id === activeScheme[0].id );
+      }
+      else {
+        return ( room.channel.scheme.id === activeScheme[0].id );
+      }
+    });
+  }
 
   return (
     <div className={styles.conversationsPage}>
@@ -126,7 +130,7 @@ const Conversations = () => {
           </button>
         </div>
       </div>
-      {schemes.length && activeScheme.length && <MessengerView activeScheme={activeScheme} />}
+      {schemes.length > 0 && activeScheme.length && <MessengerView activeScheme={activeScheme[0].id} userType={data.user.type} rooms={filteredRooms} />}
     </div>
   );
 };
