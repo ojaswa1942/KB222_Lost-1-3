@@ -91,7 +91,7 @@ const Login = () => {
                 )}
               </label> */}
               <button type="submit" className={styles.loginBtn} disabled={loading}>
-                {loading ? `SUBMIT` : <Loader height="1em" />}
+                {!loading ? `SUBMIT` : <Loader height="1em" />}
               </button>
               <a href="/login">Forgot Password ? Contact admin</a>
             </form>
