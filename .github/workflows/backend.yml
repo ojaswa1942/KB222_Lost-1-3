@@ -1,5 +1,7 @@
 name: Build and Push
-on: [push]
+on:
+  push:
+    branches: [master]
 
 jobs:
   build-and-push-to-gcr:
@@ -16,7 +18,6 @@ jobs:
           echo "$ENV_FILE" | base64 -d > packages/backend/.env
           echo "$SERVICE_KEY" | base64 -d > packages/backend/service-account.json
           cp yarn.lock ./packages/backend/yarn.lock
-          cp yarn.lock ./packages/frontend/yarn.lock
 
       - uses: RafikFarhad/push-to-gcr-github-action@v3
         with:
@@ -27,11 +28,19 @@ jobs:
           image_tag: ${{ github.sha }}
           context: packages/backend
 
-      - uses: RafikFarhad/push-to-gcr-github-action@v3
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
-          gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
-          registry: asia.gcr.io
-          project_id: stiens-gate
-          image_name: frontend
-          image_tag: ${{ github.sha }}
-          context: packages/frontend
+          version: "290.0.1"
+          project_id: "stiens-gate"
+          service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          export_default_credentials: true
+
+      - uses: azure/setup-kubectl@v1
+      - name: Deploy
+        run: |
+          cd k8s/backend
+          envsubst <deployment.yml >dep.tmp
+          rm deployment.yml
+          mv dep.tmp deployment.yml
+          gcloud container clusters get-credentials sih-closter --zone asia-southeast1-a
+          kubectl apply --namespace=sih -f .
