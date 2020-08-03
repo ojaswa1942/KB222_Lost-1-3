@@ -1,0 +1,23 @@
+.messengerView {
+  display: grid;
+  grid-template-columns: var(--dashboard-conversation-left-width) auto;
+  grid-gap: 16px;
+  color: black;
+  box-sizing: border-box;
+  min-height: 400px;
+  max-height: calc(100vh - 120px - 156px - 48px);
+  overflow-y: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+  .messengerView {
+    grid-template-columns: 100% 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .messengerView {
+    grid-template-columns: 100% 100%;
+    max-height: unset;
+  }
+}

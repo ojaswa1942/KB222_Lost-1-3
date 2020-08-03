@@ -3,11 +3,14 @@
 :root {
   --dashboard-sidenav-width: 360px;
   --dashboard-page-header-top: 7.35em;
+  --dashboard-conversation-left-width: 300px;
 }
 
 button:focus {
-  outline: none !important;
+}
+input:focus, select:focus {
   box-shadow: none !important;
+  outline: none !important;
 }
 
 body {

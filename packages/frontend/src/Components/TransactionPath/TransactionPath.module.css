@@ -1,0 +1,159 @@
+
+.ongoingTxnDiv {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /*background: #4c7260;*/
+  /*border-radius: 0 0 10px 10px;*/
+  /*box-shadow: 8px 8px 19px #4c72603d;*/
+  padding: 1.5em;
+  color: white;
+  /*border-bottom: 2px solid white;*/
+}
+
+.statusDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 1em 0;
+}
+
+.checkpointDiv {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  align-items: center;
+}
+
+.statusPoint {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.4em;
+  height: 1.4em;
+  background: #949494;
+  border-radius: 100%;
+}
+
+.innerPoint {
+  height: 0;
+  width: 0;
+}
+
+.donePoint {
+  background: white;
+}
+
+.innerActivePoint {
+  height: 0.8em;
+  width: 0.8em;
+  border: 3px solid #4c7260;
+  border-radius: 100%;
+}
+
+.statusTextPoint {
+  color: #949494;
+  font-size: 0.8em;
+  margin: 1em 0;
+}
+
+.doneTextPoint {
+  color: #ffffff;
+}
+
+.statusConnector {
+  width: 15%;
+  border-top: 2px #949494 dashed;
+  margin: 0.7em;
+}
+
+.doneConnector {
+  border-top: 2px #ffffff dashed;
+}
+
+.lowerDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.datesDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.buttons {
+  display: flex;
+  align-items: flex-start;
+}
+
+.recievedBtn,
+.issueBtn,
+.loadMoreBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  box-shadow: 5px 5px 8px #00000042;
+  border-radius: 29px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0.5em 2em;
+  letter-spacing: 0.1em;
+  width: max-content;
+  cursor: pointer;
+}
+
+.recievedBtn {
+  background: #ffffff;
+  color: #4c7260;
+  margin: 0 1em;
+}
+
+.issueBtn {
+  background: #9a9a9a;
+  color: #ffffff;
+}
+
+.buttonLogo {
+  height: 1.2em;
+  padding-left: 0.5em;
+}
+
+.noOngoing {
+  display: none;
+}
+
+.loadMoreBtn {
+  color: #4c7260;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.addLogo {
+  height: 1.5em;
+  padding-left: 1em;
+}
+
+.chatBtn {
+  box-sizing: border-box;
+  padding: 1.2em;
+  margin: 1em;
+  width: 5em;
+  height: 5em;
+  border-radius: 100%;
+  background: #bb6a57;
+  color: white;
+  border: none;
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  cursor: pointer;
+}

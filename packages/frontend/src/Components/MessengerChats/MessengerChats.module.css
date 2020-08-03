@@ -1,0 +1,180 @@
+.messengerChats {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column-reverse;
+  color: black;
+  border-radius: 10px;
+  width: 100%;
+  min-width: var(--dashboard-conversation-left-width);
+  background-color: #F6F6F6;
+  border-radius: 5px;
+  grid-column-start: 2;
+  padding: 2em;
+  min-height: inherit;
+  max-height: inherit;
+  overflow-y: auto;
+}
+.messageList {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: max-content;
+}
+.notifCard {
+  background: #4C7260 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 11px;
+  padding: 0.2em 0.5em;
+  margin: 1.2em 0;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.messageCard {
+  box-sizing: border-box;
+  background: #BB6A57 0% 0% no-repeat padding-box;
+  border-radius: 7px;
+  font-size: 12px;
+  padding: 1em;
+  width: 80%;
+  min-width: 160px;
+  margin: 0.6em 0;
+}
+.messageSentInfo {
+  margin-bottom: 0.5em;
+  box-sizing: border-box;
+  line-height: 1em;
+  color: #191919;
+  font-weight: bold;
+  color: #fff;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: space-between;
+}
+.senderName {
+  white-space: nowrap;
+  font-size: 14px;
+}
+.sentTime {
+  text-align: right;
+  font-size: 11px;
+}
+.messageBody {
+  text-align: left;
+  letter-spacing: 0.64px;
+  color: #FFFFFF;
+}
+.messageFileContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0.2em 0 0 0;
+}
+.messageFile {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6em;
+  margin: 0.2em;
+  background: #fff;
+  box-shadow: 6px 6px 9px #00000029;
+  border-radius: 9px;
+  color: #BB6A57;
+  font-size: 12px;
+}
+.fileName {
+  margin: 0 6px;
+}
+.downloadIcon {
+  box-sizing: border-box;
+  background-color: #BB6A57;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.messageInputContainer {
+  margin-top: .5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.msgInput {
+  outline: none;
+  border: none;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 99px #00000029;
+  border-radius: 24px;
+  width: 100%;
+  padding: 1em 2.6em;
+  position: relative;
+}
+.msgInput::placeholder {
+  color: #B6B7B8;
+}
+
+.fileInput {
+  display: none;
+}
+.fileInputIcon {
+  cursor: pointer;
+  position: absolute;
+  padding: 8px;
+  z-index: 1;
+  margin: auto 0;
+  top: 0;
+  bottom: 0;
+}
+.sendButton {
+  display: none;
+}
+.sendIcon {
+  cursor: pointer;
+  position: absolute;
+  padding: 10px;
+  background-color: #BB6A57;
+  border-radius: 20px;
+  z-index: 0;
+  right: 8px;
+  margin: auto 0;
+  top: 0;
+  bottom: 0;
+}
+
+.goBack {
+  box-sizing: border-box;
+  padding: 5px;
+  display: none;
+  position: absolute;
+  right: 100%;
+  color: #BB6A57;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  .goBack {
+    display: block;
+  }
+}
+@media screen and (max-width: 800px) {
+  .messengerChats {
+    padding-bottom: 74px;
+  }
+}

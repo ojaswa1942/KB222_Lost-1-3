@@ -1,13 +1,16 @@
 .addSchemePage {
   box-sizing: border-box;
   width: 100%;
-  padding: 3em;
+  padding: 0 3em 3em 3em;
   color: #191919;
+  position: relative;
 }
 
 .header {
+  box-sizing: border-box;
   position: sticky;
-  top: 0;
+  padding: 1em 0 0 0;
+  top: var(--dashboard-page-header-top);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,76 +22,204 @@
   font-weight: 600;
 }
 
-.addSchemeBtn {
+.schemeFormDiv {
+  width: 60%;
+}
+
+.schemeName,
+.schemeDes,
+.schemeBudget,
+.schemeDep,
+.schemeDur {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 0;
+}
+
+.schemeName h4,
+.schemeBudget h4,
+.schemeDes h4,
+.schemeDep h4,
+.schemeDur h4 {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.schemeName input,
+.schemeDes textarea {
+  box-sizing: border-box;
+  padding: 1em;
+  border: none;
+  outline: none;
+  background: #eeeeee;
+  border-radius: 5px;
+  width: 70%;
+  font-size: 1em;
+}
+
+.amountDiv,
+.depDiv,
+.durationDiv {
+  box-sizing: border-box;
+  width: 70%;
   display: flex;
   align-items: center;
-  background: #bb6a57;
+  justify-content: space-between;
+}
+
+.amountDiv input,
+.amountDiv select,
+.durationDiv input {
+  box-sizing: border-box;
+  padding: 1em;
   border: none;
-  box-shadow: 0px 3px 6px #bb6a5729;
+  outline: none;
+  background: #eeeeee;
+  border-radius: 5px;
+  width: 40%;
+  font-size: 1em;
+}
+
+.department {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.depInput {
+  width: 0;
+  height: 0;
+}
+
+.department span {
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  background: #bb6a57;
+  border-radius: 23px;
+  color: white;
+  padding: 0.8em 1em;
+  font-size: 0.8em;
+}
+
+.depInput:checked + span {
+  background: #093824;
+}
+
+.btnsDiv {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.saveBtn,
+.cancelBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
   border-radius: 30px;
   outline: none;
   cursor: pointer;
   padding: 0;
   color: white;
   height: max-content;
-  padding: 0.8em 1.5em;
   font-weight: 600;
+  width: 20%;
 }
 
-.addScheme {
-  height: 1.2em;
-  padding-right: 0.8em ;
+.saveBtn {
+  background: #2aa41c;
+  padding: 0.8em 1em 0.8em 1.5em;
 }
 
-.schemes {
-  display: flex;
-  flex-direction: column;
+.cancelBtn {
+  background: #8d8d8d;
+  padding: 0.8em 1.5em 0.8em 1em;
 }
-/* 
-@media screen and (max-width: 500px) {
-  .loginPage {
-    padding: 1rem 2rem;
-  }
 
-  .loginDiv {
-    margin: 2em 0 5em 0;
-  }
+.btnLogo {
+  width: 1.2em;
+  padding: 0 0.5em;
+}
 
-  .loginForm {
-    padding: 2em;
+.fieldError {
+  color: red;
+}
+
+@media screen and (max-width: 1200px) {
+  .schemeFormDiv {
     width: 100%;
   }
+}
 
-  .loginForm h1 {
-    font-size: 1.5em;
-    letter-spacing: 0.5em;
+@media screen and (max-width: 1000px) {
+  .addSchemePage {
+    padding: 0 2em 5em 2em;
   }
-
-  .loginForm > label,
-  .loginForm > div {
-    font-size: 0.7em;
+  .header {
+    position: unset;
+    padding: unset;
   }
-
-  .loginRadio {
-    font-size: 1.2em;
+  .schemeFormDiv {
+    width: 100%;
   }
-
-  .loginRadio input {
-    height: 1em;
-    width: 1em;
+  
+  .schemeName,
+  .schemeDes,
+  .schemeBudget,
+  .schemeDep,
+  .schemeDur {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.7em 0;
   }
-
-  .loginPass button {
-    width: 10%;
-    height: 2.7em;
+  
+  .schemeName h4,
+  .schemeBudget h4,
+  .schemeDes h4,
+  .schemeDep h4,
+  .schemeDur h4 {
+    font-size: 0.8em;
+    margin: 0.5em;
   }
-
-  .loginBtn {
+  
+  .schemeName input,
+  .schemeDes textarea {
+    width: 100%;
+  }
+  
+  .amountDiv,
+  .depDiv,
+  .durationDiv {
+    width: 100%;
+  }
+  
+  .amountDiv input,
+  .amountDiv select,
+  .durationDiv input {
     font-size: 0.8em;
   }
-
-  .loginForm a {
-    font-size: 0.5em;
-    padding-top: 0.5em;
+  
+  .department {
+    width: max-content;
   }
-} */
+  
+  .department span {
+    font-size: 0.7em;
+  }
+  
+  .depInput:checked + span {
+    background: #093824;
+  }
+  
+  .saveBtn,
+  .cancelBtn {
+    width: max-content;
+  }
+}

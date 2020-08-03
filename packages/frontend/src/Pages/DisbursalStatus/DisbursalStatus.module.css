@@ -1,195 +1,128 @@
-.loginPage {
+.disbursalPage {
   box-sizing: border-box;
-  background: #4c7260;
-  padding: 1rem 6rem;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-end; */
+  padding: 0 2em 2em 2em;
+  color: #191919;
+  position: relative;
+}
+
+.header {
+  box-sizing: border-box;
+  position: sticky;
+  padding: 1em 0 0 0;
+  top: var(--dashboard-page-header-top);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+}
+
+.head {
+  white-space: nowrap;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+.selectLabel {
+  font-weight: bold;
+  font-size: 12px;
+}
+.select {
+  background: #F6F6F6;
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.select:focus-within, .select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.txnTableDiv {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5em 0;
+  padding: 1.5em;
+  color: white;
+  width: 90%;
+}
+
+.tableDiv {
+  margin: 1em;
+  width: 100%;
+}
+
+.table {
+  display: table;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  border-spacing: 2em;
+}
+
+.table th {
+  font-weight: 600;
+  letter-spacing: 0.1em;
   color: #191919;
 }
 
-.loginDiv {
-  display: flex;
-  justify-content: center;
-  margin: 2em 2em 5em 2em;
-}
-
-.loginFormDiv {
-  display: flex;
-  justify-content: center;
+.tbody {
   width: 100%;
 }
 
-.loginForm {
+.table th,
+.table td {
   box-sizing: border-box;
-  padding: 3em;
-  display: flex;
-  flex-direction: column;
-  background: #ffffff;
-  border: 1px solid #707070;
+  padding: 1.2em;
+}
+.table tr {
+  margin: 25px;
+  border-spacing: 2em;
+}
+.transactionCard {
+  background-color: #4c7260;
+  padding: 10px;
+  width: 100%;
+}
+.collapseRow {
+  background-color: #4c7260;
   border-radius: 10px;
-  width: 40%;
-  min-width: max-content;
+  margin: 20px;
+}
+.transactionRow {
+}
+.collapseRow {
+}
+tbody tr {
+  width: 100%;
+  /*background-color: #4c7260;*/
 }
 
-.loginForm h1 {
-  text-align: center;
+.recievedBtn,
+.issueBtn,
+.loadMoreBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  box-shadow: 5px 5px 8px #00000042;
+  border-radius: 29px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0.5em 2em;
+  letter-spacing: 0.1em;
+  width: max-content;
+  cursor: pointer;
+}
+.loadMoreBtn {
   color: #4c7260;
-  font-size: 2.8em;
-  letter-spacing: 0.5em;
-  margin: 0 auto;
-  margin-bottom: 0.5em;
-}
-
-.loginForm > label,
-.loginForm > div {
-  margin: 1em;
-  display: flex;
-  flex-direction: column;
-  font-size: 0.8em;
-  font-weight: 400;
-}
-
-/* .radioGroup {
-  display: flex;
-  flex-direction: row;
-}
-
-.loginForm > div > h3 {
-  margin: 0;
-  font-size: 1em;
-  font-weight: 400;
-}
-
-.loginRadio {
-  display: flex;
-  align-items: center;
-  font-size: 1.5em;
-}
-
-.loginRadio input {
-  height: 1.2em;
-  width: 1.2em;
-  padding: 1em 2em;
-  border: 1px solid #707070;
-}
-
-.loginRadio span {
-  padding: 0.4em 1em 0.4em 0.5em;
-} */
-
-.loginEmail input,
-.loginDept select {
-  background: #f6f6f6;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  padding: 1em;
-  font-size: 1em;
-  margin: 0.2em 0;
-}
-
-.loginPass {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.loginPass input {
-  background: #f6f6f6;
-  width: 90%;
-  border: none;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  padding: 1em;
-  font-size: 1em;
-  margin: 0.2em 0;
-}
-
-.loginPass button {
-  width: 10%;
-  background: #f6f6f6;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  height: 3.2em;
-  outline: none;
-  cursor: pointer;
-  padding: 0;
-}
-/* 
-.loginDept option {
-  font-size: 1rem;
-  border: none;
-} */
-
-.loginBtn {
-  background: #4c7260;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 1em;
   font-weight: 500;
-  letter-spacing: 0.8em;
-  color: #ffffff;
-  padding: 1em 0;
-  margin: 1em;
-  cursor: pointer;
-}
-
-.loginForm a {
-  color: #bb6a57;
-  text-align: center;
-  font-size: 0.8em;
-  padding-top: 1em;
-}
-
-.fieldError {
-  color: red;
-}
-
-@media screen and (max-width: 500px) {
-  .loginPage {
-    padding: 1rem 2rem;
-  }
-
-  .loginDiv {
-    margin: 2em 0 5em 0;
-  }
-
-  .loginForm {
-    padding: 2em;
-    width: 100%;
-  }
-
-  .loginForm h1 {
-    font-size: 1.5em;
-    letter-spacing: 0.5em;
-  }
-
-  .loginForm > label,
-  .loginForm > div {
-    font-size: 0.7em;
-  }
-
-  /* .loginRadio {
-    font-size: 1.2em;
-  }
-
-  .loginRadio input {
-    height: 1em;
-    width: 1em;
-  } */
-
-  .loginPass button {
-    width: 10%;
-    height: 2.7em;
-  }
-
-  .loginBtn {
-    font-size: 0.8em;
-  }
-
-  .loginForm a {
-    font-size: 0.5em;
-    padding-top: 0.5em;
-  }
+  font-size: 1.2em;
 }

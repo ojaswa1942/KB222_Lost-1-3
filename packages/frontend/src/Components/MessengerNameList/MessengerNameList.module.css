@@ -1,0 +1,61 @@
+.MessengerNameList {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: #F0F0F0 0% 0% no-repeat padding-box;
+  border-radius: 5px;
+  min-height: inherit;
+  max-height: inherit;
+  overflow-y: auto;
+}
+
+.nameCard {
+  box-sizing: border-box;
+  width: 100%;
+  background: #F0F0F0 0% 0% no-repeat padding-box;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.8em 1.5em;
+  border-bottom: 1px solid #70707030;
+  letter-spacing: 1px;
+}
+.nameCard:last-child{
+  border: none;
+}
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0;
+}
+.name {
+  color: #1E2022;
+  font-size: 14px;
+  text-align: left;
+}
+.time {
+  color: #77838F;
+  font-size: 12px;
+  white-space: nowrap;
+  text-align: right;
+}
+.message {
+  color: #77838F;
+  font-size: 12px;
+}
+.cardSelected {
+  background-color: #BB6A57;
+  color: #fff;
+}
+.cardSelected div {
+  color: #fff;
+}
+
+@media screen and (max-width: 1200px) {
+
+}
+@media screen and (max-width: 800px) {
+  .MessengerNameList {
+    padding-bottom: 74px;
+  }
+}
