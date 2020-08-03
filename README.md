@@ -1,5 +1,7 @@
-# KB222_Lost-1-3
-### Official repository for SIH Submission KB222 Lost-1+3
+# KB222_Lost-1+3
+
+### [Final Presentation](https://github.com/ojaswa1942/KB222_Lost-1-3/blob/master/Final-Presentation/SIH(lost-1%2B3)-KB222.pdf)
+### Official repository for SIH Submission
 
 ### Ministry/Organization Name : Government of Andhra Pradesh
 
@@ -16,8 +18,14 @@ scheme of department
 
 ### Team Name: 
 Lost-1+3
-
 ### Team Leader Name :
 Ojaswa Sharma
 ### Institute Name : 
 Indian Institute of Information Technology, Gwalior (U-267)
+### Product Features:
+- Secure
+- Scheduled Tracking
+- Seamless Notifications
+- Role Management
+- Streamlined Communication
+- Scalable Solution
