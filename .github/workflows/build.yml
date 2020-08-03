@@ -1,0 +1,37 @@
+name: Build and Push
+on: [push]
+
+jobs:
+  build-and-push-to-gcr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Save environment vars
+        env:
+          ENV_FILE: ${{ secrets.DOTENV }}
+          SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
+        run: |
+          echo "$ENV_FILE" | base64 -d > packages/backend/.env
+          echo "$SERVICE_KEY" | base64 -d > packages/backend/service-account.json
+          cp yarn.lock ./packages/backend/yarn.lock
+          cp yarn.lock ./packages/frontend/yarn.lock
+
+      - uses: RafikFarhad/push-to-gcr-github-action@v3
+        with:
+          gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          registry: asia.gcr.io
+          project_id: stiens-gate
+          image_name: backend
+          image_tag: ${{ github.sha }}
+          context: packages/backend
+
+      - uses: RafikFarhad/push-to-gcr-github-action@v3
+        with:
+          gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          registry: asia.gcr.io
+          project_id: stiens-gate
+          image_name: frontend
+          image_tag: ${{ github.sha }}
+          context: packages/frontend
