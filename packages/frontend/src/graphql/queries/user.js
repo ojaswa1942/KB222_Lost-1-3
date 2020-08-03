@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export default gql`
   query User {
@@ -25,7 +25,7 @@ export default gql`
         id
         name
         createdAt
-        lastMessage{
+        lastMessage {
           body
           files
           isNotification
@@ -35,6 +35,6 @@ export default gql`
           createdAt
         }
       }
-    } 
+    }
   }
 `;

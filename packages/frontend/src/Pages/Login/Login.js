@@ -1,18 +1,44 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
 import styles from "./Login.module.css";
 import LogoHead from "../../Components/LogoHead/LogoHead";
 import Footer from "../../Components/Footer/Footer";
 import { ReactComponent as Eye } from "../../assets/eye.svg";
+import getToast from "../../utils/getToast";
+import LOGIN from "../../graphql/mutations/login";
 
 const Login = () => {
   const history = useHistory();
   const [showPass, setShowPass] = useState(false);
   const { register, handleSubmit, errors } = useForm();
+  const [runLogin, { loading }] = useMutation(LOGIN, {
+    onCompleted: () => {
+      history.push("/dashboard");
+    },
+    onError: (error) => {
+      const toast = getToast();
+      if (error.graphQLErrors.length > 0) {
+        toast.fire({
+          title: error.graphQLErrors[0].message,
+          icon: "error",
+        });
+      } else {
+        toast.fire({
+          title: "Some error occurred",
+          icon: "error",
+        });
+      }
+    },
+  });
+
   const onSubmit = (data) => {
-    console.log(data);
-    history.push("/dashboard");
+    runLogin({
+      variables: {
+        input: data,
+      },
+    });
   };
   const showPassword = () => {
     setShowPass(!showPass);
@@ -93,7 +119,7 @@ const Login = () => {
                   <span className={styles.fieldError}>This field is required</span>
                 )}
               </label> */}
-              <button type="submit" className={styles.loginBtn}>
+              <button type="submit" className={styles.loginBtn} disabled={loading}>
                 SUBMIT
               </button>
               <a href="/login">Forgot Password ? Contact admin</a>
