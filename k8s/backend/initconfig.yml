@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pg-init
+data:
+  init.sh: |
+    psql -v ON_ERROR_STOP=1 --username "postgres" -c "CREATE EXTENSION pgcrypto;" template1
+    psql -v ON_ERROR_STOP=1 --username "postgres" -c "CREATE DATABASE fund;"

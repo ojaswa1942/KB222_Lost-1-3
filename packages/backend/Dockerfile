@@ -3,7 +3,7 @@ FROM node:12-alpine
 WORKDIR /app
 
 ENV PORT 5000
-# ENV NODE_ENV production
+ENV PG_HOST db
 EXPOSE $PORT
 
 COPY package.json yarn.lock ./

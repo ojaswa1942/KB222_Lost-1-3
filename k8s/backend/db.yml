@@ -1,0 +1,20 @@
+apiVersion: kubedb.com/v1alpha1
+kind: Postgres
+metadata:
+  name: db
+spec:
+  version: "11.2"
+  databaseSecret:
+    secretName: pg-auth
+  storageType: Durable
+  storage:
+    storageClassName: "standard"
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  init:
+    scriptSource:
+      configMap:
+        name: pg-init

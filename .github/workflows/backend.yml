@@ -42,5 +42,9 @@ jobs:
           envsubst <deployment.yml >dep.tmp
           rm deployment.yml
           mv dep.tmp deployment.yml
+          kubectl create secret generic pg-auth \
+          --from-literal=POSTGRES_USER="postgres" \
+          --from-literal=POSTGRES_PASSWORD="dubidubi" \
+          --dry-run=client -o yaml >secret.yml
           gcloud container clusters get-credentials sih-closter --zone asia-southeast1-a
           kubectl apply --namespace=sih -f .
