@@ -13,19 +13,19 @@ async function loadUsers() {
   await createUser({
     name: 'Bob',
     email: 'bob@example.com',
-    type: UserType.STATE,
+    type: UserType.State,
   });
 
   await createUser({
     name: 'Celine',
     email: 'celine@example.com',
-    type: UserType.CENTRE,
+    type: UserType.Centre,
   });
 
   await createUser({
     name: 'Dan',
     email: 'dan@example.com',
-    type: UserType.ROOT,
+    type: UserType.Root,
   });
 }
 

@@ -14,8 +14,7 @@ jobs:
           SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
         run: |
           echo "$ENV_FILE" | base64 -d > packages/backend/.env
-          # cp ./packages/backend/.env.example ./packages/backend/.env
-          # echo "$SERVICE_KEY" | base64 -d > packages/backend/service-account.json
+          echo "$SERVICE_KEY" | base64 -d > packages/backend/service-account.json
           cp yarn.lock ./packages/backend/yarn.lock
           cp yarn.lock ./packages/frontend/yarn.lock
 

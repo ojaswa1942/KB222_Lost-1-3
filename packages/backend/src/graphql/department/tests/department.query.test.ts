@@ -22,7 +22,7 @@ describe('department query', () => {
 
   test('fetch department with root', async () => {
     // Given
-    const user = await createUser({ email: 'root@example.com', password: 'test', type: UserType.ROOT });
+    const user = await createUser({ email: 'root@example.com', password: 'test', type: UserType.Root });
     const dep = await createDepartment();
 
     // When
@@ -47,7 +47,7 @@ describe('department query', () => {
   test('fetch department with member user', async () => {
     // Given
     const user = await createUser({ email: 'user@example.com', password: 'test' });
-    const dep = await createDepartment({ users: [user] });
+    // const dep = await createDepartment({ departmentRoles: [{ role: DeptRoles.ADMIN, user }] });
 
     // When
     const res = await createTestClient({
@@ -57,7 +57,7 @@ describe('department query', () => {
       query: DepartmentQuery,
       variables: {
         input: {
-          id: dep.id,
+          id: 1,
         },
       },
     });
