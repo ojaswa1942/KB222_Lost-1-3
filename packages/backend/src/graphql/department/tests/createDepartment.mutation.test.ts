@@ -16,7 +16,7 @@ describe('createDepartment mutation', () => {
 
   test('create department with root user', async () => {
     // Given
-    const user = await createUser({ email: 'user@exmaple.com', password: 'test', type: UserType.ROOT });
+    const user = await createUser({ email: 'user@exmaple.com', password: 'test', type: UserType.Root });
 
     // When
     const res = await createTestClient({
@@ -43,7 +43,7 @@ describe('createDepartment mutation', () => {
 
   test('create department with root user and empty name', async () => {
     // Given
-    const user = await createUser({ email: 'user@exmaple.com', password: 'test', type: UserType.ROOT });
+    const user = await createUser({ email: 'user@exmaple.com', password: 'test', type: UserType.Root });
 
     // When
     const res = await createTestClient({

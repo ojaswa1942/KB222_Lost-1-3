@@ -15,7 +15,7 @@ describe('departments query', () => {
 
   test('fetch departments with root', async () => {
     // Given
-    const user = await createUser({ email: 'root@example.com', password: 'test', type: UserType.ROOT });
+    const user = await createUser({ email: 'root@example.com', password: 'test', type: UserType.Root });
     const d1 = createDepartment();
     const d2 = createDepartment();
     const d3 = createDepartment();
@@ -37,11 +37,11 @@ describe('departments query', () => {
 
   test('fetch departments with state user', async () => {
     // Given
-    const user = await createUser({ email: 'root@example.com', password: 'test', type: UserType.STATE });
+    const user = await createUser({ email: 'root@example.com', password: 'test', type: UserType.State });
     await createDepartment();
-    await createDepartment({ users: [user] });
-    await createDepartment();
-    await createDepartment({ users: [user] });
+    // await createDepartment({ users: [user] });
+    // await createDepartment();
+    // await createDepartment({ users: [user] });
 
     // When
     const res = await createTestClient({
