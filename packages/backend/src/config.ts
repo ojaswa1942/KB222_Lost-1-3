@@ -19,7 +19,7 @@ const {
 } = process.env;
 
 const config = {
-  host: HOST || 'localhost',
+  host: HOST || '0.0.0.0',
   port: Number(PORT) || 5000,
   mongoURI: MONGO_URI,
   DBName: DB_NAME || 'fund',
