@@ -8,7 +8,7 @@ export default gql`
       description
       budget
       transferredAmount
-      users{
+      users {
         role
         user {
           id
@@ -28,12 +28,12 @@ export default gql`
         rooms {
           id
           name
-          lastMessage{
+          lastMessage {
             body
             createdAt
           }
         }
-      }      
+      }
     }
   }
 `;

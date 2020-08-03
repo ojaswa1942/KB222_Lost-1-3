@@ -6,6 +6,7 @@ import styles from "./Login.module.css";
 import LogoHead from "../../Components/LogoHead/LogoHead";
 import Footer from "../../Components/Footer/Footer";
 import { ReactComponent as Eye } from "../../assets/eye.svg";
+import { ReactComponent as Loader } from "../../assets/three-dots.svg";
 import getToast from "../../utils/getToast";
 import LOGIN from "../../graphql/mutations/login";
 
@@ -90,7 +91,7 @@ const Login = () => {
                 )}
               </label> */}
               <button type="submit" className={styles.loginBtn} disabled={loading}>
-                SUBMIT
+                {loading ? `SUBMIT` : <Loader height="1em" />}
               </button>
               <a href="/login">Forgot Password ? Contact admin</a>
             </form>

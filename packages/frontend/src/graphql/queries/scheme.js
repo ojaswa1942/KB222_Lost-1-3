@@ -5,7 +5,7 @@ export default gql`
     scheme(input: $input) {
       id
       name
-      users{
+      users {
         role
         user {
           id

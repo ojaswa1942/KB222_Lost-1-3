@@ -24,7 +24,7 @@ const config = {
   mongoURI: MONGO_URI,
   DBName: DB_NAME || 'fund',
   JWTSecret: JWT_SECRET,
-  JWTExpiry: JWT_EXPIRY || '15m',
+  JWTExpiry: JWT_EXPIRY || '7d',
   refreshTokenExpiry: REFRESH_EXPIRY || '365d',
   frontendOrigins: [/localhost/, /gov\.in/, /127\.0\.0\.1/],
   isProd: APP_ENV === 'production',
