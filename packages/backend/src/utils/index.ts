@@ -34,7 +34,7 @@ export const addAuthCookies = (
 
   res.cookie('signedin', signedIn, {
     sameSite: 'strict',
-    maxAge: ms(config.refreshTokenExpiry),
+    maxAge: ms(expiry),
   });
 
   res.cookie('refreshToken', refreshToken, {

@@ -61,7 +61,11 @@ const resolvers: Resolvers<Context> = {
       return { id: channel.id };
     },
     lastMessage: async ({ id }, _, { messageLoader }) => {
-      const msg = await getRepository(Message).findOne({ where: { roomId: id }, order: { createdAt: 'DESC' } });
+      const msg = await getRepository(Message).findOne({
+        where: { roomId: id },
+        order: { createdAt: 'DESC' },
+        relations: ['user', 'room'],
+      });
       messageLoader.prime(msg.id, msg);
       return { id: msg.id };
     },
@@ -82,7 +86,7 @@ const resolvers: Resolvers<Context> = {
     },
     files: async ({ id }, _, { messageLoader }) => {
       const { files } = await messageLoader.load(id);
-      return files.map((f) => ({ id: f.id, key: f.key, name: f.name, message: { id } }));
+      return (files || []).map((f) => ({ id: f.id, key: f.key, name: f.name, message: { id } }));
     },
     user: async ({ id }, _, { messageLoader }) => {
       const { user } = await messageLoader.load(id);

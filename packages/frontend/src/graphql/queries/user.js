@@ -12,6 +12,27 @@ export default gql`
         scheme {
           id
           name
+          description
+          budget
+          channels {
+            id
+            scheme {
+              id
+              name
+            }
+            department {
+              id
+              name
+            }
+            transactions {
+              id
+              trxId
+              amount
+              state
+              createdAt
+              updatedAt
+            }
+          }
         }
       }
       departments {
@@ -19,6 +40,25 @@ export default gql`
         department {
           id
           name
+          channels {
+            id
+            scheme {
+              id
+              name
+            }
+            department {
+              id
+              name
+            }
+            transactions {
+              id
+              trxId
+              amount
+              state
+              createdAt
+              updatedAt
+            }
+          }
         }
       }
       rooms {

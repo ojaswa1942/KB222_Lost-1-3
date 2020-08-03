@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import styles from "./Login.module.css";
+import { useAuth } from "../../context";
 import LogoHead from "../../Components/LogoHead/LogoHead";
 import Footer from "../../Components/Footer/Footer";
 import { ReactComponent as Eye } from "../../assets/eye.svg";
@@ -11,12 +12,14 @@ import getToast from "../../utils/getToast";
 import LOGIN from "../../graphql/mutations/login";
 
 const Login = () => {
-  const history = useHistory();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  // const history = useHistory();
   const [showPass, setShowPass] = useState(false);
   const { register, handleSubmit, errors } = useForm();
   const [runLogin, { loading }] = useMutation(LOGIN, {
     onCompleted: () => {
-      history.push("/dashboard");
+      setIsLoggedIn(true);
+      // history.push("/dashboard");
     },
     onError: (error) => {
       const toast = getToast();
@@ -33,6 +36,8 @@ const Login = () => {
       }
     },
   });
+
+  if (isLoggedIn) return <Redirect to="/dashboard" />;
 
   const onSubmit = (data) => {
     runLogin({
@@ -62,7 +67,7 @@ const Login = () => {
                 Password*
                 <div className={styles.loginPass}>
                   <input
-                    ref={register({ required: true, minLength: 6 })}
+                    ref={register({ required: true, minLength: 4 })}
                     name="password"
                     type={showPass ? "text" : "password"}
                   />

@@ -9,49 +9,33 @@ const TransactionPath = ({ txn }) => {
       <div className={styles.statusDiv}>
         <div className={styles.checkpointDiv}>
           <div className={`${styles.statusPoint} ${styles.donePoint} `}>
-            <div
-              className={`${styles.innerPoint} ${styles.innerActivePoint} `}
-            />
+            <div className={`${styles.innerPoint} ${styles.innerActivePoint} `} />
           </div>
-          <span
-            className={`${styles.statusTextPoint} ${styles.doneTextPoint} `}
-          >
-            Initiated
-          </span>
+          <span className={`${styles.statusTextPoint} ${styles.doneTextPoint} `}>Initiated</span>
         </div>
-        <span
-          className={`${styles.statusConnector} ${styles.doneConnector} `}
-        />
+        <span className={`${styles.statusConnector} ${styles.doneConnector} `} />
         <div className={styles.checkpointDiv}>
           <div className={`${styles.statusPoint} ${styles.donePoint} `}>
-            <div
-              className={`${styles.innerPoint} ${styles.innerActivePoint} `}
-            />
+            <div className={`${styles.innerPoint} ${styles.innerActivePoint} `} />
           </div>
-          <span
-            className={`${styles.statusTextPoint} ${styles.doneTextPoint} `}
-          >
+          <span className={`${styles.statusTextPoint} ${styles.doneTextPoint} `}>
             Processing Request
           </span>
         </div>
-        <span
-          className={`${styles.statusConnector} ${styles.doneConnector} `}
-        />
+        <span className={`${styles.statusConnector} ${styles.doneConnector} `} />
         <div className={styles.checkpointDiv}>
           <div
-            className={`${styles.statusPoint} ${
-              txn.status === "completed" && styles.donePoint
-            } `}
+            className={`${styles.statusPoint} ${txn.status === "COMPLETED" && styles.donePoint} `}
           >
             <div
               className={`${styles.innerPoint} ${
-                txn.status === "completed" && styles.innerActivePoint
+                txn.status === "COMPLETED" && styles.innerActivePoint
               } `}
             />
           </div>
           <span
             className={`${styles.statusTextPoint} ${
-              txn.status === "completed" && styles.doneTextPoint
+              txn.status === "COMPLETED" && styles.doneTextPoint
             } `}
           >
             Awaiting Confirmation
@@ -59,24 +43,22 @@ const TransactionPath = ({ txn }) => {
         </div>
         <span
           className={`${styles.statusConnector} ${
-            txn.status === "completed" && styles.doneConnector
+            txn.status === "COMPLETED" && styles.doneConnector
           } `}
         />
         <div className={styles.checkpointDiv}>
           <div
-            className={`${styles.statusPoint} ${
-              txn.status === "completed" && styles.donePoint
-            } `}
+            className={`${styles.statusPoint} ${txn.status === "COMPLETED" && styles.donePoint} `}
           >
             <div
               className={`${styles.innerPoint} ${
-                txn.status === "completed" && styles.innerActivePoint
+                txn.status === "COMPLETED" && styles.innerActivePoint
               } `}
             />
           </div>
           <span
             className={`${styles.statusTextPoint} ${
-              txn.status === "completed" && styles.doneTextPoint
+              txn.status === "COMPLETED" && styles.doneTextPoint
             } `}
           >
             Completed
@@ -91,9 +73,7 @@ const TransactionPath = ({ txn }) => {
           <button
             value="recieved"
             type="button"
-            className={`${styles.recievedBtn} ${
-              txn.status === "completed" && styles.noOngoing
-            }`}
+            className={`${styles.recievedBtn} ${txn.status === "COMPLETED" && styles.noOngoing}`}
           >
             Recieved
             <CheckSign className={styles.buttonLogo} />

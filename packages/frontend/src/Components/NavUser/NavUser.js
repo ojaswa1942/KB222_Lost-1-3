@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context";
 import { ReactComponent as UserIcon } from "../../assets/icons/icons8-male-user.svg";
 import { ReactComponent as ExpandIcon } from "../../assets/icons/icons8_expand_arrow_4.svg";
 import useOuterClick from "../../utils/hooks/useOuterClick";
 import styles from "./NavUser.module.css";
 
 const UserDropdown = ({ toggleOpen }) => {
+  const { setIsLoggedIn } = useAuth();
   const innerRef = useOuterClick(() => {
     toggleOpen();
   });
@@ -14,7 +16,7 @@ const UserDropdown = ({ toggleOpen }) => {
       <Link to="/dashboard/account" className={styles.dropdownCard}>
         Account Settings
       </Link>
-      <Link to="/login" className={styles.dropdownCard}>
+      <Link to="/login" className={styles.dropdownCard} onClick={() => setIsLoggedIn(false)}>
         Logout
       </Link>
     </div>
