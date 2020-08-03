@@ -27,7 +27,10 @@ export default gql`
         createdAt
         lastMessage {
           body
-          files
+          files {
+            key
+            name
+          }
           isNotification
           user {
             name

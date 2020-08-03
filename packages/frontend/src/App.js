@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { renderToString } from "react-dom/server";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import USER from "./graphql/queries/user";
 import getToast from "./utils/getToast";
 import { ReactComponent as SuccessIcon } from "./assets/icons/icons8-checked.svg";
 import DashboardTopNav from "./Components/DashboardTopNav/DashboardTopNav";
@@ -24,6 +26,26 @@ const App = () => {
       iconHtml: renderToString(<SuccessIcon />),
     });
   }, []);
+
+  const { data } = useQuery(USER, {
+    onCompleted: () => {
+      console.log(data);
+    },
+    onError: (error) => {
+      const toast = getToast();
+      if (error.graphQLErrors.length > 0) {
+        toast.fire({
+          title: error.graphQLErrors[0].message,
+          icon: "error",
+        });
+      } else {
+        toast.fire({
+          title: "Some error occurred",
+          icon: "error",
+        });
+      }
+    },
+  });
 
   return (
     <div className="App">

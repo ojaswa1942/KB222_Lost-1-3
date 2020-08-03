@@ -52,36 +52,6 @@ const Login = () => {
           <div className={styles.loginFormDiv}>
             <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
               <h1>LOGIN</h1>
-              {/* <div>
-                <h3> Choose Entity*</h3>
-                <div className={styles.radioGroup}>
-                  <label>
-                    <div className={styles.loginRadio}>
-                      <input
-                        type="radio"
-                        value="State"
-                        name="entity"
-                        ref={register({ required: true })}
-                      />
-                      <span>State</span>
-                    </div>
-                  </label>
-                  <label>
-                    <div className={styles.loginRadio}>
-                      <input
-                        type="radio"
-                        value="Centre"
-                        name="entity"
-                        ref={register({ required: true })}
-                      />
-                      <span>Centre</span>
-                    </div>
-                  </label>
-                </div>
-                {errors.entity && (
-                  <span className={styles.fieldError}>This field is required</span>
-                )}
-              </div> */}
               <label htmlFor="email" className={styles.loginEmail}>
                 E-mail address*
                 <input ref={register({ required: true })} name="email" type="email" />

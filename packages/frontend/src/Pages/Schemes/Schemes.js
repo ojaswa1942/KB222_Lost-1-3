@@ -1,12 +1,38 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Schemes.module.css";
+import { useQuery } from "@apollo/client";
+import getToast from "../../utils/getToast";
+import USER from "../../graphql/queries/user";
 import SchemeCard from "../../Components/SchemeCard/SchemeCard";
 import DeleteScheme from "../../Components/SweetAlertModals/DeleteScheme/DeleteScheme";
 import { ReactComponent as Add } from "../../assets/icons/add.svg";
 import getModal from "../../utils/getModal";
 
 const Schemes = () => {
+  const [userType, setUserType] = useState(`MEMBER`);
+  const { data } = useQuery(USER, {
+    onCompleted: () => {
+      console.log(data);
+      if(data.user.type)
+        setUserType(data.user.type);
+    },
+    onError: (error) => {
+      const toast = getToast();
+      if (error.graphQLErrors.length > 0) {
+        toast.fire({
+          title: error.graphQLErrors[0].message,
+          icon: "error",
+        });
+      } else {
+        toast.fire({
+          title: "Some error occurred",
+          icon: "error",
+        });
+      }
+    },
+  });
+
   const [schemes] = useState([
     {
       id: 1,
@@ -70,12 +96,13 @@ const Schemes = () => {
     <div className={styles.schemesPage}>
       <div className={styles.header}>
         <h1 className={styles.head}>Schemes</h1>
-        <Link to="/dashboard/schemes/add">
+        { userType === `ROOT` && <Link to="/dashboard/schemes/add">
           <button className={styles.addSchemeBtn} type="button">
             <Add className={styles.addScheme} />
             Add Scheme
           </button>
         </Link>
+        }
       </div>
       <div className={styles.schemes}>
         {schemes.map((scheme) => {
