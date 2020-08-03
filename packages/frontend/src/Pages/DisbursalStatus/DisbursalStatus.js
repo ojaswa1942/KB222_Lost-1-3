@@ -28,95 +28,10 @@ const DisbursalStatus = () => {
     },
   });
 
-  // const [schemes] = useState([
-  //   {
-  //     id: 1,
-  //     name: "MNREGA",
-  //     description:
-  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  //     entity: "Central Government",
-  //     sanctionedAmount: "45,000 Crores",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Jan Dhan Yojana",
-  //     description:
-  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  //     entity: "Central Government",
-  //     sanctionedAmount: "45,000 Crores",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Man Se Bnao Yojana",
-  //     description:
-  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  //     entity: "Central Government",
-  //     sanctionedAmount: "45,000 Crores",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Kuch Bhi Yojana",
-  //     description:
-  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  //     entity: "Central Government",
-  //     sanctionedAmount: "45,000 Crores",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Yayyyyy Yojana",
-  //     description:
-  //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  //     entity: "Central Government",
-  //     sanctionedAmount: "45,000 Crores",
-  //   },
-  // ]);
-
-  // const [schemeTxns] = useState({
-  //   scheme: "MNREGA",
-  //   txns: [
-  //     {
-  //       txnID: "N48FGHYSN489F4N684MXZ5HJKF",
-  //       txnAmount: 1543500,
-  //       recievedDate: "20/02/2020",
-  //       status: "initiated",
-  //       initiateDate: "07/03/2020",
-  //     },
-  //     {
-  //       txnID: "N48FGHYSN489F32684MXZ5HJKF",
-  //       txnAmount: 1543500,
-  //       recievedDate: "20/02/2020",
-  //       status: "initiated",
-  //       initiateDate: "07/03/2020",
-  //     },
-  //     {
-  //       txnID: "N423GHYSN489F4N684MXZ5HJKF",
-  //       txnAmount: 1543500,
-  //       recievedDate: "20/02/2020",
-  //       status: "initiated",
-  //       initiateDate: "07/03/2020",
-  //     },
-  //     {
-  //       txnID: "N48FG12YSN489F4N684MXZ5HJKF",
-  //       txnAmount: 1543500,
-  //       recievedDate: "20/02/2020",
-  //       status: "initiated",
-  //       initiateDate: "07/03/2020",
-  //     },
-  //     {
-  //       txnID: "N38FGHYSN489F4N684MXZ5HJKF",
-  //       txnAmount: 1543500,
-  //       recievedDate: "20/02/2020",
-  //       status: "initiated",
-  //       initiateDate: "07/03/2020",
-  //     },
-  //   ],
-  // });
-
-  const [activeChannel, updateActiveChannel] = useState([]);
+  const [channels, setChannels] = useState([]);
+  const [activeChannel, updateActiveChannel] = useState();
   const params = useParams();
   const history = useHistory();
-
-  let channels = [];
 
   useEffect(() => {
     if (params.entityId) {
@@ -156,14 +71,20 @@ const DisbursalStatus = () => {
     if (activeChannel?.transactions?.length) updateExpanded(activeChannel.transactions[0].id);
   }, [activeChannel]);
 
+  useEffect(() => {
+    if (data) {
+      const entities = data.user.type === "STATE" ? data.user.departments : data.user.schemes;
+
+      setChannels(
+        entities.reduce((p, c) => {
+          if (data.user.type === "STATE") return [...p, ...c.department.channels];
+          return [...p, ...c.scheme.channels];
+        }, [])
+      );
+    }
+  }, [data]);
+
   if (loading) return <Loader height="2em" />;
-
-  const entities = data.user.type === "STATE" ? data.user.departments : data.user.schemes;
-
-  channels = entities.reduce((p, c) => {
-    if (data.user.type === "STATE") return [...p, ...c.department.channels];
-    return [...p, ...c.scheme.channels];
-  }, []);
 
   return (
     <>
