@@ -61,7 +61,7 @@ const Home = () => {
           </div>
           <div className={styles.feature}>
             <Feature3 className={styles.featureLogo} />
-            <h3>Seamless communication aross channels</h3>
+            <h3>Seamless communication across channels</h3>
             <p>
               Channels to communicate seamlessly with authorities of the same and different
               departments and schemes through mail and messages on the dashboard.
