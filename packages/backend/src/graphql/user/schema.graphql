@@ -3,7 +3,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  signup(input: SignUpInput!): SignUpResponse! @requireAuthentication(isRoot: true)
+  signup(input: SignUpInput!): SignUpResponse! #@requireAuthentication(isRoot: true)
 }
 
 enum UserType {

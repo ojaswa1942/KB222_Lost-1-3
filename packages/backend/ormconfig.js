@@ -41,6 +41,6 @@ if (NODE_ENV === 'staging') {
 if (NODE_ENV === 'production') {
   module.exports = {
     ...DEFAULTS,
-    entities: [path.join(__dirname, 'dist/src/database/entity/**/*.js')],
+    entities: [path.join(__dirname, 'dist/database/entity/**/*.js')],
   };
 }
