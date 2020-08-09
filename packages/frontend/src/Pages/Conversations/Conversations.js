@@ -1,4 +1,4 @@
- /* eslint-disable */
+/* eslint-disable */
  
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
@@ -21,10 +21,9 @@ const Conversations = () => {
   const [userType, setUserType] = useState(`MEMBER`);
   const { data, loading } = useQuery(USER, {
     onCompleted: () => {
-      console.log(data);
-      if(data.user.type === `CENTRE`)
-        setSchemes(data.user.departments.map(x => x.department));
-      else
+      // if(data.user.type === `CENTRE`)
+        // setSchemes(data.user.departments.map(x => x.department));
+      // else
         setSchemes(data.user.schemes.map(x => x.scheme));
     },
     onError: (error) => {
@@ -42,7 +41,6 @@ const Conversations = () => {
       }
     },
   });
-
 
   const [activeScheme, updateActiveScheme] = useState([]);
   const params = useParams();
@@ -89,15 +87,16 @@ const Conversations = () => {
   let filteredRooms = [];
   if(!loading && activeScheme.length) {
     filteredRooms = data.user.rooms.filter(room => {
-      if(data.user.type === `CENTRE`){
-        return ( room.channel.department.id === activeScheme[0].id );
-      }
-      else {
+      // if(data.user.type === `CENTRE`){
+        // return ( room.channel.department.id === activeScheme[0].id );
+      // }
+      // else {
         return ( room.channel.scheme.id === activeScheme[0].id );
-      }
+      // }
     });
   }
 
+  console.log(activeScheme, filteredRooms);
   return (
     <div className={styles.conversationsPage}>
       <div className={styles.header}>

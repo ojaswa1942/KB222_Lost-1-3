@@ -90,7 +90,8 @@ const resolvers: Resolvers<Context> = {
     },
     user: async ({ id }, _, { messageLoader }) => {
       const { user } = await messageLoader.load(id);
-      return { id: user.id };
+      if(user)
+        return { id: user.id };
     },
     createdAt: async ({ id }, _, { messageLoader }) => {
       const { createdAt } = await messageLoader.load(id);

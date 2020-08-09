@@ -1,4 +1,4 @@
- /* eslint-disable */
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import styles from "./MessengerChats.module.css";
 import { ReactComponent as AttachIcon } from "../../assets/icons/icons8-attach.svg";
@@ -146,13 +146,11 @@ const MessageInput = ({ handleMessageSubmit, onBack }) => {
 }
 
 const MessengerChats = ({ listReference, chatReference, selectedRoomId, messages = dummyMessages }) => {
-	// const [messages, updateMessages] = useState([]);
-	// useEffect(() => {
-	// 	updateMessages(dummyMessages);
-	// }, [selectedRoomId]);
+	const [messagesToShow, updateMessages] = useState(dummyMessages);
 
-	if(!messages.length)
-		messages = dummyMessages;
+	useEffect(() => {
+		updateMessages([...messages, ...dummyMessages]);
+	}, [messages])
 
 	const handleDownload = (key) => {
 		alert(`Downloaded file ${key}`);
@@ -176,7 +174,7 @@ const MessengerChats = ({ listReference, chatReference, selectedRoomId, messages
 			<MessageInput handleMessageSubmit={handleMessageSubmit} onBack={gotoChat} />
       
       <div className={styles.messageList} >
-				{messages.map((message, i) => {
+				{messagesToShow.map((message, i) => {
 					return (
 						<MessageCard key={i} message={message} handleDownload={handleDownload} />
 					);

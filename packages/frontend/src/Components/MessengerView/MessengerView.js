@@ -1,4 +1,4 @@
- /* eslint-disable */
+/* eslint-disable */
  import React, { useState, useEffect, useRef } from "react";
 import styles from "./MessengerView.module.css";
 import MessengerNameList from "../MessengerNameList/MessengerNameList";
@@ -33,8 +33,9 @@ const MessengerView = ({ activeScheme, rooms }) => {
   }, [rooms]);
 
   const { data, loading } = useQuery(MESSAGE, {
-    variables: { input: { roomID: currentSelected } },
+    variables: { input: { roomID: currentSelected || 1 } },
     onCompleted: () => {
+      console.log('haha');
       updateMessages(data.messages);
     },
     onError: (error) => {
@@ -52,6 +53,8 @@ const MessengerView = ({ activeScheme, rooms }) => {
       }
     },
   });
+
+  console.log(data, currentSelected);
 
   return (
     <div className={styles.messengerView}>
