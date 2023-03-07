@@ -35,7 +35,7 @@ jobs:
           service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
           export_default_credentials: true
 
-      - uses: azure/setup-kubectl@v1
+      - uses: azure/setup-kubectl@v3
       - name: Deploy
         run: |
           cd k8s/backend
